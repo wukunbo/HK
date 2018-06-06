@@ -1,0 +1,73 @@
+  <div class="weixin"> 
+		<div class="ajax_title">
+			<div class="left">选择商品</div>
+			<div class="right"><a href="javascript:XianShi_GuanBi()">关闭</a></div>
+			 <div class="clear"></div>	
+		</div>
+
+
+
+				{foreach from=$goods_lists item=lists}
+						<div class="reply_lists_ajax_item" id="reply_lists_ajax_item" onmouseover="sel_div({$lists.goods_id},this)" >
+							<div class="item_title" >
+								{$lists.goods_name}
+							</div>
+							<div class="item_image"  >
+								<img class="ajax_image" width="80" height="80" src="../{$lists.goods_thumb}" >
+							</div>
+							<div class="clear"></div>
+							<div id="sel_div_{$lists.goods_id}" class="sel_div" style="display:none" onmouseout="sel_div_none(this)" onclick="javascript:item_sel('{$lists.goods_id }','{$lists.goods_name}','{$lists.goods_thumb}','{$item_id}','2')">选择</div>
+						</div>
+			   {foreachelse}		 
+						 暂无数据
+			   {/foreach}	
+			   
+			   <div class="clear"></div>					
+			   
+</div>					   
+<script>
+	function item_sel(id,title,image,item_id,cata){	
+		$("#item_id_"+item_id).val(id)
+		$("#item_cata_"+item_id).val(cata)
+		$("#item_title_"+item_id).html(title)
+		$("#item_image_"+item_id).html('<img src="../'+image+'" class="image">');
+		
+			var w = $(".image").width();
+			var h = $(".image").height();
+			var s_w=80;
+			var s_h=h*s_w/w 
+			$(".image").attr({width:s_w, height:s_h});
+			
+					
+		XianShi_GuanBi();
+		 
+	}
+ 	$(function(){
+		$(".ajax_image").each(function(i){
+		 
+			var w = $(this).width();
+			var h = $(this).height();
+			var s_w=80;
+			var s_h=h*s_w/w 
+			$(this).attr({width:s_w, height:s_h});
+		});
+	});
+ 	function sel_div(id,obj){
+	 
+			t=obj.offsetTop
+			l=obj.offsetLeft
+			w=obj.offsetWidth
+			h=obj.offsetHeight
+			 
+			document.getElementById('sel_div_'+id).style.top=t+"px";
+			document.getElementById('sel_div_'+id).style.left=l+"px";
+			document.getElementById('sel_div_'+id).style.width=w+"px";
+			document.getElementById('sel_div_'+id).style.height=h+"px";
+			 
+			document.getElementById('sel_div_'+id).style.display='';
+
+	}
+	function sel_div_none(obj){
+		obj.style.display='none';
+	}	
+</script>

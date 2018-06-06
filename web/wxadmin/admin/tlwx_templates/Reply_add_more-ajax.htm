@@ -1,0 +1,299 @@
+<!-- $Id: goods_info.htm 17126 2010-04-23 10:30:26Z liuhui $ -->
+{include file="pageheader.htm"}
+ 
+ 
+ 
+
+
+
+ <div id="weixin_content">
+ 	<div class="left">
+		{include file="Reply_left.htm"}
+		 
+	</div>
+	<div class="right">
+		<div class="head">多图文添加修改</div>
+		<div class="content"  >
+			<form method="post" id="upload" name="upload" action="tlwx.php?m=Reply&a=insert_updata&reply_type=more" >	 
+				<input id="cata" name="data[cata" type="hidden" value="2" >
+				<input id="id" name="id" type="hidden" value="{$weixin_reply.id}" >
+				 
+			 
+			<div class="reply_add" > 
+				<div class="reply_item" >
+					<label>标题</label>
+					<span class="reply_input_box"><input type="txt" name="data[title]" id="title" oninput="OnInput (event)" onpropertychange="OnPropChanged (event)" value="{$weixin_reply.title}"></span>
+				</div>
+				<div class="reply_item" >
+					<label>作者（选填）</label>
+					<span class="reply_input_box"><input type="txt" name="data[author]" value="{$weixin_reply.title}"></span>
+				</div>
+				  
+				<div class="reply_item" >
+					<label>图片(大图片建议尺寸：360像素 * 200像素)</label>
+					<span class="reply_input_box"><a href="javascript:XianShi_NeiRong('tlwx.php?m=Material&a=lists&cata=image&to=to_reply')">上传</a></span>
+					<input id="image_data" name="data[image]" type="hidden" value="{$weixin_reply.image}" >
+					<div id="image_thumb" class="image_thumb">{if $weixin_reply.image neq ""}<img src="../{$weixin_reply.image}" width="80" height="80" >{/if}</div>
+				</div>
+				<div class="reply_item" >
+					<label>摘要</label>
+					<span class="reply_input_txt"><textarea class="textarea" id="summary" name="data[summary]" oninput="OnInput (event)" onpropertychange="OnPropChanged (event)">{$weixin_reply.summary}</textarea></span>
+				</div>
+				<div class="reply_item" >
+					<label>正文</label>
+					<span class="">{$editor}</span>
+				</div>
+				<div class="reply_item" >
+					<label><input name="url_sel"  id="url_sel" type="checkbox" value="" {if $weixin_reply.url neq ""} checked="checked"{/if} />自定义链接</label>
+					<span class="reply_input_box"><input type="txt"  id="url" name="url" value="{$weixin_reply.url}" {if $weixin_reply.url eq ""}disabled="disabled"{/if}></span>
+				</div>
+				<div class="reply_item">
+					<input name="save" id="save" type="button" value="保存" />
+					 
+				</div>
+			</div>
+			 
+			<div class="reply_display">
+				 
+					<div class="image_cover" id="image_cover"  >{if $weixin_reply.image neq ""}<img src="../{$weixin_reply.image}" class="b_image">{else}封面图片{/if}</div>
+					<div class="reply_title_more" id="reply_title">{if $weixin_reply.image neq ""}{$weixin_reply.title}{else}标题{/if}</div>
+					 
+					{if $weixin_reply.id eq ""}
+
+						<div id="reply_lists_item">
+							<div class="reply_lists_item" id="item_1" onmouseover="editor_div(1,this)">
+								<div class="item_title" id="item_title_1" >
+									标题
+								</div>
+								<div class="item_image" id="item_image_1" >
+									缩略图
+								</div>
+								<div class="clear"></div>
+								<input id="item_id_1" name="item_id[]" type="hidden" value="" >
+								<input id="item_cata_1" name="item_cata[]" type="hidden" value="" >
+							
+							</div>
+							<div id="editor_div_1" class="editor_div_time" style="display:none" onmouseout="editor_div_none(this)"><a href="javascript:reply_add_ajax_NeiRong('tlwx.php?m=Reply&a=content_add&ajax=1&item_id=1',1)">图文信息</a> <a href="javascript:reply_add_ajax_NeiRong('tlwx.php?action=good_lists_ajax&item_id=1',1)">商品信息</a> <a href="javascript:imagelists_del(1)">删除</a> </div>
+							 
+						</div>			
+					{else}		
+						{foreach from=$weixin_reply[material] item=material key=key}
+							 
+							 
+						<div id="reply_lists_item">
+							<div class="reply_lists_item" id="item_{$key}" onmouseover="editor_div({$key},this)">
+								<div class="item_title" id="item_title_{$key}" >
+									{$material.title}
+								</div>
+								<div class="item_image" id="item_image_{$key}" >
+									<img class="s_image" src="../{$material.image}" >
+								</div>
+								<div class="clear"></div>
+								<input id="item_id_{$key}" name="item_id[]" type="hidden" value="{if $material.cata eq 2}{$material.goods_id}{else}{$material.id}{/if}" >
+								<input id="item_cata_{$key}" name="item_cata[]" type="hidden" value="{$material.cata}" >
+							
+							</div>
+							<div id="editor_div_{$key}" class="editor_div_time" style="display:none" onmouseout="editor_div_none(this)"><a href="javascript:reply_add_ajax_NeiRong('tlwx.php?m=Reply&a=add&ajax=1&item_id={$key}',1)">图文信息</a> <a href="javascript:reply_add_ajax_NeiRong('tlwx.php?action=good_lists_ajax&item_id={$key}',1)">商品信息</a> <a href="javascript:imagelists_del({$key})">删除</a> </div>
+							 
+						</div>
+						{/foreach}
+					{/if}
+					
+				 	<div class="reply_lists_item add" id="tiem"  >
+						<a href="javascript:imagelists_add()"> 新增</a>
+					</div>
+				 
+				
+				
+			</div>
+			 
+			 
+			<div class="clear"></div>
+			
+		</form>
+		</div>
+	</div>
+	<div class="clear"></div>
+ 
+ 
+ </div>
+<script type="text/javascript" src="tlwx_templates/js/js_reply.js"></script>   
+<div id="reply_add_ajax_NeiRong" style="z-index:9999000; top:50px; position:absolute; width:442px; height:750px;BORDER: #444444 5px solid; display:none; background-color:#FFFFFF; padding:15px;">
+
+</div>
+ 
+<div id="reply_add_ajax_BJ" style="position:absolute; width:100px; height:100%; z-index:999; top:0px; display:none; left:0px; display:none; background-color:#CCCCCC;filter:alpha(opacity=30);-moz-opacity:0.5;opacity: 0.48;">
+</div>
+ 
+ 	
+ 
+ 
+ 
+ 
+<script type="text/javascript">
+
+ 
+	
+	 
+	$("#url_sel_ajax").click( 
+	
+	
+		function(){
+			if(document.getElementById("url_ajax").disabled == false){
+				 
+				document.getElementById("url_ajax").disabled = true
+				$("#url_ajax").val("")	 
+			}else{	 
+				document.getElementById("url_ajax").disabled = false
+				 
+			}
+		}
+	);	
+	
+ 
+ 
+	function fuasdnfsdaf(){
+		var htmlData=CKEDITOR.instances.myEditor.getData();
+		var appEndData="追加的内容";
+		var theData=appEndData;
+		CKEDITOR.instances.myEditor.setData(theData);
+	}	 
+
+</script>
+ 
+ 
+<script language="JavaScript"> 
+ 
+ 	 
+	 //多个图片追加
+	 
+	{if $material_account neq ""}
+		ids={$material_account};
+	{else}
+		ids=1;
+	{/if}
+	
+	function imagelists_add(){
+		 	 
+		 
+			  
+			 if(ids<=7){
+				ids++;
+			    s='<div class="reply_lists_item" id="item_'+ids+'" onmouseover="editor_div('+ids+',this)"><div class="item_title" id="item_title_'+ids+'" >标题</div><div class="item_image" id="item_image_'+ids+'" >缩略图</div><div class="clear"></div></div><div id="editor_div_'+ids+'" class="editor_div_time" style="display:none" onmouseout="editor_div_none(this)"><a href="javascript:reply_add_ajax_NeiRong(\'tlwx.php?m=Reply&a=add&ajax=1&item_id='+ids+'\',1)">图文信息</a> <a href="javascript:XianShi_NeiRong(\'tlwx.php?action=good_lists_ajax&item_id='+ids+'\')">商品信息</a><a href="javascript:imagelists_del(1)">删除</a> </div><input id="item_id_'+ids+'" name="item_id[]" type="hidden" value="" > <input id="item_cata_'+ids+'" name="item_cata[]" type="hidden" value="" >';
+				 
+				$("#reply_lists_item").append(s);
+			 }else{
+				 
+				alert("最多添加8条")	 
+			}
+	}
+	function imagelists_del(key,item_id){
+		 
+		 
+		 
+		 if(ids>1){
+			 $("#item_"+id).remove();
+			 $("#editor_div_"+id).remove();
+			 ids--;
+			 
+		 }else{
+			 alert("最少添加2条")	 
+				 
+		}
+		  
+		 
+		 
+	}
+ 	function editor_div(id,obj){
+	 
+			t=obj.offsetTop
+			l=obj.offsetLeft
+			w=obj.offsetWidth
+			h=obj.offsetHeight
+			 
+			document.getElementById('editor_div_'+id).style.top=t+"px";
+			document.getElementById('editor_div_'+id).style.left=l+"px";
+			document.getElementById('editor_div_'+id).style.width=w+"px";
+			document.getElementById('editor_div_'+id).style.height=h+"px";
+			 
+			document.getElementById('editor_div_'+id).style.display='';
+			  
+		 
+	}
+	function editor_div_none(obj){
+		obj.style.display='none';
+	}
+ 
+	$("#save").click( 
+		function(){
+		 if($("#title").val()==""){
+		 	alert("标题不能为空");
+		 	return false;
+		 }
+		 if($("#image").val()==""){
+		 	alert("图片不能为空");
+		 	return false;
+		 }
+		 if($("#item_id_1").val()==""){
+		 	alert("最少需要添加两条信息");
+		 	return false;
+		 }
+ 
+		  
+		 document.getElementById("upload").submit(); 
+	});	
+	
+	$("#url_sel").click( 
+	
+		function(){
+			if(document.getElementById("url").disabled == false){
+				 
+				document.getElementById("url").disabled = true
+				$("#url").val("")	 
+			}else{	 
+				document.getElementById("url").disabled = false
+				 
+			}
+		}
+	);	
+	
+ 
+ 
+		
+	$('#title').bind('input propertychange', function() {
+		$('#reply_title').html($(this).val());
+	});	
+ 
+ 
+ 	$('#summary').bind('input propertychange', function() {
+		$('#reply_summary').html($(this).val());
+	});	
+	
+
+  
+ 	$(function(){
+		$(".b_image").each(function(i){
+		 
+			var w = $(this).width();
+			var h = $(this).height();
+			var s_w=360;
+			var s_h=h*s_w/w 
+			$(this).attr({width:s_w, height:s_h});
+		});
+		$(".s_image").each(function(i){
+		 
+			var w = $(this).width();
+			var h = $(this).height();
+			var s_w=80;
+			var s_h=h*s_w/w 
+			$(this).attr({width:s_w, height:s_h});
+		});
+	});
+
+
+ 
+ 
+ 
+</script>
+ 
+{include file="pagefooter.htm"}

@@ -1,0 +1,19 @@
+{layout name="Public/layout" /}
+
+<div class="panel panel-default">
+<form action="{:url('Config/material_cate_add_action')}"   method="post" name="auth" id="auth">
+    <input type="text" style="display:none;" name="post_id"  class="form-control" value="{$data['id']}">
+    <div class="panel-body">
+        <div class="form-group">
+            <label for="text-input" class="col-md-2 control-label">分类名称</label>
+            <div class="col-md-4 input-group ">
+                <input type="text" name="post[title]"  class="form-control" value="{$data['title']}">
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <button class="btn btn-sm btn-success" type="submit" onclick1="save_vote()"><i class="fa fa-dot-circle-o"></i> 保存</button>
+        <button class="btn btn-sm btn-danger" type="reset"><i class="fa fa-ban"></i> 重置</button>
+    </div>
+</form>
+</div>

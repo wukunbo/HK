@@ -1,0 +1,105 @@
+{layout name="Public/layout" /}
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2><i class="fa fa-table red"></i><span class="break"></span><strong>列表</strong></h2>
+    </div>
+
+    <div class="panel-body">
+        <div class="nav nav-tabs" style="height:auto; padding-bottom:10px;">
+            <div class="row">
+                <form action="{:url('lists')}" method="post" name="search_form" id="search_form">
+                    <div class="col-lg-2 col-md-2"  >
+                        <select name="cate_id" id="attr_select" class="form-control" >
+                            <option selected="selected"  value="">选择分类检索</option>
+                            
+                            
+                            
+                        
+                         {$data[op_lists]}  
+                    
+                    
+                    
+                        
+                        
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-2"  >
+                        <input   id="key_word" type="text" name="keyword" value="{$r[keyword]}" placeholder="关键字搜索" class="form-control">
+                    </div>
+                    <button class="btn btn-default" type="submit"  style=" float:left; margin-right:10px;"><i class="fa fa-search"></i>搜索</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <form id="saveForm" method='post' action="{:url('del')}?&tb=cms">
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>文章ID</th>
+                        <th>文章标题</th>
+                        <!-- <th>图标</th> -->
+                        <!-- <th>浏览次数</th> -->
+                        <th>分类</th>
+                        <!-- <th>发布者</th> -->
+                        <th>状态</th>
+                        <th style="width:200px">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="list">
+
+                    {volist name="data[lists]['content']" id="vo"}
+                        <tr >
+                            <td >
+                                <input type='checkbox' name="id_arr[]" onclick="select_child(1)"  class="sub_1" value="{$vo['id']}"  >
+                                {$vo['id']}
+                            </td>
+
+                            <td >{$vo['title']}</td>
+                          
+                            <td>{$vo.cate_title}</td>
+
+                            <td>
+                                {if condition="$vo.status eq 1"}
+                                     上线
+                                {else/}
+                                    下线 
+                                {/if}
+                            </td>
+                            <td>
+
+                                {if condition="$vo.status eq 1"}
+                                    <a  href="{:url('change_status')}?&id={$vo.id}&status=0"  ><i class="fa fa-arrow-down"></i>下线</a>
+                                {else/}
+                                    <a href="{:url('change_status')}?&id={$vo.id}&status=1"  ><i class="fa fa-arrow-up"></i>上线</a> 
+                                {/if}
+                                <a href="{:url('add')}?&id={$vo.id}&p={$_REQUEST[p]}"><i class="fa fa-pencil"></i>修改</a>
+                                <a onClick="return del_sure()"  href="{:url('del')}?&id={$vo.id}&p={$_REQUEST[p]}&cate_id={$cate_id}"   ><i class="fa fa-trash-o"></i>删除</a> </td>
+                        </tr>
+                    {/volist}
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <input onclick="selectall(1)"  type='checkbox'  id="pid_1"  value=""  >
+            全选
+            <button class="btn btn-sm btn-success" id="validateBtn" type="submit" onclick="return del_sure()"><i class="fa fa-dot-circle-o"></i> 删除</button>
+            <a class="btn btn-primary" href="{:url('add')}" ><i class="fa fa-plus"></i>新增</a> </div>
+    </form>
+</div>
+<include file="Public/pagination" />
+
+
+<script>
+    $("#pid_1").click(function(){
+        if(this.checked){
+            $("#list :checkbox").prop("checked", true);
+        }else{
+            $("#list :checkbox").prop("checked", false);
+        }
+    });
+</script>

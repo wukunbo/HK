@@ -1,0 +1,13 @@
+		
+		
+ 
+		 
+		<a href="tlwx.php?m=Keyword&a=auto_all&keyword_cata=auto" {if  $comm[m] eq "Keyword" &&  $comm[a] eq "auto_all" &&  ($comm[keyword_cata] eq "auto" || $comm[keyword_cata] eq "" )} class="cur" {/if} >关注时自动回复</a>
+		<a href="tlwx.php?m=Keyword&&a=auto_all&keyword_cata=all" {if  $comm[m] eq "Keyword" &&  $comm[a] eq "auto_all" &&  $comm[keyword_cata] eq "all"} class="cur" {/if}>默认自动回复</a>
+		<a href="tlwx.php?m=Keyword&a=lists" {if  $comm[m] eq "Keyword" &&  $comm[a] neq "auto_all" &&  $comm[keyword_cata] neq "auto" } class="cur" {/if}>关键词自动回复</a>
+		
+	
+		<a href="tlwx.php?m=Reply&a=lists" {if $comm[m] eq "Reply" } class="cur" {/if}>图文列表</a>
+		<a href="tlwx.php?m=Material&a=lists" {if $comm[m] eq "Material" } class="cur" {/if}>素材列表</a>
+		
+ 

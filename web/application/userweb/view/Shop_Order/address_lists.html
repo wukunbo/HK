@@ -1,0 +1,28 @@
+{layout name="Public/layout" /}
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="100">id</th>
+                    <th width="*">地址</th>
+                    <th width="100">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="data[lists]" id="lists"}
+                    <tr >
+                        <td >{$lists['id']}</td>
+                        <td>{$lists[address]}</td>
+                        <td><a href="{:url('address_add')}?&id={$lists.id}"><i class="fa fa-pencil"></i></a>
+                            <a href="javascript:confirm_del('{:url('address_delete')}?&id={$lists.id}&p={$_REQUEST[p]}&cate_id={$cate_id}')"  ><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                {/volist}
+            </tbody>
+        </table>
+        <include file="Public/pagination" />
+    </div>
+</div>

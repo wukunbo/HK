@@ -1,0 +1,36 @@
+{layout name="Public/layout" /}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2><i class="fa fa-table red"></i><span class="break"></span><strong>列表</strong></h2>
+         
+    </div>
+    <div class="panel-body">
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>标题</th>
+                    <th style="width: 13.5em;">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="data[content]" id="vo"}
+                    <tr >
+                        <td >{$vo['id']}</td>
+                        <td >{$vo['title']}</td>
+                        <td><a href="{:url('category_add')}?&id={$vo.id}"><i class="fa fa-pencil"></i></a>
+                            <a href="{:url('category_del')}?&id={$vo.id}" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                {/volist}
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-primary" href="{:url('category_add')}" ><i class="fa fa-plus"></i>新增</a>
+         
+    </div>
+</div>
+<include file="Public/pagination" />

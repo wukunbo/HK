@@ -1,0 +1,38 @@
+<!-- 包含头部模版header -->
+{include file="Public/header" /}
+
+
+<body>
+
+
+{include file="Public/nav" /}
+
+<div class="list address_lists" >
+    <!--content start-->
+    {volist name="data" id="vo"}
+        <div class="item  item-icon-right" style="padding-left:48px;padding-bottom: 50px" >
+
+            {if condition="$vo.type eq 1"}
+                <span class="  ion-checkmark-circled assertive" style="position: absolute;left:6px;"></span>
+            {/if}
+            <a
+
+                {if condition="$cart_ids"}href="{:url('Order/add_order')}?&address_id={$vo.id}&cart_ids={$cart_ids}"{/if}
+             
+            >
+            <h2>{$vo.name} <span class="green font-size-14">&nbsp;{$vo.phone}</span></h2>
+            <p class="margin-top">{$vo.address} </p>
+            </a>
+            <a class="icon ion-ios-compose-outline dark-gray" style="height: 32px;right: 9px;top:6px;" href="{:url('User/add_address')}?&id={$vo.id}&cart_ids={$cart_ids}"></a>
+            <a class="icon ion-ios-trash-outline gray" style="  height: 32px;top:46px;" href="{:url('User/address_delete')}?id={$vo.id}"></a>
+        </div>
+    {/volist}
+    <div class="item    add" >
+        <i class="ion-ios-plus-outline"></i>
+        <a href="{:url('User/add_address')}?cart_ids={$cart_ids}"> 新增收货地址 </a>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+<!-- 包含头部模版header -->
+{include file="Public/header" /}
+
+<style type="text/css">
+    body{
+        background-color: #fff;
+    }
+    .bar .button-clear{
+        color: black!important;
+        bottom: 7px;
+    }
+    .bar-positive{
+        background-color: #FAFAFA!important;
+        position: relative;
+        border-bottom: 1px solid #E7E7E7!important;
+        background-image: none!important;
+    }
+    .title{
+        color: black!important;
+        font-weight: bold!important;
+    }
+    h3{
+        display: inline-block;
+    }
+    .item{
+        background-color: #FAFAFA!important;
+    }
+    .item_{
+        margin-top: 10px;
+    }
+    .item_ span{
+        border: 1px solid #CCCCCC;
+        background-color: #E6E6E6;
+        float: left;
+        height: 20px;
+        line-height: 20px; 
+    }
+    .item_ input{
+        height: 20px;
+        float: left;
+        text-align: center;
+        width: 15%;
+        border: 1px solid #CCCCCC;
+        margin-right: -1px; 
+    }
+    .item_ button{
+        border-width: 0;
+        color: #fff;
+        border-radius: 3px;
+        background-color: #4FD2C2;
+        margin-left: 7%;
+        height: 20px;
+        font-size: 12px;
+        padding-left: 5%;
+        padding-right: 5%;
+        position: relative;
+        bottom: 2px;
+    }
+    .item-thumbnail-left > input:first-child {
+        height: 10px;
+        width: 10px;
+    }
+    .item-thumbnail-left > img:first-child {
+        max-height: 100px;
+        max-width: 100px;
+    }
+    .item-thumbnail-left{
+        padding: 10px 16px 0 156px;
+    }
+    .good_img{
+        position: absolute;
+        top: 10px;
+        left: 40px;
+        max-width: 100px;
+        max-height: 100px;
+        width: 100%;
+        height: 100%;
+    }
+    .good_img img{
+        width: 100%;
+        height: 100%;
+    }
+    .good_select{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        max-width: 30px;
+        max-height: 100px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 100px
+    }
+    .row{
+        padding: 0;
+    }
+    .mtop_1{
+        margin-bottom: 10px;
+    }
+</style>
+
+
+
+<body>
+
+{include file="Public/nav" /}
+
+<div style="width: 100%;height: 10px;"></div>
+
+<div id="cart_content">
+    
+    <!-- 商品 -->
+    
+
+{volist name="data" id="vo"}
+
+    <div class="content mtop_1">
+        <div class="item item-thumbnail-left item-borderless">
+            <div class="good_select"><input type="checkbox" name="goods_checkbox" value="{$vo.cart_id}" onchange="deal_price()"></input></div>
+            <div class="good_img"><img src="HTTP_IMG/{$vo.img_orogin}"/></div>
+            <h3>{$vo.goods_name}</h3>
+            
+
+            <div style="margin-top: 10px;">
+                <h3 style="color:red;">HKD ￥{$vo.market_price}</h3>
+            </div>
+
+            <div class="item_" style="margin-bottom: 50px;">
+                <span style="border-radius: 3px 0 0 3px;margin-right: -1px;" onclick="add_cart({$vo.cart_id},'del')">－</span>
+                <input type="number" value="{$vo.amount}" id="goods_num{$vo[cart_id]}"/>
+                <span style="border-radius: 0 3px 3px 0;" onclick="add_cart({$vo.cart_id},'add')">＋</span>
+                <a href="{:url('Index/del_cart')}?&cart_id={$vo[cart_id]}"><img src="__SHOP_STATIC__/img/delete.png" style="width: 15px;float: right;"></a>
+            </div>
+        </div>
+        <div style="height: 3px;width: 94%;margin-left: 3%;margin-right: 3%;background-color:#E5E5E5; "></div>
+    </div>
+    
+{/volist}
+
+
+
+
+
+    <div style="height: 30px;width: 100%;"></div>
+
+</div>
+
+
+<div style="margin: 0;padding-left: 10px; width: 100%;margin-bottom: 50px;">
+    <span style="color: red;">*注：</span>购物车购买金额，代购费收取15%
+</div>
+
+
+<div class="row back-white fixed-bottom">
+    <!-- <div class="col col-20" style="margin-left: 11px;padding-top: 15px;">
+        <input type="checkbox" style="margin-right: 10px;"></input>全选
+    </div> -->
+    <div class="col col-65" style="padding-top: 15px;padding-right: 10px;">
+    合计：<span style="color: red;">HKD ￥<b id="total_price">0</b></span>
+    </div>
+    <div onclick="add_order()" class="col col-25" style="background-color: #4FD2C2;color: #fff;text-align: center;padding-bottom: 15px;padding-top: 15px;">
+        <a style="color: #fff;">结算</a>
+    </div>
+</div>
+
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+function add_cart(cart_id,type){
+
+    $.ajax({
+        url: "{:url('ajax_add_cart')}",
+        type: 'GET',
+        dataType: 'json',
+        data: {cart_id:cart_id,type:type},
+        success:function(data) {  
+            if(data.status==10001){
+                $("#goods_num"+cart_id).val(data.amount);
+            }
+        },  
+        error : function() {  
+            alert("失败");
+        }  
+    });
+}
+
+
+//核算价格
+function deal_price(){
+
+    var arr=new Array();
+
+    $('input[name="goods_checkbox"]:checked').each(function(i){
+        // alert($(this).val())
+        arr[i] = $(this).val();
+    });
+    var vals = arr.join(",");
+    // console.log(arr);
+    // alert(vals);
+    $.ajax({
+        url: "{:url('deal_price')}",
+        type: 'GET',
+        dataType: 'json',
+        data: {cart_ids:vals},
+        success:function(data) {  
+            if(data.status==10001){
+                $("#total_price").html(data.total_price);
+            }
+        },  
+        error : function() {  
+            alert("失败");
+        }  
+    });
+
+}
+
+
+function add_order(){
+    var arr=new Array();
+
+    $('input[name="goods_checkbox"]:checked').each(function(i){
+        // alert($(this).val())
+        arr[i] = $(this).val();
+    });
+    var cart_ids = arr.join(",");
+
+    window.location.href="{:url('Order/add_order')}?&cart_ids="+cart_ids;
+}
+
+
+</script>

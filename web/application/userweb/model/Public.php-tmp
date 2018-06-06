@@ -1,0 +1,23 @@
+<?php
+namespace app\userweb\model;
+use think\Model;
+
+class PublicModel extends Model {
+
+	public function Find($array) {
+		$table = $array['table'];
+		$where = $array['where'];
+		$order = $array['order'];
+		$field = $array['field'];
+		if ($order == NULL) {
+			$order = "id desc";
+		}
+		if ($field == NULL) {
+			$field = '*';
+		}
+		$Sql  = Db::name($table);
+		$data = $Sql->where($where)->field($field)->->order($order)->find();
+		return $data;
+	}
+
+}

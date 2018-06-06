@@ -1,0 +1,98 @@
+{layout name="Public/layout" /}
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form action="{:url('order_back_add')}?&back_order_id={$data[order_back_id]}" method="post" name="add_goods" id="add_goods">
+
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active in" id="home">
+                    <div class="form-group">
+                        <label>订单号：</label>
+                        <a>{$order_detail.order_sn}</a> </div>
+                </div>
+                <div class="form-group">
+                    <label for="text-input" class="col-md-2 control-label">收货人姓名： </label>
+                    <div class="col-md-4 input-group "> &nbsp;{$order_detail.address_name} </div>
+                </div>
+                <div class="form-group">
+                    <label for="text-input" class="col-md-2 control-label">联系电话： </label>
+                    <div class="col-md-4 input-group "> &nbsp;{$order_detail.address_phone} </div>
+                </div>
+                <div class="form-group">
+                    <label for="text-input" class="col-md-2 control-label">所在地区： </label>
+                    <div class="col-md-4 input-group "> {$order_detail.address} &nbsp;{$order_detail[address_arr][country_name]} {$order_detail[address_arr][province_name]} {$order_detail[address_arr][city_name]} {$order_detail[address_arr][area_name]}</div>
+                </div>
+                <div class="form-group" style="display:none">
+                    <label for="text-input" class="col-md-2 control-label">详细州/省： </label>
+                    <div class="col-md-4 input-group "> &nbsp; {$order_detail[address_arr][city_detail]}</div>
+                </div>
+                <div class="form-group" style="display:none">
+                    <label for="text-input" class="col-md-2 control-label">详细市/县： </label>
+                    <div class="col-md-4 input-group "> &nbsp;
+                        {$order_detail[address_arr][area_detail]} </div>
+                </div>
+                <div class="form-group" style="display:none">
+                    <label for="text-input" class="col-md-2 control-label">邮编： </label>
+                    <div class="col-md-4 input-group "> &nbsp;
+                        {$order_detail[address_arr][postalcode]} </div>
+                </div>
+                <div class="form-group" style="display:none">
+                    <label for="text-input" class="col-md-2 control-label">详细地址： </label>
+                    <div class="col-md-4 input-group "> &nbsp;{$order_detail[address_arr][details_site]} </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>状态：</label>
+                    <a>{$order_detail.pay_status_text} {$order_detail.shipping_stauts_text} {$order_detail.back_status_text}</a> </div>
+                <div class="form-group">
+                    <label>订单总价：</label>
+                    <a>{$order_detail.total_fee} 元</a> </div>
+                <div class="form-group" style="display:none">
+                    <label>余额支付：</label>
+                    <a>{$order_detail.point_fee}元 </a> </div>
+                <div class="form-group" style="display:none">
+                    <label>邮费：</label>
+                    <a>{$order_detail.shipping_fee|default="0"}元 </a> </div>
+                <div class="form-group" style="display:none">
+                    <label>优惠券抵扣金额：</label>
+                    <a>{$order_detail.fee_dis_for_coupon|default="0"}元 </a> </div>
+                <div class="form-group">
+                    <label>实付金额：</label>
+                    <a>{$order_detail.real_fee} 元</a> </div>
+                <div class="form-group">
+                    <label>快递：</label>
+                    <a>{$order_detail.shipping_title|default="暂无"}  {$order_detail.shipping_id|default=""} </a> </div>
+                <div class="form-group">
+                    <label>下单时间：</label>
+                    <a>{$order_detail.addtime|date="Y-m-d H:i:s",###} </a> </div>
+                <div class="form-group" style="display:none">
+                    <label>用户留言：</label>
+                    <a>{$order_detail.msg|default="无"} </a> </div>
+                <div class="form-group" style="display:none">
+                    <label>客服备注：</label>
+                    <a>{$order_detail.content|default="无"} </a> </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="" style="height:auto; overflow:hidden; clear:both;">
+    <div id="goods_lists" style="line-height:30px;margin:10px; padding-bottom:5px; float:left; width:100%; ">
+        {volist name="order_detail[goods_lists]" id="goods_lists"}
+            <div id="text" style="height:auto; overflow:hidden;width:100%;border-bottom:1px solid #ddd; margin-bottom:10px; clear:both; " >
+                <div id="img" style="float:left"> <img src="{$goods_lists.img_thumb}" height="100px"> </div>
+                <div id="goods_name" style="font-size:16px;width:500px;float:left;word-break:break-all; margin-left:10px;"> <a style="color:;">商品名：{$goods_lists.goods_name}
+                    {if condition="$goods_lists.attr neq ''"}({$goods_lists.attr}){/if}
+                    </a> </div>
+                <div id="goods_price" style="color:;font-size:16px;width:200px;float:left;word-break:break-all; margin-left:10px;">
+                    <p style="color:;">商品金额：￥{$goods_lists.price}</p>
+                    <p>型号：{$goods_lists.goods_sn}</p>
+                    <p style="color:;">商品数量：{$goods_lists.amount}</p>
+                    <!-- <p style="color:;">仓库：{$goods_lists.warehouse}</p> -->
+                </div>
+                快递： {$order_detail.shipping_title|default="暂无"}    {$order_detail.shipping_id|default=""} <br>
+            </div>
+        {/volist}
+    </div>
+</div>

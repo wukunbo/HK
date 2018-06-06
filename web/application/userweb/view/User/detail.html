@@ -1,0 +1,63 @@
+{layout name="Public/layout" /}
+
+
+<div class="panel panel-default">
+<form class="form-horizontal"  method="post"  action='{:url("add_action")}&id={$id}' name='myform'>
+    <div class="panel-body">
+         
+
+        <div class="form-group">
+            <label for="text-input" class="col-md-2 control-label">用户名</label>
+            <div class="col-md-4 input-group ">
+                <input type="text" readonly='readonly'  class="form-control" value="{$data.username}">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="text-input" class="col-md-2 control-label">头像</label>
+            <div class="col-md-4 input-group ">
+                <img src="{$data.headimgurl}" style="height: 100px;width: 100px;">
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="text-input" class="col-md-2 control-label">邮箱地址</label>
+            <div class="col-md-4 input-group ">
+                <input type="email" qplaceholder="邮箱*" id="email"  class="form-control" name="post[email]" value="{$data.email}" required="required" />
+            </div>
+        </div>
+        <!-- <div class="form-group">
+            <label for="text-input" class="col-md-2 control-label">推荐ID</label>
+            <div class="col-md-4 input-group ">
+                <input disabled="disabled" type="text" qplaceholder="推荐人*" id="agent_id"  class="form-control" name="parent_id" value="{$list.parent_id}" required="required" />
+            </div>
+        </div> -->
+       
+        <div class="form-group" style="display: none1;">
+            <label for="text-input" class="col-md-2 control-label">地址</label>
+            <div class="col-md-4 input-group ">
+                <input type="text" qplaceholder="地址*" id="address"  class="form-control" name="address" value="{$data.address}" required="required" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="text-input" class="col-md-2 control-label">手机或电话</label>
+            <div class="col-md-4 input-group ">
+                <input type="text" 1placeholder="手机或电话*"  class="form-control" id="phone" name="post[phone]" value="{$data.phone}" required="required" />
+            </div>
+        </div>
+
+         
+         
+    </div>
+    <div class="panel-footer" style="display:none">
+        <input type='submit' value='提交' class="btn btn-sm btn-success" id="submit">
+    </div>
+    </div>
+</form>
+
+
+</div>
+

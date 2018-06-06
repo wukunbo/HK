@@ -1,0 +1,41 @@
+<header class="main-header" style=" margin:0px;">
+    <!-- Logo -->
+    
+    <a href="#" class="logo">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini">{$page_title}</span>
+    <!-- logo for regular state and mobile devices -->
+    <span class="logo-lg">{$page_title}</span> </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" style=" height:50px;  ">
+        
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                
+             
+                <li class="dropdown messages-menu"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="hidden-xs">{$userweb_username}</span> </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu">
+                                <li> <a href="{:url('Admin/edit_pwd')}"> 密码修改</a> </li>
+                                <li> <a href="{:url('Login/logout')}"> 退出</a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header>
+<style>
+.messages-menu .menu, .slimScrollDiv {
+    height:80px!important;
+    width:150px!important;
+}
+.dropdown-menu {
+    width:150px!important;
+}
+</style>
+

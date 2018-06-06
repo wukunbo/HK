@@ -1,0 +1,70 @@
+{layout name="Public/layout" /}
+
+<div class="panel panel-default">
+
+    <form action="{:url('ShopOrder/add_order_shipping')}" enctype="multipart/form-data" method="post" name="form1" id="form1">
+
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">邮寄地址： </label>
+                <div class="col-md-4 input-group ">
+                    &nbsp;{$order_detail.address} </div>
+            </div>
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">联系人： </label>
+                <div class="col-md-4 input-group ">
+                    &nbsp;{$order_detail.address_name} </div>
+            </div>
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">联系电话： </label>
+                <div class="col-md-4 input-group ">
+                    &nbsp;{$order_detail.address_phone} </div>
+            </div>
+
+            <div class="form-group" style="display: none;">
+                <label for="text-input" class="col-md-2 control-label">用户留言： </label>
+                <div class="col-md-4 input-group ">
+                    &nbsp;{$order_detail[order_detail][msg]|default="无"} </div>
+            </div>
+            
+             
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label"> 快递 </label>
+                <div class="col-md-4 input-group ">
+                    <select  name="post[shipping_code]"  id="status" class="form-control">
+                        {volist name="kuaidi_lists" id="vo"}
+                            <option value="{$vo.code}" {if condition="$result[shipping_code] eq $vo[code]"} selected="selected"{/if}>
+                                {$vo.title}
+                            </option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label"> 快递单号</label>
+                <div class="col-md-4 input-group ">
+                    <input name="post[shipping_id]" type="text" class="form-control" value="{$result[shipping_id]}" />
+                    <input name="post[order_id]" type="hidden" class="form-control" value="{$order_id}" />
+                    <input name="post[order_goods_id]" type="hidden" class="form-control" value="{$order_goods_id}" />
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-sm btn-success" type="submit" onclick1="save_vote()"><i class="fa fa-dot-circle-o"></i> 保存</button>
+            <button class="btn btn-sm btn-danger" type="reset"><i class="fa fa-ban"></i> 重置</button>
+        </div>
+        
+        <div class="panel-body">
+
+            <div class="item">
+                
+                <p class="line-height-32"><span class="gray">快递单号：</span>{$result.shipping_id|default="暂无"}</p>
+            </div>
+            
+            {if condition="$result[shipping_code] neq ''"}
+            <iframe src="http://m.kuaidi100.com/index_all.html?type={$result[shipping_code]}&postid={$result[shipping_id]}&callbackurl=" width="100%" height="600">
+            </iframe>
+            {/if}
+        </div>
+    </form>
+</div>

@@ -1,0 +1,12 @@
+
+
+{volist name="data" id="vo"}
+<div class="col_con" onclick="to_href('{:url('goods_lists')}?&cate_id={$vo.cate_id}')">
+    <img src="{$vo.img_thumb}">
+    <p>{$vo.cat_name}</p>
+</div>
+{/volist}
+
+<div class="clear"></div>
+
+

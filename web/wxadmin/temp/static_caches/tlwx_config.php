@@ -1,0 +1,27 @@
+<?php
+$data = array (
+  'id' => '1',
+  'user_id' => '1',
+  'title' => '深圳市格安瑞环保科技有限公司',
+  'token' => 'geanrui',
+  'domain' => 'http://localhost/zhubao/web/',
+  'qrcode' => '',
+  'url' => 'http://localhost/zhubao/web/weixin.php?wx_id=1',
+  'is_goods_search' => '0',
+  'appid' => 'wx2fd678e714512a1c',
+  'appsecret' => '05fcbf84574a0b554dc70bda34cf70a1',
+  'tlwx_userid' => '0',
+  'weixin_type' => '',
+  'points_qiandao' => '0',
+  'points_guanzhu' => '0',
+  'mchid' => '1457165202',
+  'pay_key' => '554dc70bda34cf70a105fcbf84574a0b',
+  'js_api_call_url' => 'http://wx.gar168.com/web/',
+  'sslcert_path' => 'Uploads/weixin//sslcert_path-20170804125947-5983ff431982c.pem',
+  'sslkey_path' => 'Uploads/weixin//sslkey_path-20170804125947-5983ff43199ea.pem',
+  'ca_path' => 'Uploads/weixin//ca_path-20170804125947-5983ff4319b28.pem',
+  'call_back_url' => '123',
+  'is_renzheng' => '0',
+  'notify_url' => '123',
+);
+?>

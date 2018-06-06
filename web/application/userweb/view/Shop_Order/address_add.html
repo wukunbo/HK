@@ -1,0 +1,19 @@
+{layout name="Public/layout" /}
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form action="{:url('address_add')}?&post_id={$detail.id}" method="post" name="add_goods" id="add_goods">
+            <div class="tab-pane active in" id="home">
+                <div class="form-group">
+                    <label>地址: </label>
+                    <textarea class="form-control" rows="3" name="post[address]">{$detail['address']}</textarea>
+                </div>
+                <div>例如：退货地址：广东省深圳市龙岗区布吉街道龙珠大厦611 收件人：王先生 电话：137****5188 邮编：518000 备注：退换货不接受运费倒付和平邮，请把订单号和收件人姓名、电话写在一张纸上同产品一起发给我们。</div>
+            </div>
+            <div class="btn-toolbar list-toolbar">
+                <a class="btn btn-primary" onclick='$("#add_goods").submit()'><i class="fa fa-save"></i>保存</a>
+            </div>
+        </form>
+    </div>
+</div>

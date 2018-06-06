@@ -1,0 +1,28 @@
+{layout name="Public/layout" /}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>登录名</th>
+                    <th>真实姓名</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name='data[content]' id='vo'}
+                    <tr>
+                        <td>{$i}</td>
+                        <td>{$vo[tl_adm_username]}</td>
+                        <td>{$vo[tl_adm_truename]}</td>
+                        <td><a href='{:url("Admin/del_admin",array("id"=>$vo[id]))}' onClick="return del();">删除</a> <a href='{:url("Admin/add_child",array("id"=>$vo[id]))}'>修改 </a>
+                            
+                    </tr>
+                {/volist}
+            </tbody>
+        </table>
+        <include file="Public/pagination" /> </div>
+    <!--/.col-->
+</div>

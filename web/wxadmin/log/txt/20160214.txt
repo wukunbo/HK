@@ -1,0 +1,770 @@
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:14:10
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:02
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:04
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:12
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:13
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:14
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:14
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:44
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:45
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:46
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:47
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:50
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:52
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:52
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:52
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:52
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:53
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:15:57
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:16:21
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:16:31
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:16:43
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:16:51
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:18:32
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:18:34
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:18:56
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>123456789</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[subscribe]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:31:09
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455402669</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:31:19
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455402678</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:31:27
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455402687</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:31:34
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455402694</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:32:12
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455402732</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:32:19
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455402738</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:32:32
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455402751</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:32:51
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455402771</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:33:03
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455402782</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:36:46
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455403006</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:38:52
+参数：
+wx_id:6
+<?xml_version:\'1.0\' encoding=\'UTF-8\'?><group><name>张三</name><age>22</age></group>
+xml：
+<?xml version='1.0' encoding='UTF-8'?><group><name>张三</name><age>22</age></group>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:39:18
+参数：
+wx_id:6
+<?xml_version:\'1.0\' encoding=\'UTF-8\'?><group><name>张三</name><age>22</age></group>
+xml：
+<?xml version='1.0' encoding='UTF-8'?><group><name>张三</name><age>22</age></group>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:41:48
+参数：
+wx_id:6
+－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:42:04
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455403324</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:42:24
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455403344</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:42:38
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455403358</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:42:47
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455403366</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:43:00
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455403380</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:43:19
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455403399</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:43:32
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455403411</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:43:37
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455403417</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:59:03
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404343</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 06:59:06
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404346</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:01:48
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404508</CreateTime>
+				<MsgType><![CDATA[event]]></MsgType>
+				<Event><![CDATA[subscribe]]></Event>
+				<Content><![CDATA[]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:02:08
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404528</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[1]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:02:30
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404550</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[1]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:03:13
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404593</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[1]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:03:33
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404613</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[1]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:03:41
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404621</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[1]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:03:43
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404623</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[2]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:08:26
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404906</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[2]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:09:12
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404952</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[2]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:09:39
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404979</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[2]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:09:51
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455404991</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[2]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:10:06
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455405006</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[2]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://127.0.0.1/xingguanyuan/web/wxadmin/mobile/tlwx_api.php?wx_id=6；时间：2016-02-14 07:10:11
+参数：
+wx_id:6
+xml：
+
+			<xml>
+				<ToUserName><![CDATA[toUser]]></ToUserName>
+				<FromUserName><![CDATA[FromUser]]></FromUserName>
+				<CreateTime>1455405011</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Event><![CDATA[]]></Event>
+				<Content><![CDATA[2]]></Content>
+			</xml>－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－

@@ -1,0 +1,117 @@
+<!-- 包含头部模版header -->
+{include file="Public/header" /}
+
+
+<style type="text/css">
+    .shangpin-bg{
+        margin: 0;
+        border-bottom: 1px solid #E6E6E6;
+        background-color: #ffffff;
+        width: 100%;
+        padding: 10px!important;
+    }
+    .bar .button-clear{
+        color: black!important;
+        bottom: 7px;
+    }
+    .bar-positive{
+        background-color: #FAFAFA!important;
+        position: relative;
+        border-bottom: 1px solid #E7E7E7!important;
+        background-image: none!important;
+    }
+    .title{
+        color: black!important;
+        font-weight: bold!important;
+    }
+    .col-25{
+        height: 100%;
+        float: left;
+    }
+    .col-75{
+        height: 100%;
+        padding: 20px;
+    }
+    .col-75 img{
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+    }
+    .col_con{
+        width: 50%;
+        height: 120px;
+        margin-bottom: 20px;
+        text-align: center;
+        float: left;
+    }
+
+    .active{
+        background-color:#fafafa;
+        color: red;
+    }
+</style>
+
+<body>
+
+{include file="Public/nav" /}
+
+<div class="col col-25 clear_p">
+
+{volist name="data" id="vo"}
+    <span class="col text-center shangpin-bg cate_span" onclick="ajax_cate({$vo.cate_id},this)">{$vo.cat_name}</span>
+{/volist}
+
+   
+</div>
+
+
+<div class="col col-75 col-offset-25" id="cate_div">
+    
+    {volist name="data[cate_lists]" id="vo"}
+    <div class="col_con" onclick="to_href('{:url('goods_lists')}?cate_id={$vo.cate_id}')">
+        <img src="{$vo.img_thumb}">
+        <p>{$vo.cat_name}</p>
+    </div>
+    {/volist}
+
+    <div class="clear"></div>
+    
+</div>
+
+
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+
+
+function ajax_cate(parent_id,t){
+    $(".cate_span").removeClass("active");
+    $(t).addClass("active");
+
+    $.ajax({
+        url: "{:url('ajax_cate')}",
+        type: 'GET',
+        dataType: 'json',
+        data: {parent_id: parent_id},
+        success:function(data) {  
+            if(data.status==10001){
+                $("#cate_div").html(data.html);
+            }
+        },  
+        error : function() {  
+            alert("失败");
+        }  
+    });
+    
+}
+
+
+function to_href(url){
+    window.location.href=url;
+}
+
+</script>

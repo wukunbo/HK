@@ -1,0 +1,36 @@
+<?php
+namespace app\api\controller;
+use think\Controller;
+use think\Db;
+
+class Cms extends Base{
+
+    public function __construct(){
+        parent::__construct();
+        $this->logic=new \app\cms\logic\Cms();
+    }
+
+    //文章列表
+    public function lists(){
+        $cate_id=$_REQUEST['cate_id'];
+        $num=999;
+        $search['field']="id,cate_id,title,summary";
+        $data=$this->logic->lists($cate_id,$search,$num);
+        $res['status']=10001;
+        $res['lists']=$data['content'];
+
+        $this->return_data($res);
+    }
+
+    //文章详情
+    public function detail(){
+        $id=$_REQUEST['id'];
+
+        $data=$this->logic->detail($id);
+        $res['status']=10001;
+        $res['detail']=$data;
+
+        $this->return_data($res);
+    }
+
+}

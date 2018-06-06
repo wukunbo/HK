@@ -1,0 +1,99 @@
+<label class="item item-input item-select ">
+<div class="input-label"> 省 </div>
+<select name="post[province]" id="province" class="form-control"  onChange="javascript:get_city()">
+    <option value="" >请选择</option>
+</select>
+</label>
+<label class="item item-input item-select ">
+<div class="input-label"> 市 </div>
+</select>
+<select name="post[city]" id="city"  class="form-control"  onchange ="javascript:get_area()">
+    <option value="" >请选择</option>
+</select>
+</label>
+<label class="item item-input item-select ">
+<div class="input-label"> 区 </div>
+</select>
+<select name="post[area]" id="area"  class="form-control"  >
+    <option value="" >请选择</option>
+</select>
+</label>
+
+
+<script>
+
+var url="DOMAIN/plus.php/Region/set_city?";
+
+function get_province(){
+    
+    
+    // alert(url);
+    //url="Plus.php?c=Region&a=set_city&parent_id=1&select="+select_province,
+    $("#province").html('<option value="">加载中</option>'); 
+    $.ajax({
+        type: "post",
+        url:url+"&parent_id=1&select="+select_province,
+        dataType: "json",       
+        success: function(data) {
+            //alert(data) ;
+            if(data.status == '10001'){
+                $("#province").html(data.data);
+
+                if(select_city!==''){
+                    get_city()
+                }
+            }else if(data.status == '10002'){
+                 
+            }               
+        },
+        complete:function(data){
+            
+        }
+    })
+}
+function get_city(){
+    var p=$("#province").val()
+    $("#city").html('<option value="">加载中</option>'); 
+    $.ajax({
+        type: "post",
+        url:url+"&parent_id="+p+"&select="+select_city,
+        dataType: "json",       
+        success: function(data) {
+            if(data.status == '10001'){
+                $("#city").html(data.data);
+                if(select_area!==''){
+                    get_area()
+                }
+            }else if(data.status == '10002'){
+                 
+            }               
+        },
+        complete:function(data){
+            
+        }
+    })
+}
+
+function get_area(){
+    var p=$("#city").val()
+    $("#area").html('<option value="">加载中</option>'); 
+    $.ajax({
+        type: "post",
+        url:url+"&parent_id="+p+"&select="+select_area,
+        dataType: "json",       
+        success: function(data) {
+            if(data.status == '10001'){
+                $("#area").html(data.data);
+            }else if(data.status == '10002'){
+                 
+            }               
+        },
+        complete:function(data){
+            
+        }
+    })
+}
+get_province();
+ 
+</script>
+

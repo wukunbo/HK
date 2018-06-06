@@ -1,0 +1,74 @@
+{layout name="Public/layout" /}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>类型</th>
+                    <th>金额/流量</th>
+                    <th>开始时间</th>
+
+                    <th>结束时间</th>
+                    
+                    <th>状态</th>
+
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name='data' id='vo'}
+                    <tr>
+                        <td>{$vo['title']}</td>
+                        <td>
+                            {if condition="$vo.type eq 1"}
+                                送流量
+                            {elseif condition="$vo.type eq 2"/}
+                                送话费
+                            {elseif condition="$vo.type eq 3"/}
+                                送红包
+                            {else/}
+                            {/if}
+
+                        </td>
+                        <td>{$vo[price]}</td>
+                        
+                        <td>{$vo[start_time]|date="Y-m-d H:i:s",###}</td>
+                        <td>{$vo[end_time]|date="Y-m-d H:i:s",###}</td>
+
+                        <td>
+                            {if condition="$vo.status eq 1"}
+                                上架
+                            {else/}
+                                下架
+                            {/if}
+
+                        </td>
+
+                        <td>
+                            <a href='{:url("del",array("id"=>$vo[id]))}' onClick="return del();">删除</a>
+                            <a href='{:url("add",array("id"=>$vo[id]))}'>修改 </a>
+
+                            {if condition="$vo.status eq 1"}
+                                <a href='{:url("set_status",array("id"=>$vo[id],"status"=>0))}'>下架 </a>
+                            {else/}
+                                <a href='{:url("set_status",array("id"=>$vo[id],"status"=>1))}'>上架 </a>
+                            {/if}
+
+                        </td>
+
+
+
+                        </td>
+                            
+                    </tr>
+                {/volist}
+            </tbody>
+        </table>
+
+        <include file="Public/pagination" /> 
+    </div>
+    <!--/.col-->
+</div>

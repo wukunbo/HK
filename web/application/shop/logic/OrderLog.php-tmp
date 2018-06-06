@@ -1,0 +1,12 @@
+<?php
+namespace app\shop\logic;
+use think\Db;
+use think\Model;
+
+class OrderLog extends Model {
+
+	public function __construct() {
+		$this->db = new \app\userweb\model\PublicModel();
+	}
+
+}

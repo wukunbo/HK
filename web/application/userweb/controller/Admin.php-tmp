@@ -1,0 +1,93 @@
+<?php
+namespace app\userweb\controller;
+use Think\Controller;
+use think\Db;
+
+class Admin extends Base {
+
+	public function __construct() {
+		parent::__construct();
+		$this->logic = new \app\userweb\logic\Admin();
+	}
+
+	public function add_child() {
+		$action = $_REQUEST['action'];
+		$this->assign("action", $action);
+		$data = $this->logic->add_adm($this->wx_id);
+		$this->assign("data", $data);
+
+		return $this->fetch("Admin/add_child");
+	}
+
+	public function add() {
+		$role_id = $_REQUEST[post][role_id];
+
+		if ($role_id == "") {
+			return $this->showmsg('请选择角色');
+		}
+		$post = $_REQUEST[post];
+		// dump($post);
+		exit;
+
+		$post['wx_id'] = $this->wx_id;
+		$data          = $this->logic->add($post);
+
+		if ($data[status] == 10002) {
+			return $this->showmsg('用户名重复');
+		}
+		return $this->showmsg('操作成功');
+	}
+
+	public function child_lists() {
+		$wx_id = $this->wx_id;
+		$data  = $this->logic->adm_lists($wx_id);
+		$this->assign("data", $data);
+		return $this->fetch("Admin/child_lists");
+	}
+
+	public function del_admin() {
+		$id = input("id");
+		Db::name("user_child")->where("id={$id}")->delete();
+		return $this->showmsg("操作成功！");
+	}
+
+	public function edit_pwd() {
+
+		return $this->fetch("Admin/edit_pwd");
+	}
+
+	public function modify_pwd() {
+		// dump($_REQUEST);
+		exit;
+
+		$oldpassword = $_REQUEST['oldpassword'];
+		$newpassword = $_REQUEST['newpassword'];
+		$repassword  = $_REQUEST['repassword'];
+		if ($newpassword != $repassword) {
+			return $this->showmsg("两次输入密码不一致");
+			exit;
+		}
+		$oldpassword = sha1($oldpassword);
+		$newpassword = sha1($newpassword);
+		if ($this->user_id == 1) {
+			$is = Db::name('user')->where("id=1 AND password='{$oldpassword}'")->find();
+			if (!$is) {
+				return $this->showmsg("旧密码输入错误");
+				exit;
+			}
+			Db::name('user')->where("id=1")->setField('password', $newpassword);
+			return $this->showmsg("操作成功");
+			exit;
+		} else {
+			$is = Db::name('user_child')->where("id={$this->user_id} AND tl_adm_password='{$oldpassword}'")->find();
+			if (!$is) {
+				return $this->showmsg("旧密码输入错误");
+				exit;
+			}
+			Db::name('user_child')->where("id={$this->user_id}")->setField('tl_adm_password', $newpassword);
+			return $this->showmsg("操作成功");
+			exit;
+		}
+	}
+
+}

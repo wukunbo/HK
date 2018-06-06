@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html> 
+<html> 
+<head>
+	<title>jQuery 使部分内容尽可能多显示-柯乐义</title><base target="_blank" />
+	<meta charset="utf-8">
+	<link href="screen.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<h1>jQuery 使部分内容尽可能多显示</h1>
+		<div class="row stickem-container">
+			<div class="content">
+				<p>随着时间的推移，我们已经在Vige网站添加了一些补充的(pieces of flair)。最近最新增加的在（invidual） 作品页。在我们阐明项目过程的一部分里使用了一些图片和一个文字块，从而产生了一大块过程区域。问题是：有些图片非常的高。所以随着你滚动到图片的底部时，你将不得不滚回去看刚才那张图片的文字解释。解决方案：当你滚动时，让内容保持置顶不动。我我所指的文字块就是下图用橘黄色标记出来的部分。</p>
+				<p><ul><li><a href="http://keleyi.com/a/bjac/6g9bsqmm.htm">原文</a></li>
+      <li class="active"><a href="http://keleyi.com/a/bjac/4pdfle7v.htm">动画导航菜单</a></li><li><a href="http://keleyi.com/a/bjac/nk1dr8xn.htm">window的高宽</a></li>
+<li><a href="http://keleyi.com/a/bjac/cx165ov3.htm">jQuery的使用</a></li><li><a href="http://keleyi.com/a/bjac/4saw3kmj.htm">jQ优势与不足</a></li>
+<li><a href="http://keleyi.com/a/bjac/25mku22l.htm">jQuery介绍</a></li><li><a href="http://keleyi.com/a/bjac/6c5snbtc.htm">div子元素</a></li>
+<li><a href="http://keleyi.com/a/bjac/8p1g5yeq.htm">JQ鼠标位置</a></li>
+    </ul></p>
+				<p>微妙的部分是，一旦它到达屏幕的顶部时然后跟着屏幕一起走，我就不能仅仅让文字position: fixed。既然一个页面里有很多这样的过程块，我还不得不让内容到某一点时”不置顶“。所以我做出来一个插件， jQuery Stick ‘em，来实现这个功能。</p>
+				<p><ul><li><a href="http://keleyi.com/a/bjac/un8ic3hu.htm" title="" target="_blank">jQuery插件开发例子</a></li><li><a href="http://keleyi.com/a/bjac/ppdss7ux.htm" title="" target="_blank">弹出灯箱窗口浏览图片</a></li><li><a href="http://keleyi.com/a/bjac/hxv86dyi.htm" title="" target="_blank">jQuery动态提示消息框效果</a></li><li><a href="http://keleyi.com/a/bjac/13qbdos8.htm" title="" target="_blank">jQuery插件开发教程</a></li><li><a href="http://keleyi.com/a/bjac/ud417n63.htm" title="&#39;browser.opera&#39; 为空或不是对象" target="_blank">&#39;browser.opera&#39; 为空或不...</a></li><li><a href="http://keleyi.com/a/bjac/h864ixme.htm" title="&#39;$.browser.msie&#39; 为空或不是对象" target="_blank">&#39;$.browser.msie&#39; 为空或...</a></li><li><a href="http://keleyi.com/a/bjac/h15fg72n.htm" title="jQuery实现球面滚动效果,球形标签云(TagCloud)" target="_blank">jQuery实现球面滚动效果,球形标签...</a></li><li><a href="http://keleyi.com/a/bjac/xc8g7uiy.htm" title="" target="_blank">jquery向上弹出菜单</a></li><li><a href="http://keleyi.com/a/bjac/fbfoqqbp.htm" title="jquery定时滑出可最小化的底部提示层" target="_blank">jquery定时滑出可最小化的底部提示...</a></li><li><a href="http://keleyi.com/a/bjac/qe60secm.htm" title="" target="_blank">jquery实现多级下拉菜单</a></li><li><a href="http://keleyi.com/a/bjac/ck9atu5j.htm" title="" target="_blank">jquery ui 可折叠手风琴菜单</a></li><li><a href="http://keleyi.com/a/bjac/xwa8hmpw.htm" title="jQuery鼠标滚轮事件插件Mouse Wheel" target="_blank">jQuery鼠标滚轮事件插件Mouse Whee...</a></li><li><a href="http://keleyi.com/a/bjac/r55i6646.htm" title="" target="_blank">jQuery :even 偶数选择器</a></li><li><a href="http://keleyi.com/a/bjac/jftlrr5y.htm" title="" target="_blank">jQ:odd 选择器 选择奇数元素</a></li><li><a href="http://keleyi.com/a/bjac/9rf4gedp.htm" title="" target="_blank">展开、收起div的jQuery代码</a></li><li><a href="http://keleyi.com/a/bjac/mnmpm4bv.htm" title="" target="_blank">jQuery图片走马灯示例</a></li><li><a href="http://keleyi.com/a/bjac/90b914o0.htm" title="" target="_blank">jQ的toggle()方法示例</a></li><li><a href="http://keleyi.com/a/bjac/bg0m15bi.htm" title="" target="_blank">jQ新的事件绑定方法on()</a></li><li><a href="http://keleyi.com/a/bjac/scdm44l9.htm" title="" target="_blank">可伸缩右侧边栏导航菜单</a></li><li><a href="http://keleyi.com/a/bjac/1ln3kvac.htm" title="" target="_blank">jQ的live()方法</a></li><li><a href="http://keleyi.com/a/bjac/n5kb0y0j.htm" title="" target="_blank">jQ的find()方法</a></li><li><a href="http://keleyi.com/a/bjac/4013kn5s.htm" title="" target="_blank">jquery的on()函数</a></li><li><a href="http://keleyi.com/a/bjac/mt97p5y9.htm" title="" target="_blank">jQuery实现侧边导航栏效果</a></li><li><a href="http://keleyi.com/a/bjac/phhq4ecr.htm" title="" target="_blank">jquery显示当前时间详细信息</a></li><li><a href="http://keleyi.com/a/bjac/1juhjegr.htm" title="" target="_blank">使用jquery替换掉不存在的的图片</a></li><li><a href="http://keleyi.com/a/bjac/c6gu08gm.htm" title="jQuery友善的图片轮播(含首页和尾页)" target="_blank">jQuery友善的图片轮播(含首页和尾...</a></li><li><a href="http://keleyi.com/a/bjac/opnw2awa.htm" title="" target="_blank">jQ的appendTo方法</a></li><li><a href="http://keleyi.com/a/bjac/0vpch15n.htm" title="" target="_blank">jQ的append方法</a></li><li><a href="http://keleyi.com/a/bjac/cfyxd60g.htm" title="" target="_blank">jQ的after方法</a></li><li><a href="http://keleyi.com/a/bjac/2oncd079.htm" title="jQ函数after、append、appendTo的区别" target="_blank">jQ函数after、append、appendTo的...</a></li><li><a href="http://keleyi.com/a/bjac/db2b8j9b.htm" title="" target="_blank">JQUERY操作asp.net ajax的JSON实例</a></li><li><a href="http://keleyi.com/a/bjac/dbjlg7nf.htm" title="jQuery表单验证插件 jQuery.validity" target="_blank">jQuery表单验证插件 jQuery.validi...</a></li><li><a href="http://keleyi.com/a/bjac/otjlqc2l.htm" title="" target="_blank">jquery ajax介绍与示例</a></li><li><a href="http://keleyi.com/a/bjac/3wdrld0b.htm" title="" target="_blank">jquery的removeAttr() 方法</a></li><li><a href="http://keleyi.com/a/bjac/lx3u7na0.htm" title="" target="_blank">jquery使a链接无效</a></li><li><a href="http://keleyi.com/a/bjac/4prgqlce.htm" title="" target="_blank">jquery ready的简写</a></li><li><a href="http://keleyi.com/a/bjac/m9xwhxv2.htm" title="" target="_blank">jQ当text失去焦点判断是否为空</a></li><li><a href="http://keleyi.com/a/bjac/cs30cft8.htm" title="" target="_blank">jq动态弹出下拉导航菜单</a></li><li><a href="http://keleyi.com/a/bjac/tmx4mq76.htm" title="" target="_blank">jQ的eq方法</a></li><li><a href="http://keleyi.com/a/bjac/4pdfle7v.htm" title="" target="_blank">jq倾斜的动画导航菜单</a></li><li><a href="http://keleyi.com/a/bjac/nk1dr8xn.htm" title="" target="_blank">jQ获取浏览器window的高宽</a></li><li><a href="http://keleyi.com/a/bjac/cx165ov3.htm" title="" target="_blank">jQuery的使用</a></li><li><a href="http://keleyi.com/a/bjac/4saw3kmj.htm" title="" target="_blank">jQuery的优势与不足</a></li><li><a href="http://keleyi.com/a/bjac/25mku22l.htm" title="" target="_blank">jQuery基础入门之jQuery介绍</a></li><li><a href="http://keleyi.com/a/bjac/6c5snbtc.htm" title="" target="_blank">jquery选择div的子元素</a></li><li><a href="http://keleyi.com/a/bjac/x3qngfqx.htm" title="" target="_blank">jQuery each() 遍历方法实例</a></li><li><a href="http://keleyi.com/a/bjac/8p1g5yeq.htm" title="" target="_blank">JQ获得鼠标位置</a></li><li><a href="http://keleyi.com/a/bjac/h12vjfyv.htm" title="jQuery鼠标经过显示大图(平滑不闪烁)" target="_blank">jQuery鼠标经过显示大图(平滑不闪...</a></li><li><a href="http://keleyi.com/a/bjac/hxj44c3j.htm" title="jquery 中的 $(“#”) 与 js中的document.getElementById(“”) 的区别" target="_blank">jquery 中的 $(“#”) 与 js中的do...</a></li><li><a href="http://keleyi.com/a/bjac/5uxhekpa.htm" title="" target="_blank">jQuery Callback 介绍</a></li></ul></p>
+			</div>
+			
+			<div class="aside stickem">
+				<h2>标题一</h2>
+				<p>本网站的名称：柯乐义。
+本网站的网址： keleyi.com 
+本站提供jQuery特效,Javascript实例，ASP.NET源码等内容资料，欢迎访问！</p>
+			</div>
+		</div>
+
+		<div class="row stickem-container">
+			<div class="content">
+				<p>1970年，赞比亚的玛丽·尤肯达修女给当时NASA太空航行中心的科学副总监恩斯特·史都林格博士写信问道：“目前地球上还有这么多小孩子吃不上饭，你怎么还能舍得为远在火星的项目花费数十亿美元？”
+
+史都林格很快给玛丽·尤肯达修女回了信。大意是，很多看起来暂时无用的基础科学研究，其实才是推动生产力和人类进步的最大力量。他这封真挚的回信随后由NASA以《为什么要探索宇宙》为题发表。
+
+高中上学的时候，学了很多当时觉得很无聊的东西，比如矩阵。感觉数学家们吃饱了撑得搞这些数字游戏。后来自己接触了游戏行业，才知道原来这些枯燥无味的数字真的能够解决很多实际问题。比如计算机图形学，根本就离不开矩阵运算。</p>
+				<p>质数，可能很多人只是知道它的一个定义。但是我们为什么要在一堆自然数中寻找质数呢，这其实最早源于古希腊数学家们的直觉。从乘法的角度看，这些质数是最小的单位了，不能再被分解成两个因数。而这样特殊的一个数字群体，总有他特殊的意义。
+
+就像我们的宇宙，存在着一些常数，普朗克常数，法拉第常数等等。那么是否有另外一个宇宙，存在着与我们不同各种常数呢？我们找到了这些特殊的数字，对理解我们所生活的世界是有很大帮助的。</p>
+			</div>
+			
+			<div class="aside stickem">
+				<h2>标题二</h2>
+				<p> <ul >
+      <li class="active"><a href="http://keleyi.com/a/bjac/mt97p5y9.htm">侧边导航栏</a></li><li><a href="http://keleyi.com/a/bjac/phhq4ecr.htm">当前时间</a></li>
+<li><a href="http://keleyi.com/a/bjac/1juhjegr.htm">替换图片</a></li><li><a href="http://keleyi.com/a/bjac/c6gu08gm.htm" title="jQuery友善的图片轮播(含首页和尾页)">图片轮播</a></li><li><a href="http://keleyi.com/a/bjac/opnw2awa.htm">appendTo方法</a></li>
+<li><a href="http://keleyi.com/a/bjac/0vpch15n.htm">jQ的append</a></li><li><a href="http://keleyi.com/a/bjac/cfyxd60g.htm">jQ的after</a></li><li><a href="http://keleyi.com/a/bjac/m9xwhxv2.htm">判断是否为空</a></li>
+    </ul></p>
+				<p><ul >
+      <li class="active"><a href="http://keleyi.com/a/bjac/2oncd079.htm" title="jQ函数after、append、appendTo的区别">after、append</a></li><li><a href="http://keleyi.com/a/bjac/db2b8j9b.htm">JQUERY ajax</a></li>
+<li><a href="http://keleyi.com/a/bjac/dbjlg7nf.htm" title="jQuery表单验证插件 jQuery.validity">表单验证插件</a></li>
+<li><a href="http://keleyi.com/a/bjac/otjlqc2l.htm">jquery ajax</a></li><li><a href="http://keleyi.com/a/bjac/3wdrld0b.htm">removeAttr</a></li>
+<li><a href="http://keleyi.com/a/bjac/lx3u7na0.htm">使a链无效</a></li><li><a href="http://keleyi.com/a/bjac/4prgqlce.htm">ready的简写</a></li>
+    </ul></p>
+			</div>
+		</div>
+		
+		<div class="row stickem-container">
+			<div class="content">
+				<p>质数近来被利用在密码学上，所谓的公钥就是将想要传递的信息在编码时加入质数，编码之后传送给收信人，任何人收到此信息后，若没有此收信人所拥有的密钥，则解密的过程中（实为寻找素数的过程），将会因为找质数的过程（分解质因数）过久，使即使取得信息也会无意义。
+
+在汽车变速箱齿轮的设计上，相邻的两个大小齿轮齿数最好设计成质数，以增加两齿轮内两个相同的齿相遇啮合次数的最小公倍数，可增强耐用度减少故障。
+在害虫的生物生长周期与杀虫剂使用之间的关系上，杀虫剂的质数次数的使用也得到了证明。实验表明，质数次数地使用杀虫剂是最合理的：都是使用在害虫繁殖的高潮期，而且害虫很难产生抗药性。
+
+以质数形式无规律变化的导弹和鱼雷可以使敌人不易拦截。
+那么如何取得质数呢？有很多种方法，最适合计算机的应该是埃拉托色尼筛法：
+
+首先，列出从2开始的数。然后，将2记在素数列表上，再划去所有2的倍数。根据定义，剩下的最小的数——在这里是3——必定是素数。将这个数记在素数列表上，再划去所有它的倍数，这样又会剩下一些数，取其中最小的，如此反复操作。最后剩下的都是素数。</p>
+				<p>CMS是Content Management System的缩写，意为"内容管理系统"，它具有许多基于模板的优秀设计，可以加快网站开发的速度和减少开发的成本。CMS的功能并不只限于文本处理，它也可以处理图片、Flash动画、声像流、图像甚至电子邮件档案。
+
+
+CMS其实是一个很广泛的称呼，从一般的博客程序，新闻发布程序，到综合性的网站管理程序都可以被称为内容管理系统。
+
+
+就CMS本身被设计出来的出发点来说，应该是方便一些对于各种网络编程语言并不是很熟悉的用户用一种比较简单的方式来管理自己的网站。这虽然是本身的出发点，但由于各个CMS系统的原创者们自己本身的背景与对“简单”这两个字的理解程度的不同，造成了群雄纷争的局面。
+
+简而言之，CMS就是可以让你不需要学习复杂的建站技术，不需要学习太多复杂的HTML语言，你就能够利用CMS构建出一个风格统一功能强大的专业网站。</p>
+				<p>CMS产生的过程背景
+
+随着网络应用的丰富和发展，很多网站往往不能迅速跟进大量信息衍生及业务模式变革的脚步，常常需要花费许多时间、人力和物力来处理信息更新和维护工作；遇到网站扩充的时候，整合内外网及分支网站的工作就变得更加复杂，甚至还需重新建设网站；如此下去，用户始终在一个高成本、低效率的循环中升级、整合。
+
+于是，我们听到许多用户这样的反馈：
+
+页面制作无序，网站风格不统一，大量信息堆积，发布显得异常沉重
+
+内容繁杂，手工管理效率低下，手工链接视音频信息经常无法实现；
+
+应用难度较高，许多工作需要技术人员配合才能完成，角色分工不明确，改版工作量大，系统扩展能力差，集成其它应用时更是降低了灵活性；
+
+对于网站建设和信息发布人员来说，他们最关注的系统的易用性和功能的完善性，因此，这对网站建设和信息发布工具提出了一个很高的要求。
+
+首先，角色定位明确，以充分保证工作人员的工作效率；其次，功能完整，满足各门道"把关人"应用所需，使信息发布准确无误。比如，为编辑、美工、主编及运维人员设置权限和实时管理功能。
+
+此外，保障网站架构的安全性也是用户关注的焦点。能有效管理网站访问者的登陆权限，使内网数据库不受攻击，从而时刻保证网站的安全稳定，免于用户的后顾之忧。
+
+根据以上需求，一套专业的内容管理系统CMS应运而生，来有效解决用户网站建设与信息发布中常见的问题和需求。对网站内容管理是该软件的最大优势，它流程完善、功能丰富，可把稿件分门别类并授权给合法用户编辑管理，而不需要用户去理会那些难懂的SQL语法。</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
+			
+			<div class="aside stickem">
+				<h2>标题三</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+		</div>
+		
+		<p><ul><li><a href="http://keleyi.cn">三级菜单</a></li><li><a href="http://keleyi.com/a/bjac/mnmpm4bv.htm">图片走马灯</a></li><li><a href="http://keleyi.com/a/bjac/90b914o0.htm">jQ的toggle</a></li>
+<li><a href="http://keleyi.com/a/bjac/bg0m15bi.htm">jQ方法on()</a></li><li><a href="http://keleyi.com/a/bjac/scdm44l9.htm">侧边栏导航</a></li><li><a href="http://keleyi.com/a/bjac/1ln3kvac.htm">jQ的live()</a></li>
+<li><a href="http://keleyi.com/a/bjac/n5kb0y0j.htm">jQ的find()</a></li><li><a href="http://keleyi.com/a/bjac/4013kn5s.htm">jquery的on</a></li>
+<li><a href="http://keleyi.com/a/bjac/mt97p5y9.htm">侧边导航栏</a></li><li><a href="http://keleyi.com/a/bjac/phhq4ecr.htm">当前时间</a></li>
+<li><a href="http://keleyi.com/a/bjac/1juhjegr.htm">替换图片</a></li><li><a href="http://keleyi.com/a/bjac/c6gu08gm.htm" title="jQuery友善的图片轮播(含首页和尾页)">图片轮播</a></li><li><a href="http://keleyi.com/a/bjac/opnw2awa.htm">appendTo方法</a></li>
+<li><a href="http://keleyi.com/a/bjac/0vpch15n.htm">jQ的append</a></li><li><a href="http://keleyi.com/a/bjac/cfyxd60g.htm">jQ的after</a></li>
+<li><a href="http://keleyi.com/a/bjac/2oncd079.htm" title="jQ函数after、append、appendTo的区别">after、append</a></li><li><a href="http://keleyi.com/a/bjac/db2b8j9b.htm">JQUERY ajax</a></li>
+<li><a href="http://keleyi.com/a/bjac/dbjlg7nf.htm" title="jQuery表单验证插件 jQuery.validity">表单验证插件</a></li>
+<li><a href="http://keleyi.com/a/bjac/otjlqc2l.htm">jquery ajax</a></li><li><a href="http://keleyi.com/a/bjac/3wdrld0b.htm">removeAttr</a></li>
+<li><a href="http://keleyi.com/a/bjac/lx3u7na0.htm">使a链无效</a></li><li><a href="http://keleyi.com/a/bjac/4prgqlce.htm">ready的简写</a></li>
+<li><a href="http://keleyi.com/a/bjac/m9xwhxv2.htm">判断是否为空</a></li>
+<li><a href="http://keleyi.com/a/bjac/cs30cft8.htm">下拉导航菜单</a></li><li><a href="http://keleyi.com/a/bjac/tmx4mq76.htm">jQ的eq</a></li>
+<li><a href="http://keleyi.com/a/bjac/4pdfle7v.htm">动画导航菜单</a></li><li><a href="http://keleyi.com/a/bjac/nk1dr8xn.htm">window的高宽</a></li>
+<li><a href="http://keleyi.com/a/bjac/cx165ov3.htm">jQuery的使用</a></li><li><a href="http://keleyi.com/a/bjac/4saw3kmj.htm">jQ优势与不足</a></li>
+<li><a href="http://keleyi.com/a/bjac/25mku22l.htm">jQuery介绍</a></li><li><a href="http://keleyi.com/a/bjac/6c5snbtc.htm">div子元素</a></li>
+<li><a href="http://keleyi.com/a/bjac/x3qngfqx.htm">each遍历方法</a></li><li><a href="http://keleyi.com/a/bjac/8p1g5yeq.htm">JQ鼠标位置</a></li>
+<li><a href="http://keleyi.com/a/bjac/h12vjfyv.htm" title="jQuery鼠标经过显示大图(平滑不闪烁)">jQ显示大图</a></li>
+<li><a href="http://keleyi.com/a/bjac/hxj44c3j.htm" title="jquery 中的 $(“#”) 与 js中的document.getElementById(“”) 的区别"> $(“#”)</a></li>
+<li><a href="http://keleyi.com/a/bjac/5uxhekpa.htm">Callback介绍</a></li><li><a href="http://keleyi.com/a/bjac/7a141djn.htm">div绝对位置</a></li>
+<li><a href="http://keleyi.com/a/bjac/cunphru1.htm">实用jQ代码</a></li><li><a href="http://keleyi.com/a/bjac/fh9867ot.htm" title="jQuery双击事件(dblclick)时单击事件(click)的触发">jQ双击事件</a></li>
+<li><a href="http://keleyi.com/a/bjac/jp71q5jt.htm">jQuery遮罩层</a></li><li><a href="http://keleyi.com/a/bjac/fqla3dg9.htm">jQ插件编写</a></li>
+<li><a href="http://keleyi.com/a/bjac/xnoksy9i.htm">jQuery插件</a></li><li><a href="http://keleyi.com/a/bjac/tv16sjeb.htm">jq只输入数字</a></li>
+<li><a href="http://keleyi.com/a/bjac/82awhkfg.htm">背景图片滑动</a></li>
+<li><a href="http://keleyi.com/a/bjac/06r1x7tg.htm" title="美女毕业了 好强大的jquery相册实例">jquery相册</a></li>
+<li><a href="http://keleyi.com/a/bjac/iihv7dpq.htm">jq选择元素</a></li><li><a href="http://keleyi.com/a/bjac/rgqhstpb.htm">name选择器</a></li>
+<li><a href="http://keleyi.com/a/bjac/equl0nue.htm" title="jQuery.attr(elem, name, value, pass)从1.9开始已经移除">jQuery.attr</a></li>
+<li><a href="http://keleyi.com/a/bjac/uxcoggkn.htm">jq移除apis</a></li>
+<li><a href="http://keleyi.com/a/bjac/vc7cmipj.htm" title="jquery 1.10.2和2.0.3以及migrate 1.2.1下载">jq1.10.2</a></li>
+<li><a href="http://keleyi.com/a/bjac/brpi6t6h.htm">jq1.9以上</a></li></ul></p>
+	</div>
+	
+	<script type="text/javascript" src="http://keleyi.com/keleyi/pmedia/jquery/jquery-1.10.2.min.js"></script>
+	<script src="jquery.stickem.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.container').stickem();
+		});
+	</script>
+</body>
+</html>

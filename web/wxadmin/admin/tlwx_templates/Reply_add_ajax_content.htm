@@ -1,0 +1,75 @@
+ 
+ 
+<div class="weixin"> 
+		<div class="ajax_title">
+			<div class="left">图文素材</div>
+			<div class="right"><a href="javascript:reply_add_ajax_GuanBi()">关闭</a></div>
+			 <div class="clear"></div>	
+		</div>
+</div>		
+ <div class="weixin"> 
+		 
+		<div id="weixin_ajax">
+		<form method="post" id="upload_ajax" name="upload" action="tlwx.php?m=Reply&a=reply_insert_ajax"  onSubmit="return reply_insert_ajax({$comm.item_id})" >	 
+			<input id="cata" name="data[cata]" type="hidden" value="1" >
+			<input id="id" name="id" type="hidden" value="{$detail.id}" >
+		 
+			<div class="reply_add"> 
+				<div class="reply_item" >
+					<label>标题</label>
+					<span class="reply_input_box"><input type="txt" name="data[title]" id="title_ajax"   value="{$detail.title}"></span>
+				</div>
+				<div class="reply_item" >
+					<label>作者（选填）</label>
+					<span class="reply_input_box"><input type="txt" name="data[author]" value="{$detail.title}"></span>
+				</div>
+				<div class="reply_item" >
+					<label>图片<br />(大图片建议尺寸：200像素 * 200像素)</label>
+					<span class="reply_input_box"> <a href="javascript:XianShi_NeiRong('tlwx.php?m=Material&a=lists&cata=image&to=to_reply&ajax=1')">上传</a></span>
+					<input id="image_data_ajax" name="data[image]" type="hidden" value="{$detail.image}" >
+					<div id="image_thumb_ajax">{if $detail.image neq ""}<img src="../{$detail.image}" class="image">{/if}</div>
+				</div>
+				<div class="reply_item" >
+					<label><input name="url_sel"  id="url_sel_ajax" type="checkbox" value="" {if $detail.url neq ""} checked="checked"{/if}/>自定义链接</label>
+					<span class="reply_input_box"><input type="txt"  id="url_ajax" name="data[url]" value="{$detail.url}" {if $detail.url eq ""} disabled="disabled"{/if} ></span>
+				</div>				
+				 
+				<div class="reply_item txt" >
+					<label>正文</label>
+					<span class="textarea">{$editor}</span>
+				</div>
+ 
+				<div class="reply_item">
+					<input   type="submit"  name="Submit2" value="保存" />
+				</div>
+			</div>
+			</form>
+			<div class="clear"></div>	
+ 	</div>
+	<div class="clear"></div>		
+ 
+ 
+	<script type="text/javascript" >
+	
+	 
+	$("#url_sel_ajax").click( 
+	
+ 
+		function(){
+			if(document.getElementById("url_ajax").disabled == false){
+				 
+				document.getElementById("url_ajax").disabled = true
+				$("#url_ajax").val("")	 
+			}else{	 
+				document.getElementById("url_ajax").disabled = false
+				 
+			}
+		}
+	);	
+	
+ 
+ 
+ 
+	</script>     
+</div>					   
+ 

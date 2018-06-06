@@ -1,0 +1,66 @@
+<!-- $Id: goods_info.htm 17126 2010-04-23 10:30:26Z liuhui $ -->
+{include file="pageheader.htm"}
+<script src="tlwx_templates/js/js_reply.js"></script>	
+ <div id="weixin_content">
+ 	<div class="left">
+		{include file="Reply_left.htm"}
+		 
+	</div>
+	<div class="right">
+		<div class="head">回复素材</div>
+		<div class="content">
+				 
+			 <div class="weixin"> 
+				 
+				<div class="material">	
+					<div class="tag" id="tag">
+						<a href="javascript:tag_meterial_dis(this,'lists_img')" id="lists_img_tag"   class="on">素材库</a>
+						<a href="javascript:tag_meterial_dis(this,'upload')" id="upload_tag"  class="">上传</a>
+					</div>
+					 
+					<div class="content">
+						<div class="lists_img" id="lists_img">
+							 
+							{foreach from=$lists item=lists}
+								<div id="item_{$lists.id}"> 
+									<img src="../../{$lists.img_thumb}" width="100" onclick="photo_sel('{$lists.id}','{$lists.image_thumb}')">
+									<div class="del_action"  data-id="{$lists.id}">删除</div>
+								</div>
+								 
+							{/foreach}	
+							 
+						</div>
+						<div id="ajax_upload" style="display:none">
+						 <form action="__URL__/insert_update" method="post" id="ajax_save_form"   onSubmit="return insert_material('image','ajax')" enctype="multipart/form-data">
+							<input type="file" name="ajax_image" id="ajax_image"/>
+							<input type="button" value="上传" id="button" onclick="insert_material('ajax_image','ajax')">
+						 </form>	
+						</div>
+						 
+					
+						</div>
+				</div>	 
+							
+						   
+			</div>				
+			<script src="tlwx_templates/js/jquery.ajaxFileUpload.js"></script>	
+			 
+				
+		</div>
+			 
+		<div class="clear_20"></div>
+		</div>
+	</div>
+ 
+ 
+	
+ </div>
+
+<script>
+//删除
+var del_url="tlwx.php?&m=Material&a=del&ajax=1"; 
+ 
+</script>
+ 
+{include file="pagefooter.htm"}
+ 

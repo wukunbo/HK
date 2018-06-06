@@ -1,0 +1,105 @@
+
+
+<div class="panel panel-default" style="display:none1">
+    <div class="panel-heading">
+        <h2 style="background:#f5f5f5"><i class="fa fa-th red"></i><strong style="color:#000;">素材上传</strong></h2>
+    </div>
+    <div class="panel-body">
+         
+        <div class="form-group">
+            <form class="form-horizontal " enctype="multipart/form-data" method="post"  action="{:url('Config/material_add_action')}"   id="material_lists_ajax_form" onsubmit="return check()">
+                <div class="col-md-2">
+                    <select size="1" class="form-control" name="post[cate_id]" id="select">
+                        {volist name="data[cate_lists][content]" id="lists"}
+                            <option value="{$lists.id}">{$lists.title}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <img alt="Sample Image" src="" style="display:none; width:100px" id="UploadImg_src" class="img-thumbnail">
+                    <div id=material_lists_ajax_text></div>
+                    <input type="file" name="myfile" id="myfile" value="选择图片"/>
+                     
+                </div>
+                <div class="col-md-8">
+                     
+                    <button class="btn btn-sm btn-success" type="button" onclick="ajaxFile_up('myfile')"> 提交</button>
+                </div>
+                <input type="hidden" name="post[img_thumb]" id="material_img_thumb_hidden" value="{$data['detail']['img_thumb']}">
+                <input type="hidden" name="post[img_orogin]" id="material_img_orogin_hidden" value="{$data['detail']['img_orogin']}">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div data-original-title="" class="panel-heading">
+        <h2 style="background:#f5f5f5"><i class="fa fa-th red"></i><strong style="color:#000;">素材列表</strong></h2>
+    </div>
+    
+    <div class="panel-body">
+        <div style="margin-bottom:10px; clear:both; height:auto; overflow:hidden; width:100%; ">    
+        <a class="btn btn-default {if condition="$search[cate_id] eq ''"}btn-primary{/if}  "  href="javascript:show_content('{:url("Config/material_lists")}?ajax=1&return_fn={$return_fn}')" style="float:left; margin-right:10px;" type="button">全部</a>
+        <!-- <a class="btn btn-default {if condition="$search[cate_id] eq -1"}btn-primary{/if}  "  href="javascript:show_content('{:url("Config/material_lists")}?ajax=1&return_fn={$return_fn}&cate_id=-1')" style="float:left; margin-right:10px;" type="button">系统</a> -->
+            {volist name="data[cate_lists][content]" id="lists"}
+            <a class="btn btn-default {if condition="$search[cate_id] eq $lists[id]"}btn-primary{/if}"  href="javascript:show_content('{:url("Config/material_lists")}?ajax=1&return_fn={$return_fn}&cate_id={$lists[id]}')" style="float:left;margin-right:10px;" type="button">{$lists.title}</a>
+            {/volist}
+        </div>
+        <div class="row" id="material_lists_ajax_div">
+            {volist name="data[lists][content]" id="lists"}
+                <div class="col-md-2 thumbnail_div" style="margin-bottom:10px; overflow:hidden;">
+                    <img alt="Sample Image" src="{$lists[img_thumb]}" style="cursor:pointer; max-height:100%; max-width:100%;" class="img-thumbnail thumbnail_w" onclick="{$return_fn}('{$lists[img_thumb]}','{$lists[img_orogin]}')">
+                </div>
+            {/volist}
+        </div>
+        <include file="Public/pagination" />
+    </div>
+    <script   type="text/javascript">
+        w=$(".thumbnail_div").width();
+        //alert(w)
+        $(".thumbnail_div").height(w);
+    </script>
+     
+</div>
+
+
+<script type="text/javascript">
+    var upload_url="DOMAIN/plus.php/Image/upload_img?josn=1";
+
+    function check(){
+        var img=$("#material_img_thumb_hidden").val();
+        if(!img){
+            alert("请上传图片");
+            return false;
+        }
+    }
+</script>
+
+
+<script>
+    //上传成功
+    function ajaxupload_return(data,type){
+        console.log(data);
+        $("#UploadImg_src").show();
+        $("#UploadImg_src").attr("src",data.img_thumb)
+        $("#material_img_thumb_hidden").val(data.img_thumb);
+        $("#material_img_orogin_hidden").val(data.img_orogin);
+        $("#img_text").html("");
+    }
+    //上传中
+    function ajaxupload_ing(type){
+        $("#img_text").html("上传中……");
+    }
+ 
+</script>
+<!--图片上传-->
+
+
+
+<!--图片上传-->
+<script src="__ADMIN_TOOL__/ajaxupload/js/ajaxupload.js" type="text/javascript"></script>
+<script src="__ADMIN_STATIC__/public/js/ajaxupload_common.js"></script>
+
+<script type="text/javascript">
+    ajaxupload_int("UploadImg",'1');
+</script>
+

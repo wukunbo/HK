@@ -1,0 +1,130 @@
+{layout name="Public/layout" /}
+
+
+<style>
+    ul.tree{ display:block; clear:both;  text-align:left;margin:0; padding:0;list-style:none;height:auto; overflow:hidden;}
+    ul.tree li{ display:block; clear:both; margin:0 0 0 0px; padding:5px 5px;  height:auto; overflow:hidden;}
+    ul.tree ul.tree{ display:block; clear:both; margin-left:20px;height:auto; overflow:hidden;}
+    .bottom{ border-bottom:#999999 1px solid!important;height:auto; overflow:hidden;}
+    ul.tree .sub{ float:left; height:auto; overflow:hidden; margin-right:10px; margin-top:5px; margin-bottom:5px;}
+    
+</style>
+<div class="panel panel-default">
+    <form id="saveForm" method='post' action="{:url('Role/add_role_action')}?&role_id={$id}">
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">角色标题：</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" id="" name="post[role_name]" value="{$detail2.role_name}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">权限：</label>
+                <div class="col-md-10 input-group ">
+                    <ul class='tree  ' >
+                        {volist name='detail' id='vo'}
+                            {if condition="$vo[is_show] eq 1"}
+                                {in name='vo.auth_id' value='$detail2[role_auth_ids]'}
+                                    <li class="bottom">
+                                        <input type='checkbox' name="authname[]" onclick="selectall({$vo.auth_id})" id="pid_{$vo.auth_id}"  value="{$vo.auth_id}" checked='checked'>
+                                        {$vo[auth_name]}    
+                                {else /}
+                                    <li class="bottom">
+                                        <input type='checkbox' name="authname[]" onclick="selectall({$vo.auth_id})" id="pid_{$vo.auth_id}"  value="{$vo.auth_id}">
+                                        {$vo[auth_name]}   
+                                {/in}
+                                <ul class='tree'>
+                                    {volist name='vo[sub]' id='vo2'}
+                                        <div class="sub">
+                                        {if condition="$vo2[is_show] eq 1"}
+                                            {in name='vo2.auth_id' value='$detail2[role_auth_ids]'}
+                                                 
+                                                    <input type='checkbox' name="authname[]" onclick="select_child({$vo.auth_id})"  class="sub_{$vo.auth_id}" value="{$vo2.auth_id}" checked='checked'>
+                                                    {$vo2[auth_name]}  </li>
+                                            {else /}
+                                                 
+                                                    <input type='checkbox' name="authname[]" onclick="select_child({$vo.auth_id})"  class="sub_{$vo.auth_id}" value="{$vo2.auth_id}">
+                                                    {$vo2[auth_name]}  </li>  
+                                            {/in}
+                                        {/if}
+                                        </div>
+                                    {/volist}
+                                </ul>
+                                </li>
+                            {/if}
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-sm btn-success" id="validateBtn" type="submit"><i class="fa fa-dot-circle-o"></i> 保存</button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+function selectall(pid){
+    is=$('#pid_'+pid).prop('checked');
+    // alert(is);
+    if(is){
+        $('.sub_'+pid).prop('checked',true);
+    }else{
+        $('.sub_'+pid).prop('checked',false);
+    }
+}
+function select_child(pid){
+    is=0;
+    $('.sub_'+pid).each(function (index){
+        is_checked=$(this).prop('checked');
+        if(is_checked){
+            is=1;
+        }else{
+             
+        }
+         
+             
+    })
+    if(is==1){
+        $('#pid_'+pid).prop('checked',true);
+    }else{
+        $('#pid_'+pid).prop('checked',false);
+    }
+}
+//表单验证
+ 
+//$(document).ready(function() {
+     
+    // Generate a simple captcha
+    $('#saveForm').bootstrapValidator({
+//        live: 'disabled',
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            "post[role_name]": {
+                validators: {
+                    notEmpty: {
+                        message: '不能为空'
+                    }
+                }
+            }
+        }
+    });
+
+    // Validate the form manually
+    $('#validateBtn').click(function() {
+         
+       // $('#saveForm').bootstrapValidator('validate');
+    });
+
+    $('#resetBtn').click(function() {
+        $('#saveForm').data('bootstrapValidator').resetForm(true);
+    });
+//});
+ 
+</script>

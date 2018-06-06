@@ -1,0 +1,231 @@
+{layout name="Public/layout" /}
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="nav nav-tabs" style="height:auto; padding-bottom:10px;">
+            <div class="row">
+
+                <form action="{:url('goods_lists')}" method="get" name="search_form" id="search_form">
+
+                    <input type="hidden" name="total" value="1" />
+
+                    <div class="col-lg-2 col-md-2"  >
+                        <select   style="float:left;" id="cate_id"  name="cate_id"  class="form-control">
+                            <option selected="selected" value="">选择分类检索</option>
+                            
+                           {$cate_str}
+                
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2"  style="display: none;">
+                        <select   style="float:left;" id="is_new"  name="is_new"  class="form-control">
+                            <option {if condition=" $_REQUEST[is_new] eq ''"}selected="selected" {/if} value="">全部</option>
+                             
+                            <option {if condition=" $_REQUEST[is_new] eq '1'"}selected="selected" {/if} value="1">新品</option>
+                           
+                
+                        </select>
+                    </div>
+
+
+                    <div class="col-lg-2 col-md-2"  >
+                        <input   id="key_word" type="text" name="keyword" value="{$_REQUEST[keyword]}" placeholder="关键字搜索" class="form-control">
+                    </div>
+                    <button class="btn btn-default" type="submit"  style=" float:left; margin-right:10px;"><i class="fa fa-search"></i>搜索</button>
+                     
+                </form>
+            </div>
+        </div>
+
+
+
+        <form action="" method="post" name="search_form" id="search_form">
+
+        <table class="table table-hover">
+             
+            <thead>
+                <tr>
+                    <th width="50"><input type="checkbox" name="" id="check_all" onclick="check_all_public('goods_id_check_all','check_all')" value=""><br />全选</th>
+                    <!-- <th width="100">供应商</th> -->
+                    <th width="70">商品号</th>
+                     <th style="width: 75px;">图标</th>
+                    <th>标题</th>
+                    
+                    <th style="display:none">二维码</th>
+                     
+                 
+                     
+                    <th style="width:180px;">操作 </th>
+                     
+      
+                    <if condition="$user_id eq 1">
+                     
+                        <th style="width: 75px;">是否推荐</th>
+                    </if>
+                    <th style="width: 75px;">状态</th>
+                    <th style="width: 150px;">操作</th>
+                </tr>
+            </thead>
+             
+            <tbody>
+
+                {volist name="data['lists']['content']" id="vo"}
+                    <tr >
+                        <th width="70" style=" padding-top:80px;" ><input type="checkbox" class="goods_id_check_all" name="post[goods_id][]" value="{$vo['goods_id']}" >
+                        <input type="checkbox" checked="checked" style="display:none;" name="post[goods_id_check][]" value="{$vo['goods_id']}"></th>
+                        <!-- <td>{$vo[supplier_title]}</td> -->
+                        <td  style=" padding-top:80px;">{$vo['goods_id']}</td>
+                            <td><img src="{$vo['img_thumb']}" width="150px"></td>
+                        <td >
+                         
+                            <textarea name="goods_name" id="goods_name_{$vo.goods_id}" rows="3" onChange="change_someting('goods_name_{$vo.goods_id}','goods_name',{$vo.goods_id})" class="form-control"  style=" width:100%;">{$vo.goods_name}</textarea>
+                        
+    
+                        </td>
+                        <td style="display:none"> <img src="Uploads/goods/qrc/{$vo['goods_sn']}.jpg" width="50px"></td>
+                     
+                     
+                        <td >
+                         <div style="margin-bottom:10px; clear:both; overflow:hidden; height:auto;"><div style="float:left; line-height:34px;"> 更新价格 ：</div><input type="text" name="shop_price" onChange="change_someting('shop_price_{$vo.goods_id}','shop_price',{$vo.goods_id})" id="shop_price_{$vo.goods_id}" value="{$vo.shop_price}" class="form-control" style="width:75px; margin-right:0px!important;float:left;">
+                         </div>
+                         
+                     
+                         <div style="margin-bottom:10px;clear:both; overflow:hidden; height:auto;"> <div style="float:left; line-height:34px;"> 更新库存 ：</div>
+                         <input type="text" name="goods_number" id="goods_number_{$vo.goods_id}" onChange="change_someting('goods_number_{$vo.goods_id}','goods_number',{$vo.goods_id})" value="{$vo.goods_number}" class="form-control"  style="width:75px;float:left;"> </div>
+                        
+          
+                        </td>
+     
+                 
+                        <td>
+                           
+                            {if condition="$vo.is_new eq 0 "}
+                                <a href="{:url('change_someting')}?&json=1&goods_id={$vo.goods_id}&string=is_new&string_val=1">设为新品</a>
+                            {else/}
+                                <a href="{:url('change_someting')}?&json=1&goods_id={$vo.goods_id}&string=is_new&string_val=0">取消新品</a>
+                            {/if}
+
+                        </td>
+
+                        <td> 
+
+                            {if condition="$vo.status eq 1 "}
+                                上架
+                            {else/}
+                                下架
+                            {/if}
+
+
+                            
+                        </td>
+                          
+                    <td>
+                    
+                            <a href="{:url('goods_form')}?&goods_id={$vo.goods_id}&p={$_REQUEST[p]}"><i class="fa fa-pencil"></i>修改</a><br /><br />
+                            
+                            
+
+                            {if condition="$user_id eq 1"}
+                            <a onClick="return del_sure()"  href="{:url('goods_delete')}?&goods_id={$vo.goods_id}" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i>删除</a>
+                            <br /><br />
+                            {/if}
+                             
+                            
+                             
+                            
+                         
+                            
+                            <!-- <a href="{:url('BbsTopic/lists')}?&menu_app=Shop&goods_id={$vo.goods_id}">评论管理</a>
+                            <br /><br /> -->
+
+                            {if condition="$vo.status eq 1"}
+                                <a href="{:url('change_someting')}?&json=1&goods_id={$vo.goods_id}&string=status&string_val=0"><i class="fa fa-arrow-down"></i>下架</a>
+                            {else/}
+                                <a href="{:url('change_someting')}?&json=1&goods_id={$vo.goods_id}&string=status&string_val=1"><i class="fa fa-arrow-up"></i>上架</a>
+                            {/if}
+                            <br /><br />
+
+                            {if condition="$vo.is_top eq 1"}
+                                <a href="{:url('change_someting')}?&json=1&goods_id={$vo.goods_id}&string=is_top&string_val=0"><i class="fa fa-arrow-down"></i>取消置顶</a>
+                            {else/}
+                                <a href="{:url('change_someting')}?&json=1&goods_id={$vo.goods_id}&string=is_top&string_val=1"><i class="fa fa-arrow-up"></i>置顶</a>
+                            {/if}
+
+                            <br /><br />
+                            
+                            <br /><br />
+                             
+                         
+
+                            
+                        </td>
+                    </tr>
+                   
+                {/volist}
+            </tbody>
+        </table>
+
+
+
+        <div class="nav nav-tabs" style="height:auto; padding-bottom:10px;display: none;">
+            <div class="row">
+                 
+                    <div class="col-lg-2 col-md-2"  >
+                        <select   style="float:left" id="post[action]"  name="post[action]"  class="form-control">
+                            <option   value="status_0">批量上架</option>
+                            <option  value="status_1">批量下架</option>
+                             
+                            <if condition="$user_id eq 1">
+                            <option    value="is_recommended_1">批量为首页推荐商品</option>
+                            <option    value="is_recommended_0">批量取消首页推荐商品</option>
+                             
+                            </if>
+                            
+                            
+                
+                        </select>
+                    </div>
+                     
+                    <button class="btn btn-default" type="submit"  style=" float:left; margin-right:10px;"><i class="fa fa-search"></i>设置</button>
+                 
+                 
+            </div>
+        </div>
+        </form>
+        
+        <include file="Public/pagination" />
+    </div>
+    <!--/.col-->
+</div>
+
+
+
+<script>
+
+function display(obj){
+    $("#"+obj).toggle();
+}
+
+function change_someting(string,name,goods_id){
+    string_val=$('#'+string).val();
+    url="{:url('change_someting')}?&goods_id="+goods_id+"&string="+name+"&string_val="+string_val;
+      $.ajax({
+        type: "post",
+        url: url,
+        dataType: "json",       
+        success: function(data) {
+          if(data.status==10001){
+            alert("操作成功")
+          }else{
+            alert("操作失败或数据没更新")
+          }
+     },
+            
+  })
+    
+}
+
+
+</script>

@@ -1,0 +1,36 @@
+
+
+
+<div class="bar bar-header bar-positive">
+    <a class="button icon ion-ios-undo-outline button-clear" href="javascript:history.back(-1);"></a>
+    <h1 class="title">{$page_title}</h1>
+    <button class="button icon-right ion-navicon button-clear"></button>
+</div>
+
+
+<div id="topright" style="display:none;width:auto;position:absolute;top: 44px;;z-index: 99999;padding: 5px;"
+     class="back-white">
+    <div style="padding: 5px;border-bottom: 1px solid #ddd;text-align: center;"><a href="{:url('index/index')}">首页</a></div>
+    <div style="padding: 5px;border-bottom: 1px solid #ddd;text-align: center;"><a href="{:url('index/cart')}">购物车</a></div>
+    <div style="padding: 5px;border-bottom: 1px solid #ddd;text-align: center;"><a href="{:url('user/index')}">我的</a></div>
+   
+</div>
+
+
+<script type="text/javascript">
+  var con=0;
+    $('.ion-navicon').click(function () {
+        if(con==0){
+        $('#topright').slideDown();
+            con++;
+        }else{
+        $('#topright').slideUp();
+            con--;
+        }
+    });
+
+  
+    var winW = $(window).width();//获取窗口可视宽度
+    var topleft = $('#topright').width();//获取topright宽度
+    $('#topright').css({'left': winW - topleft -10+ 'px'});//定位topright left左偏离,10为内容边距
+</script>

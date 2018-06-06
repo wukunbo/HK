@@ -1,0 +1,92 @@
+{layout name="Public/layout" /}
+<script type="text/javascript" src="__ADMIN_TOOL__/My97DatePicker/WdatePicker.js"></script>
+
+
+<div class="panel panel-default">
+    <form action="{:url('add_action')}"  enctype="multipart/form-data"  method="post" name="auth" id="auth" onsubmit="return form_check()">
+        <input type="text" style="display:none;" name="post[id]"  class="form-control" value="{$data['id']}">
+        
+        <div class="panel-body">
+
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">标题</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[title]" id="title" class="form-control" value="{$data['title']}">
+                </div>
+            </div>
+
+
+            <div class="form-group"  >
+                <label for="text-input" class="col-md-2 control-label">类型</label>
+                <div class="col-md-4 input-group ">
+                    <input type="radio" {if condition="$data['type'] eq 1"}checked="checked"{/if} name="post[type]" value="1">送流量 
+                    <input type="radio" {if condition="$data['type'] eq 2"}checked="checked"{/if} name="post[type]" value="2">送话费
+                    <input type="radio" {if condition="$data['type'] eq 3"}checked="checked"{/if} name="post[type]" value="3">送红包
+                </div>
+            </div>
+
+
+            
+
+
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">金额/流量</label>
+                <div class="col-md-4 input-group ">
+                    <input type="number" name="post[price]" id="price"  class="form-control" value="{$data['price']}">元/m
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">开始时间</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[start_time]"  class="form-control" {if condition="$data[start_time]"}value="{$data['start_time']|date="Y-m-d H:i:s",###}"{/if} onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" >
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">结束时间</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[end_time]"  class="form-control" {if condition="$data[end_time]"}value="{$data['end_time']|date="Y-m-d H:i:s",###}"{/if} onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" >
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">介绍</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[intro]"  class="form-control" value="{$data['intro']}">
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <div class="panel-footer">
+            <button class="btn btn-sm btn-success" type="submit" onclick1="save_vote()"><i class="fa fa-dot-circle-o"></i> 保存</button>
+            <button class="btn btn-sm btn-danger" type="reset"><i class="fa fa-ban"></i> 重置</button>
+        </div>
+
+    </form>
+
+
+</div>
+
+<script type="text/javascript">
+function form_check(){
+    var title=$("#title").val();
+    if(!title){
+        alert("请填写标题");
+        return false;
+    }
+
+    var price=$("#price").val();
+    if(!price){
+        alert("请填写金额");
+        return false;
+    }
+}
+</script>

@@ -1,0 +1,86 @@
+
+{layout name="Public/layout" /}
+
+<div class="panel panel-default">
+    <form action="{:url('Admin/add')}?id={$data[id]}"  enctype="multipart/form-data"  method="post" name="saveForm" id="saveForm">
+        <input type="text" style="display:none;" name="post[id]"  class="form-control" value="{$data['id']}">
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">登录名：</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[tl_adm_username]" id='username'  placeholder='' {if condition="$data[tl_adm_username] neq ''"}readonly{/if} value="{$data[tl_adm_username]}" class="form-control"  >
+                     
+                    <input type="text" name="post[admin_username]"    {if condition="$userinfo[username] neq ''"}readonly{/if}  value="{$userinfo[username]}" class="form-control" style=" display:none" >
+                </div>
+                <div class="col-md-4 input-group ">
+                登录时,使用{$userinfo[username]}:用户名
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">密码</label>
+                <div class="col-md-4 input-group ">
+                    <input type="password" name="post[tl_adm_password]" id='password' value="" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">真实姓名</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[tl_adm_truename]" id="truename" value="{$data[tl_adm_truename]}" class="form-control" onClick="javascript:value='';">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">管理员角色</label>
+                <div class="col-md-4 input-group ">
+                    <select name='post[role_id]' class="form-control">
+                        {volist name='data[role]' id='vo'}
+                            {if condition="$data[role_id] eq $vo[role_id]"}
+                                <option value="{$vo[role_id]}"  selected="selected">{$vo[role_name]}</option>
+                            {else /}
+                                <option value="{$vo[role_id]}">{$vo[role_name]}</option>
+                            {/if}
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-sm btn-success" id="validateBtn" type="submit"><i class="fa fa-dot-circle-o"></i> 保存</button>
+        </div>
+    </form>
+</div>
+
+
+
+<script>
+//表单验证
+//$(document).ready(function() {
+    // Generate a simple captcha
+    $('#saveForm').bootstrapValidator({
+//        live: 'disabled',
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            "post[tl_adm_username]": {
+                validators: {
+                    notEmpty: {
+                        message: '不能为空'
+                    }
+                }
+            }
+        }
+    });
+
+    // Validate the form manually
+    $('#validateBtn').click(function() {
+      //  $('#saveForm').bootstrapValidator('validate');
+    });
+
+    $('#resetBtn').click(function() {
+        $('#saveForm').data('bootstrapValidator').resetForm(true);
+    });
+//});
+</script>

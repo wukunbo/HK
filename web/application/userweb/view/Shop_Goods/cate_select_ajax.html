@@ -1,0 +1,169 @@
+<div id="post_cate_start">
+ 
+
+</div>
+
+<script>
+function get_Attr_ajax(cate_id){
+ 
+    url="{:url('ShopGoods/get_attr_cate')}?&cate_id="+cate_id;
+    $.ajax({
+        type: "post",
+        url: url,
+        dataType: "json",       
+        success: function(data) {
+            console.log(data);
+            $('#attr_select').val(data.id);
+            get_attr_chose_lists({$data[detail][goods_id]});
+            get_attr_lists_tags({$data[detail][goods_id]});
+         },         
+    })
+ 
+     
+}
+
+parent_id='';
+select_id="";
+//parent_str="583,582,1"
+var last_parent_id="";
+if(parent_str!=''){
+    var parent_lists= new Array(); //定义一数组
+    parent_lists=parent_str.split(","); //字符分割
+    select_id=parent_lists[parent_lists.length-1];
+    //alert(select_id)
+    //alert(parent_lists.length)
+}
+//$(".selector").find("option[text='pxx']").attr("selected",true); 
+function get_cate(parent_id){
+     
+    //url="Plus.php?c=Region&a=set_city&parent_id=1&select="+select_province,
+    //$("#post_cate_start").html('<option value="">加载中</option>'); 
+    this_id=0;
+    $.ajax({
+        type: "post",
+        url:"{:url('ShopGoods/get_cate_select')}?&parent_id="+parent_id+"&this_id="+this_id+"&select_id="+select_id,
+        dataType: "json",       
+        success: function(data) {
+            //alert(data) ;
+            if(data.status == '10001'){
+
+                $("#post_cate_start").append(data.data);
+                var parent_id=$("#cate_parent_"+this_id).val();
+                if(parent_id!=""){
+                    child_id=parseInt(this_id)+1;
+                    change_cate(this_id,child_id);
+                }
+                
+            }else if(data.status == '10002'){
+                 
+            }               
+        },
+        complete:function(data){
+            
+        }
+    })
+}
+get_cate(int_parent_id);
+function change_cate(this_id,child_id){
+    if(parent_str!=''){
+        select_id=parent_lists[parent_lists.length-1-child_id]
+    }
+    var parent_id=$("#cate_parent_"+this_id).val();
+    get_Attr_ajax(parent_id)
+    if($("#cate_parent_"+child_id).length>0){
+        $("#div_cate_parent_"+child_id).remove();
+        s=parseInt(child_id)+1;
+        $("#div_cate_parent_"+s).remove();
+        s=parseInt(s)+1;
+        $("#div_cate_parent_"+s).remove();
+        s=parseInt(s)+1;
+        $("#div_cate_parent_"+s).remove();  
+        s=parseInt(s)+1;
+        $("#div_cate_parent_"+s).remove();      
+    }
+    //url="Plus.php?c=Region&a=set_city&parent_id=1&select="+select_province,
+    //$("#post_cate_start").html('<option value="">加载中</option>'); 
+    $.ajax({
+        type: "post",
+        url:"{:url('ShopGoods/get_cate_select')}?&parent_id="+parent_id+"&select_id="+select_id+"&this_id="+child_id,
+        dataType: "json",       
+        success: function(data) {
+            //alert(data) ;
+            if(data.status == '10001'){
+                $("#post_cate_start").append(data.data);
+     
+                var parent_id=$("#cate_parent_"+child_id).val();
+                if(parent_id!=""  && parent_id!="请选择"){
+                    last_child_id=parseInt(child_id)+1;
+                    change_cate(child_id,last_child_id);
+                }
+            }else if(data.status == '10002'){
+                 
+            }               
+        },
+        complete:function(data){
+            
+        }
+    })
+}
+ 
+
+function change_attr(attr_id){
+    val=$("#text_attr_"+attr_id).val();
+ 
+    console.log(val)
+ 
+    $(".attr_"+attr_id).empty();
+    $(".attr_"+attr_id).prepend("<option value='"+val+"'>"+val+"</option>"); //为Select插入一个Option(第一个位置)
+    
+} 
+
+function mod_all(obj){
+
+    
+    val=$("#mod_all_"+obj).val();
+    //$(".attr_"+obj).val(val);
+    //str.indexOf("Hello") 
+    /*$(".attr_"+obj).each(function(){
+        display=$(this).parent("div");
+        id=display.attr("id");
+        console.log("id:"+id);
+        display_val=display.css("display");
+        console.log("display_val:"+display_val);
+    });
+    */
+    $(".attr_"+obj).parents(".attr_all").each(function(){
+        id=$(this).attr("id");
+        display_val=$(this).css("display");
+        if(display_val!="none"){
+            $(this).find(".attr_"+obj).val(val);
+            console.log("id:"+id+"-"+display_val);
+        }
+        //console.log("display_val:"+display_val);
+ 
+    });
+    //alert(val)
+} 
+
+function mod_goods_sn(){    
+    obj="sn";
+    val=$("#goods_sn").val();
+    $("#mod_all_"+obj).val(val);
+    //alert(val)
+} 
+
+function mod_goods_number(){
+    obj="stock";
+    val=$("#goods_number").val();
+    $("#mod_all_"+obj).val(val);
+    //alert(val)
+}  
+
+function mod_shop_price(){
+    obj="price";
+    val=$("#shop_price").val();
+    $("#mod_all_"+obj).val(val);
+    //alert(val)
+} 
+ 
+</script>

@@ -1,0 +1,299 @@
+{layout name="Public/layout" /}
+
+<script type="text/javascript" src="__ADMIN_TOOL__/My97DatePicker/WdatePicker.js"></script>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <ul class="nav nav-tabs" style="margin-bottom:10px;">
+
+        {if condition="$_REQUEST[back_order] eq 1"}
+            
+            
+            <li  style="display:none1"
+            {if condition="$_REQUEST[back_status] eq -1 "} class="active"{/if}
+            ><a href="{:url('order_lists')}?&back_order={$_REQUEST[back_order]}&back_status=-1" >待处理售后订单</a>
+            </li>
+
+            <li  style="display:none"
+            {if condition="$_REQUEST[back_status] eq 1 "} class="active"{/if}
+            ><a href="{:url('order_lists')}?&back_order={$_REQUEST[back_order]}&back_status=1" >退款（未发货）</a>
+            </li>
+
+            <li 
+            style="display:none"
+            {if condition="$_REQUEST[back_status] eq 2 "} class="active"{/if}
+            ><a href="{:url('order_lists')}?&back_order={$_REQUEST[back_order]}&back_status=2"  >仅退款（已发货）</a>
+            </li>
+            <li style="display:none"
+            {if condition="$_REQUEST[back_status] eq 3 "} class="active"{/if}
+            ><a href="{:url('order_lists')}?&back_order={$_REQUEST[back_order]}&back_status=3"   >退货（已发货）</a>
+            </li>
+        {/if}
+
+
+
+        {if condition="$_REQUEST[back_order] neq 1"}
+            <li
+
+
+
+            {if condition="$status eq '' or $status eq '0' "} class="active"{/if}
+            >
+            <a href="{:url('ShopOrder/order_lists')}?&status=0" >所有</a>
+            </li>
+            
+            <li 
+        
+        
+        
+            {if condition="$status eq 8 "} class="active"{/if}
+            ><a href="{:url('ShopOrder/order_lists')}?&status=8" >等待发货</a>
+            </li>
+            
+            <li 
+        
+        
+        
+            {if condition="$status eq 4 "} class="active"{/if}
+            ><a href="{:url('ShopOrder/order_lists')}?&status=4" >已发货</a>
+            </li>
+            
+            
+             
+            
+            <li 
+        
+            {if condition="$status eq 10 "} class="active"{/if}
+            ><a href="{:url('ShopOrder/order_lists')}?&status=10" >需要评价的订单</a>
+            </li>
+             
+            <li 
+            {if condition="$status eq 9 "} class="active"{/if}
+            ><a href="{:url('ShopOrder/order_lists')}?&status=9" >成功的订单</a>
+            </li>
+        {/if}
+        </ul>
+        <div style="height:auto; overflow:hidden; padding:10px;">
+
+            <form action="{:url('order_lists')}?&sql={$_REQUEST[sql]}&data={$_REQUEST[data]}" method="post" name="search_form" id="search_form">
+                <input  type="text" name="back"  style="display:none;" value="{$search[back]}" >
+                <input  type="text" name="back_order"  style="display:none;" value="{$_REQUEST[back_order]}" >
+            {if condition="$_REQUEST[back_order] neq 1"}
+                <select onChange1="search_order_status()" id="status" name="status" class="form-control_search">
+                    <option value="0"  
+                    {if condition="$status eq '' "} selected="selected"{/if}
+                    >全部
+                    </option>
+                    <option value="8"
+                    {if condition="$status eq 8 "} selected="selected"{/if}
+                    >等待发货
+                    </option>
+                    <option value="4"  
+                    {if condition="$status eq 4 "} selected="selected"{/if}
+                    >已发货
+                    </option>
+                    
+                </select>
+            {/if}
+                <input class="Wdate form-control_search"    id="date_1" name="date_1" type="text" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"  placeholder="开始时间" value="{$_REQUEST[date_1]}" >
+                <input class="Wdate form-control_search"  id="date_2" name="date_2" type="text" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"  placeholder="结束时间"  value="{$_REQUEST[date_2]}">
+                <!-- <button class="btn btn-default" onclick='chang_order_status("","2")' style="display:none">修改为收货</button> -->
+                <!-- <button class="btn btn-default" style="display:none">一键发货</button> -->
+                <input class="form-control_search" id="key_word" type="text" placeholder="关键字" name="keyword" value="{$_REQUEST[keyword]}" s>
+                 
+                <button class="btn btn-default" type="submit" style=" float:left; margin-right:10px;"><i class="fa fa-search"></i>检索</button>
+                <button class="btn btn-default" type="button" onClick="excel();" style=" float:left; margin-right:10px;">导出excel</button>
+                <!-- <button class="btn btn-default" type="button" onclick="fahuo()" style=" float:left; margin-right:10px;">一键发货</button> -->
+                <script>
+                    function fahuo(){
+                        order_id_str=$('#order_lists_form').serialize();
+                        show_content('userweb.php?c=ShopOrder&a=shipping_all_lists&order_id_str='+order_id_str);
+                    }
+                </script>
+            </form>
+        </div>
+
+
+        <div style="height:auto; overflow:hidden; padding:10px;">
+            <form action="userweb.php?&c=ShopOrder&a=order_import" method="post" name="search_form" id="search_form" enctype="multipart/form-data" >
+ 
+                <!-- <input class="  " style="line-height:30px; height:30px; width:200px;float:left; margin-right:10px;"  name="myfile" type="file" value="上传订单列表"   >
+                <button class="btn btn-default" type="submit"   style=" float:left; margin-right:10px;">批量导入发货</button> -->
+            </form>
+        </div>
+
+        <div class="form-group" style="height:auto; overflow:hidden; padding:10px; display:none;">
+            <a href="Uploads/excel/to_excel.xls" target="_blank">
+                下载导入表格样式
+            </a>  
+
+            <div class="form-group" style="margin-top: 15px">
+                <a class="btn btn-primary" onclick="to_apply();" >导入发货</a>
+            </div>
+
+            <form id="xlsform"="multipart/form-data">
+                <input onchange="submitxls()" id="oncontacts" name="xlsfile" type="file" value="导入名单" style="display: none;" accept="" />
+            </form>
+
+        </div>
+
+
+        <form id="order_lists_form" method="post" >
+            <input type='hidden' id="pay_status" name="pay_status" value="">
+            <input type='hidden' id="shipping_status" name="shipping_status" value="">
+            {volist name="data['content']" id="vo"}
+                <div id='order_lists' style="border:1px solid #333; margin-bottom:10px;">
+                    <div id="order_title" style="font-size:16px;background-color:#f1f1f1;line-height:30px; padding:5px;">
+                        <input type='checkbox' checked="checked" style="display:none" name="chose[]" value="{$vo.order_id}">
+                        <label>
+                        {if condition="$user_id eq 1"}<a href="{:url('order_lists')}?&status={$_REQUEST[status]}&business_id={$vo[business_id]}">【{$vo[order_detail][shop_title]} 】 </a>{/if}订单号：</label>
+                        <strong style="display:none"> <span>{$vo['order_sn']}</span></strong>
+                        <span>({$vo['weixin_order_sn']})</span>
+                        <label style="margin-left:20px">下订单时间：</label>
+                        <span>{$vo.addtime|date='Y-m-d H:i:s',###} {$vo.addtime1}</span>
+                        {if condition="$vo.paytime neq ''"}
+                        <label style="margin-left:20px">付款时间：：</label>
+                        <span>{$vo.paytime|date='Y-m-d H:i:s',###}  {$vo.paytime1}</span>
+                        {/if}
+                        <label style="margin-left:20px">用户：</label>
+                        <span>{$vo[order_detail][username]} {if condition="$user_id eq 1"}（用户ID：{$vo[order_detail]['user_id']}）{/if}</span>
+                        <br>
+                        <label style="margin-left:0px">订单状态：</label>
+                        <span {if condition="$vo[back_status] neq 0"}style=" color:#FF0000;"{/if}>{$vo.pay_status_text}<font style="color:#FF0000;"> {$vo.pintuan_status_text}  </font> 
+                            {if condition="$vo[shipping_status] eq 1"}
+                                已发货
+                            {elseif condition="$vo[shipping_status] eq 2"/}
+                                已收货
+                            {else/}
+                            {/if}
+                            {$vo.shipping_stauts_text}
+
+                            {$vo.back_status_text}</span>
+                        
+                     
+
+
+    
+
+                        <br>
+                        {if condition="$vo[back_status] neq 0 AND  $vo[back_status] neq 3"}
+                            <label style="margin-left:10px"> 买家发货状态： {$vo.back_shipping_code|default="暂无"}   {$vo.back_shipping_id}</label>
+                        {/if}
+                    </div>
+
+                    <div class="" style="height:auto; overflow:hidden; clear:both;">
+                        <div id="goods_lists" style="line-height:30px;margin:10px; padding-bottom:5px; float:left; width:70%; ">
+                            {volist name="vo[order_detail][goods_lists]" id="goods_lists"}
+                                <div id="text" style="height:auto; overflow:hidden;width:100%;border-bottom:1px solid #ddd; margin-bottom:10px; clear:both; " >
+                                    <div id="img" style="float:left">
+                                        <img src="{$goods_lists.img_thumb}" height="100px">
+                                    </div>
+                                    <div id="goods_name" style="font-size:16px;width:500px;float:left;word-break:break-all; margin-left:10px;">
+                                        <a style="color:;">商品名：{$goods_lists.goods_name}{if condition="$goods_lists.attr neq ''"}<font style=" color:#FF0000;" >({$goods_lists.attr})</font>{/if}</a>
+                                    </div>
+                                    <div id="goods_price" style="color:;font-size:16px;width:200px;float:left;word-break:break-all; margin-left:10px;">
+                                        <p style="color:;">商品金额：￥
+                                            {if condition="$goods_lists[price] neq ''"}{$goods_lists.price}{/if}
+                                            {if condition="$goods_lists[price] eq ''"}{$goods_lists.shop_price}{/if}
+                                        </p>
+                                        <p >型号：{$goods_lists.goods_sn}</p>
+                                        <p style="color:;">商品数量：{$goods_lists.amount}</p>
+                                    </div>
+                                    <a href="javascript:void(0)" style="display:none" onClick="show_content('{:url('kuaidi_form')}?&order_id={$vo.order_id}&order_goods_id={$goods_lists.order_goods_id}')">物流管理</a>
+                                    <br>
+                                </div>
+                            {/volist}
+                        </div>
+                        <div style="float:left; width:25%; font-size:14px; padding-left:10px; padding-top:30px;height:auto; overflow:hidden;">
+                            <div style="float:left; width:50%; text-align:center; line-height:200%;">
+                                订单总额：{$vo.real_fee}元<br>
+                                <!-- 邮费：{$vo.shipping_fee|default="0"}元 <br> -->
+                                <!--优惠券抵扣金额：{$vo.fee_dis_for_coupon|default="0"}元 <br />-->
+                                <!--余额支付：{$vo.account_fee|default="0"}元 <br />-->
+                                <!--使用积分：{$vo.point_fee} <br />-->
+                                实付：{$vo.real_fee|default="0"}元 <br>
+                            </div>
+                            <div style="float:left; width:50%; text-align:center; line-height:200%;">
+
+                                {if condition="($vo[pay_status] eq 1 && $vo[is_pintuan] neq 1 )|| ($vo[pintuan_status] eq 1  && $vo[is_pintuan] eq 1 && $vo[pay_status] eq 1)  "}
+                                <a href="{:url('kuaidi_form')}?&order_id={$vo.order_id}" 1onClick="show_content('{:url('kuaidi_form')}?&order_id={$vo.order_id}')">发货</a>
+                                {/if}
+
+                                {if condition="$_REQUEST[back_order] eq 1 "}
+                                    <br>
+                                    <a href="{:url('back_order_form')}?&order_id={$vo.order_id}&order_back_id={$vo.order_back_id}">退货处理</a>
+                                {/if}
+
+                                <a onClick="return del_sure()"  href="{:url('order_back_delete')}?&back_id={$vo.order_back_id}&p=$_REQUEST[p]" role="button" data-toggle="modal" style="display:none">订单删除</a>
+                                <br>
+                                <a href="{:url('order_form')}?&order_id={$vo.order_id}">订单修改</a>
+                                <br>
+                                <a href="{:url('order_detail')}?&order_id={$vo.order_id}">订单详情</a>
+                                <br>
+                                <a href="{:url('order_print')}?&order_id={$vo.order_id}">出货单</a>
+                                <br>
+                                {if condition="$vo[is_invoice] eq 1"}
+                                    <a href="{:url('invoice_print')}&order_id={$vo.order_id}">发票</a>
+                                    <br>
+                                {/if}
+                               
+                                <a href="javascript:display('order_detail_{$vo.order_id}')">详情展开</a>
+                            </div>
+                        </div>
+                    <div style="padding:10px; display:none" class="order_detail" id="order_detail_{$vo.order_id}">
+
+                    <?php
+                    $order_detail=$vo[order_detail];
+                    ?>
+
+        <table width="100%" border="1" cellpadding="5" cellspacing="5">
+            <tr >
+                <td colspan="3">快递：{$vo.shipping_title|default="暂无"}  {$vo.shipping_id|default=""} </td>
+                  </td>
+            </tr>
+            <tr>
+                <td>收货人姓名：{$order_detail.address_name}</td>
+                <td>联系电话：{$order_detail.address_phone}</td>
+            </tr>
+           
+            <tr>
+                <td  colspan="3">详细地址：{$vo[address]} </td>
+
+            </tr>
+
+          
+        </table>
+
+        <table width="100%" border="1" cellpadding="2" cellspacing="2">
+            <tr>
+                <td>序号</td>
+                <td>宝贝</td>
+                <!-- <td>型号</td> -->
+                <td>数量</td>
+                <td>单价</td>
+                <td>型号</td>
+            </tr>
+            {volist name="order_detail[goods_lists]" id="goods_lists"}
+                <tr>
+                    <td>{$i}</td>
+                    <td>{$goods_lists.goods_name}</td>
+                    <!-- <td>{$goods_lists.attr}</td> -->
+                    <td>{$goods_lists.amount}</td>
+                    <td>{$goods_lists.price}</td>
+                    <td>{$goods_lists.goods_sn}</td>
+                </tr>
+            {/volist}
+        </table>
+                    </div>
+                   
+                </div>
+                </div>
+            {/volist}
+        </form>
+        <include file="Public/pagination" />
+    </div>
+</div>
+</div>
+<style>
+.order_detail td{ padding:5px;}
+</style>

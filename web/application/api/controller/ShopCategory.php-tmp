@@ -1,0 +1,38 @@
+<?php
+namespace app\api\controller;
+use think\Controller;
+
+class ShopCategory extends Base {
+
+	public function __construct() {
+		parent::__construct();
+		$this->logic = new \app\shop\logic\Category();
+	}
+
+	/**
+	 * 获取商品类别列表
+	 */
+	public function lists() {
+
+		// a:获取传递过来的数据
+		$shop_id   = $_REQUEST['shop_id']?$_REQUEST['shop_id']:1;
+		$parent_id = $_REQUEST['parent_id'];
+		// b:调用业务逻辑
+		$ret = $this->logic->get_cate_tree($shop_id, $field = '', $parent_id);
+		$ret = $ret['lists'];
+		if ($ret['content'] === null) {
+			$data['status'] = 10003;
+			$data['msg']    = "无数据";
+		} elseif ($ret['content'] === false) {
+			$data['status'] = 10002;
+			$data['msg']    = "数据查询错误";
+		} else {
+			$data['status'] = 10001;
+			$data['msg']    = "成功";
+		}
+		$data['lists'] = $ret['content'];
+		// c:封装返回数据
+		$this->return_data($data);
+	}
+
+}

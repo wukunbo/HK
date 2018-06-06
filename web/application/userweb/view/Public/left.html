@@ -1,0 +1,87 @@
+<style>
+.sidebar-menu .treeview .treeview-menu a{   padding-left:25px;}
+.sidebar-menu .treeview .treeview-menu a:hover{ 1background:#0866c6!important; color:#fff!important;}
+.sidebar-menu .treeview .treeview-menu .active{ 1background:#0866c6!important; color:#fff!important;}
+.sidebar-menu .treeview .treeview-menu .active a{ 1background:#0866c6!important; color:#fff!important;}
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side{ background:#2c3b41;}
+.content-wrapper, .right-side{ background:#f8f8f8;}
+.app_lists{ background:#222d32; height:500px; width:70px;}  
+.app_lists a{ height:70px!important;; color:#fff!important;; padding-top:15px;    display:block!important; text-align:center;;}
+.app_lists a.cur{ background:#1a3d7f!important;;color:#fff!important;;}
+.app_lists a i{ display:block; font-size:18px;}
+.app_menu_lists { width:180px; padding-left:0px;}
+
+.main-sidebar, .left-side{ width:250px;}
+.content-wrapper, .right-side, .main-footer{ margin-left:250px; }
+.main-header .logo{ width:250px;}
+.main-header .navbar{margin-left:250px;}
+.treeview > a{ color:#b8c7ce!important;  font-size:14px;}
+.sidebar-menu > div > li > a{ padding:12px 5px 12px 10px;   display:block;}
+.treeview-menu {  background:#34464E!important;}    
+.sidebar-menu .treeview-menu{ padding-left:0px;  }  
+</style>
+
+
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu">
+            <div class="app_lists nav_main" style="   float:left;">
+                <!-- l第一级目录 -->
+                {volist name="left['app_lists']" id="lists"}
+                    <a href="javascript:selecte_app('{$lists.val}')" id="nav_{$lists.val}" data="{$lists.val}">
+                        <i class="fa {$lists.icon}"></i>{$lists.title}
+                    </a>
+                {/volist}
+                <!-- END第一级目录 -->
+            </div>
+
+            <div class="app_menu_lists" style=" float:right; ">
+                <!-- l第二级目录 -->
+                {volist name="auth" id="vo"}
+                    {if condition="$vo['is_show'] eq 1"}
+                    <li class="{$vo['app']} app_menu treeview {if condition='$vo.cur eq 1'}active{/if}"> 
+                        <a href="#"> 
+                            <i class="fa fa-laptop"></i> <span>{$vo.auth_name}</span> 
+                            <span class="pull-right-container"><span class="fa fa-angle-down pull-right"></span></span>
+                        </a>
+                        {if condition="$vo.sub"}
+                        <ul class="treeview-menu {if condition='$vo.cur eq 1'}tree_cur{/if}" >
+
+                            <!-- l第三级目录 -->
+                            {volist name="vo.sub" id="v"}
+
+                                {if condition="$v.is_show eq 1"}
+                                    <li class="{if condition='$v.cur eq 1'}active{/if}"><a href="DOMAIN/userweb.php/{$v.auth_c}/{$v.auth_a}?{$v.parameters}&menu_app={$vo.app}"><i class="fa fa-laptop"></i>{$v.auth_name}</a></li>
+                                {/if}
+
+                            {/volist}            
+                        </ul>
+                        {/if}            
+                    </li>
+                    {/if}
+                <!-- END第二级目录 -->
+                {/volist}
+            </div>
+        </ul>
+    </section>
+</aside>
+
+<script>
+    h=$(window).height();
+
+    $(".app_lists").height(h-60);
+
+    $(".basic").show();
+
+    function selecte_app(app){
+        $(".app_menu").hide();
+        $("."+app+"").show();
+        $(".nav_main > a").removeClass("cur");
+        $("#nav_"+app+"").addClass("cur");
+    }
+
+    selecte_app("{$auth_all["cur"]["app"]}")
+    h=$(window).height();
+     
+    
+</script>

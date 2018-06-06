@@ -1,0 +1,97 @@
+{layout name="Public/layout" /}
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <script src="{$config['static']}js/print.js"></script>
+        <button class="btn btn-default" type="button" onClick="javascript:window.preview(1);"style=" float:left; margin-top:10px;">打印</button>
+            <script>  
+function preview(oper)         
+{  
+if (oper < 10)  
+{  
+bdhtml=window.document.body.innerHTML;//获取当前页的html代码  
+sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域  
+eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域  
+prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html  
+prnhtmlprnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html  
+window.document.body.innerHTML=prnhtml;  
+window.print();  
+window.document.body.innerHTML=bdhtml;  
+} else {  
+window.print();  
+}  
+}  
+</script>  
+        <!--startprint1-->
+        <style>
+    table{ margin-bottom:5px;}
+    table td{ padding:5px;}
+    </style>
+        <table width="100%" border="0" cellpadding="5" cellspacing="5">
+            <tr>
+                <td>订单编号：{$order_detail.order_sn}</td>
+                <td style="text-align:right;">发货日期：
+                {if condition="$order_detail[shipping_time]"} 
+                    {$order_detail.shipping_time|date="Y-m-d",###}
+                {/if}
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="0" cellpadding="5" cellspacing="5">
+            <tr>
+                <td>买家：{$order_detail.username}</td>
+                <td>姓名：{$order_detail.address_name}</td>
+                <td>电话：{$order_detail.address_phone}</td>
+            </tr>
+        </table>
+
+
+        <table width="100%" border="0" cellpadding="5" cellspacing="5">
+            <tr>
+                <td>地址：{$order_detail.address}</td>
+            </tr>
+        </table>
+
+
+        <table width="100%" border="1" cellpadding="2" cellspacing="2">
+            <tr>
+                <td>序号</td>
+                <td>宝贝</td>
+                <td>型号</td>
+                <td>数量</td>
+                <td>单价</td>
+            </tr>
+            {volist name="order_detail[goods_lists]" id="goods_lists"}
+                <tr>
+                    <td>{$i}</td>
+                    <td>{$goods_lists.goods_name}</td>
+                    <td>{$goods_lists.attr_title}</td>
+                    <td>{$goods_lists.amount}</td>
+                    <td>{$goods_lists.price}</td>
+                    <!-- <td>{$goods_lists.shop_attr_num}</td> -->
+                </tr>
+            {/volist}
+        </table>
+        <table width="100%" border="1">
+            <tr>
+                <td>合计</td>
+                <td>数量：{$order_detail.amount}</td>
+                <!-- <td>运费：{$order_detail.shipping_fee} 元</td> -->
+                <!-- <td>优惠：
+                    <php>echo $order_detail[total_fee]-$order_detail[real_fee];</php>
+                    元</td> -->
+                <td>实付：{$order_detail.real_fee}元</td>
+            </tr>
+        </table>
+        <!-- <table width="100%" border="0" cellpadding="5" cellspacing="5">
+            <tr>
+                <td>留言：{$order_detail.msg|default="无留言"}</td>
+            </tr>
+            <tr>
+                <td>备注：{$order_detail.content|default="无备注"}</td>
+            </tr>
+        </table> -->
+        <!--endprint1-->
+    </div>
+</div>

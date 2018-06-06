@@ -1,0 +1,14 @@
+﻿页面：http://localhost/zhubao/web/wxadmin/mobile/tlwx.php；时间：2017-08-17 11:22:03
+－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://localhost/zhubao/web/wxadmin/mobile/tlwx_api.php；时间：2017-08-17 11:23:26
+－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://localhost/zhubao/web/wxadmin/mobile/tlwx_api.php；时间：2017-08-17 11:23:29
+－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://localhost/zhubao/web/wxadmin/mobile/tlwx_api.php?wx_id=1NULL；时间：2017-08-17 11:23:37
+参数：
+wx_id:1NULL
+－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－
+﻿页面：http://localhost/zhubao/web/wxadmin/mobile/tlwx_api.php?wx_id=1NULL；时间：2017-08-17 11:23:45
+参数：
+wx_id:1NULL
+－－－－－－－－－－－－－－－－－结束－－－－－－－－－－－－－－－－－－－

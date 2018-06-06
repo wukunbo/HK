@@ -1,0 +1,160 @@
+<?php
+namespace app\userweb\controller;
+use Think\Controller;
+use think\Db;
+
+class Cms extends Base {
+
+	public function __construct() {
+		parent::__construct();
+		$this->logic = new \app\cms\logic\Cms();
+	}
+
+	//添加文章页面
+	public function add() {
+
+		$id = input('id');
+
+		if ($id) {
+			$data[detail] = $this->logic->detail($id);
+		}
+		$is_all = 1;
+
+		$lists          = $this->logic->get_category_tree('', $parent_id = 0, 0, $is_all);
+		$data[op_lists] = $this->logic->get_select($lists, $data['detail']['cate_id']);
+
+		$this->assign('data', $data);
+		return $this->fetch("Cms/add");
+	}
+
+	//添加文章
+	public function add_action() {
+
+		$post    = $_REQUEST[post];
+		$id      = $_REQUEST[post_id];
+		$cate_id = $_REQUEST[cate_id];
+
+		if (!$id) {
+			$post[user_id] = $this->user_id;
+		}
+
+		$post[status] = 0;
+
+		$gallery_thumb  = $_REQUEST[gallery_thumb];
+		$gallery_orogin = $_REQUEST[gallery_orogin];
+		$gallery_orogin = $_REQUEST[img_lists];
+
+		$data = $this->logic->add($id, $post, $gallery_thumb, $gallery_orogin);
+
+		if ($data[status] == 10001) {
+			return $this->showmsg('操作成功，页面跳转中...', url("Cms/lists"));
+		} else {
+			return $this->showmsg('操作失败');
+		}
+	}
+
+	//文章列表
+	public function lists() {
+
+		$cate_id       = $_REQUEST[cate_id];
+		$data[keyword] = $_REQUEST[keyword];
+
+		if ($this->user_id != 1) {
+			$data[user_id] = $this->user_id;
+		}
+
+		$data[order] = "listsorder Desc, id desc";
+
+		$cms_lists = $this->logic->lists($cate_id, $data, 10);
+		$this->assign('cate_id', $cate_id);
+
+		$data[lists]       = $cms_lists;
+		$data[lists][page] = $cms_lists[page];
+
+		$lists = $this->logic->get_category_tree('', $parent_id = 0, 0, $is_all);
+
+		$data[op_lists] = $this->logic->get_select($lists, $cate_id);
+		// var_dump($data);
+
+		$this->assign('data', $data);
+		return $this->fetch("Cms/lists");
+	}
+
+	//添加分类
+	public function category_add() {
+
+		$search[id]   = $_REQUEST[id];
+		$data[detail] = $this->logic->category_detail($search);
+
+		$lists          = $this->logic->get_category_tree($this->user_id, $parent_id = 0, 0, $is_all = 1);
+		$data[op_lists] = $this->logic->get_select($lists, $data[parent_id]);
+
+		$this->assign('data', $data);
+		return $this->fetch("Cms/category_add");
+	}
+
+	public function category_add_action() {
+
+		$post_id = $_REQUEST[post_id];
+		$post    = $_REQUEST[post];
+		if (!$post_id) {
+			$post[user_id] = $this->user_id;
+		}
+		$res = $this->logic->category_add($post, $post_id);
+		//var_dump($res);
+		exit;
+
+		if ($data[status] = 10001) {
+			return $this->showmsg("操作成功!", url("category_lists"));
+		} else {
+			return $this->showmsg("操作失败!");
+		}
+
+	}
+
+	//分类列表
+	public function category_lists() {
+
+		// $search[user_id]=$this->user_id;
+		$data = $this->logic->category_lists($search);
+
+		$this->assign('data', $data);
+		return $this->fetch("Cms/category_lists");
+	}
+
+	public function category_del() {
+		$id = input('id');
+		Db::name('cms_category')->where('id', $id)->delete();
+		return $this->showmsg("操作成功");
+	}
+
+	/*
+	删除全部
+	 */
+	public function del() {
+		//接收参数值
+		if ($_REQUEST['id_arr']) {
+			$id_arr = $_REQUEST['id_arr'];
+			$ids    = implode(",", $id_arr);
+		}
+
+		$id = $_REQUEST[id];
+
+		if ($id) {
+			$ids = $id;
+		}
+
+		if (!$ids) {
+			return $this->showmsg("请选择");
+		}
+
+		$where = " id in (".$ids.") ";
+		if ($this->user_id != 1) {
+			$where .= "  AND user_id='".$this->user_id."'";
+		}
+
+		Db::name('cms_content')->where($where)->delete();
+		return $this->showmsg("操作成功");
+	}
+
+}

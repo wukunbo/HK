@@ -1,0 +1,73 @@
+<div class="weixin"> 
+		<div class="ajax_title">
+			<div class="left">选择图文</div>
+			<div class="right"><a href="javascript:XianShi_GuanBi()">关闭</a></div>
+			 <div class="clear"></div>	
+		</div>
+		<div class="ajax_content" id="ajax_content">
+
+			{foreach from=$lists item=lists}
+				{if $lists.reply_type eq 'more'}
+					<div class="weixin_reply_lists item" id="reply_sel_{$lists.msg_id}" onmouseover="sel_div({$lists.msg_id},this)">
+						 
+						<div class="reply_title" id="reply_time">{$lists.addtime}</div>
+						<div class="reply_image" id="reply_image"><img class="b_image" src="../{$lists.image}" width="260" height="144" ></div>
+						<div class="reply_title_more" id="reply_title">{if $lists.image neq ""}{$lists.title}{else}标题{/if}</div>
+											
+						 
+					</div>
+					<div id="sel_div_{$lists.msg_id}" class="sel_div" style="display:none" onmouseout="sel_div_none(this)" onclick="javascript:reply_sel('{$lists.msg_id}')"><a href="#">选择</a></div>
+				{else}
+					<div class="weixin_reply_lists item" id="reply_sel_{$lists.msg_id}"  onmouseover="sel_div({$lists.msg_id},this)">
+						<div class="reply_title" id="reply_title">{$lists.title}</div>
+						<div class="reply_title" id="reply_time">{$lists.addtime}</div>
+						<div class="reply_image" id="reply_image"><img class="b_image" src="../{$lists.image}" ></div>
+						<div class="reply_summary" id="reply_summary">{$lists.summary}</div>
+						 
+					</div>				
+					<div id="sel_div_{$lists.msg_id}" class="sel_div" style="display:none" onmouseout="sel_div_none(this)" onclick="javascript:reply_sel('{$lists.msg_id}')"><a href="#">选择</a></div>
+				{/if}
+				
+			{/foreach}
+			   <div class="clear"></div>	
+		</div>				
+</div>			   
+			   
+<script>
+
+	
+	function reply_sel(id){	
+		$("#msg_cata").val('article')
+		$("#msg_id").val(id)
+		s=$("#reply_sel_"+id);
+		$("#context_reply").html(s);
+		document.getElementById("context_reply").style.display=""; 
+		document.getElementById("context").style.display="none"; 
+		document.getElementById("textCounterTxt").style.display="none"; 
+					
+		XianShi_GuanBi();
+		 
+	}
+ 
+ 	function sel_div(id,obj){
+	 
+			t=obj.offsetTop
+			l=obj.offsetLeft
+			w=obj.offsetWidth
+			h=obj.offsetHeight
+			 
+			document.getElementById('sel_div_'+id).style.top=t+"px";
+			document.getElementById('sel_div_'+id).style.left=l+"px";
+			document.getElementById('sel_div_'+id).style.width=w+"px";
+			document.getElementById('sel_div_'+id).style.height=h+"px";
+			 
+			document.getElementById('sel_div_'+id).style.display='';
+			
+			document.getElementById('sel_div_'+id).style.lineHeight=h+"px";
+			 
+
+	}
+	function sel_div_none(obj){
+		obj.style.display='none';
+	}	
+</script>

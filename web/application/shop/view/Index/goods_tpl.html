@@ -1,0 +1,18 @@
+{volist name="data" id="vo"}
+
+    <div class="w48 float-l border-1p-ddd m-r-b border-shadow" style="margin-right: 5px;">
+            <a href="{:url('goods/detail',array('id'=>$vo.goods_id))}">
+                <div class="content_img">
+                    <img src="HTTP_IMG/{$vo.img_orogin}"/>
+                </div>
+                <div class="content_detail">
+                    <p style="overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">{$vo.goods_name}</p>
+                    <p>
+                        <span class="jifen">HKD ￥{$vo.market_price}</span>
+                    </p>
+                </div>
+                <div class="clear"></div>
+            </a>
+    </div>
+    
+{/volist}

@@ -1,0 +1,150 @@
+<!-- 包含头部模版header -->
+{include file="Public/header" /}
+
+
+<style type="text/css">
+    .content{
+        width: 100%;
+    }
+    .content_title span{
+        font-size: 16px;
+        width: 24%;
+        display: inline-block;
+    }
+    .content_img{
+        height: 200px;
+    }
+    .content_img img{
+        width: 100%;
+        height:100%;
+    }
+    .content_detail{
+        background-color: #F2F2F2;
+        padding-left: 5px;
+        padding-top: 5px;
+    }
+    .content_detail p{
+        margin: 0;
+        padding-right: 5px;
+        padding-bottom: 5px;
+    }
+    .border-shadow{
+        margin-bottom: 10px;
+    }
+    .jifen{
+        font-size: 16px!important;
+        color: red;
+        font-weight: bold;
+    }
+
+
+    .container_title{
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #E6E6E6;
+        border-bottom: 1px solid #E6E6E6;
+    }
+    .container_title a{
+        width: 30%;
+        display: inline-block;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .active{
+        color:#31B5A8;
+        border-bottom:2px solid #31B5A8;
+    }
+</style>
+
+
+
+<body>
+
+
+{include file="Public/nav" /}
+
+
+<div class="container_title back-white">
+    <a class="container_title_bg" href="{:url('goods_lists')}?{$param}&order=sell_number">销量排序</a>
+    <a class="container_title_bg" href="{:url('goods_lists')}?{$param}&order=market_price">价格排序</a>
+    <a class="container_title_bg" href="{:url('goods_lists')}?{$param}&order=count_view">浏览排序</a>
+</div>
+
+
+<div class="content cen">
+
+
+    <div class="con" style="width:98%;margin: 10px auto;" id="goods_conent">
+        
+    {volist name="data" id="vo"}
+
+        <div class="w48 float-l border-1p-ddd m-r-b border-shadow" style="margin-right: 5px;">
+                <a href="{:url('goods/detail',array('id'=>$vo.goods_id))}">
+                    <div class="content_img">
+                        <img src="HTTP_IMG/{$vo.img_orogin}"/>
+                    </div>
+                    <div class="content_detail">
+                        <p style="overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">{$vo.goods_name}</p>
+                        <p>
+                            <span class="jifen">HKD ￥{$vo.market_price}</span>
+                        </p>
+                    </div>
+                    <div class="clear"></div>
+                </a>
+        </div>
+
+        <!-- <div style="height: 256px;width: 1%;float: left;"></div> -->
+
+        
+    {/volist}
+        
+        
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+
+<div class="row" id="more_btn">
+    
+
+    <div onclick="get_more_goods()" class="col-75 center" style="margin:10px auto;margin-bottom:20px;background-color: #4FD2C2;color: #fff;text-align: center;padding-bottom: 15px;padding-top: 15px;">
+        <a style="color: #fff;">加载更多</a>
+    </div>
+
+</div>
+
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+var page=1;
+
+function get_more_goods(){
+    page=page+1;
+    var url="{:url('goods_lists')}?{$param}&ajax=1&page="+page;
+
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success:function(data) {  
+            if(data.status==10001){
+                $("#goods_conent").append(data.html);
+            }
+
+            if(data.status==20001){
+                $("#more_btn").hide();
+            }
+        },  
+        error : function() {  
+            alert("失败");
+        }  
+    });
+
+}
+
+</script>

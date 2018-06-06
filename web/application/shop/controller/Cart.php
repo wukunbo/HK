@@ -1,0 +1,34 @@
+<?php
+
+namespace app\shop\controller;
+use think\Controller;
+use think\Db;
+
+class Cart extends Base{
+
+    public function __construct(){
+        parent::__construct();
+    }
+
+
+    //加入购物车
+    public function add_cart(){
+
+        
+        $goods_id=$_REQUEST['goods_id'];
+        $amount=$_REQUEST['amount'];
+
+        $price=Db::name('shop_goods')->where('goods_id',$goods_id)->value("market_price");
+        $post=array("user_id"=>$this->user_id,"goods_id"=>$goods_id,"amount"=>$amount,"price"=>$price,"addtime"=>time());
+        $cart_id=Db::name('shop_cart')->insertGetId($post);
+        $res['status']=20001;
+        if($cart_id){
+            $res['status']=10001;
+            $res['cart_id']=$cart_id;
+        }
+
+        echo json_encode($res);
+    }
+
+
+}

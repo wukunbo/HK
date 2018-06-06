@@ -1,0 +1,169 @@
+<!-- 包含头部模版header -->
+{include file="Public/header" /}
+
+
+<style type="text/css">
+    .bar .button-clear{
+        color: black!important;
+        bottom: 7px;
+    }
+    .bar-positive{
+        background-color: #FAFAFA!important;
+        position: relative;
+        background-image: none!important;
+    }
+    .title{
+        color: black!important;
+        font-weight: bold!important;
+    }
+    .container_title{
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #E6E6E6;
+        border-bottom: 1px solid #E6E6E6;
+    }
+    .container_title span{
+        width: 19%;
+        display: inline-block;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .float-l p{
+        margin: 0;
+    }
+    .time{
+        border-top: 1px solid #E6E6E6;
+        padding: 5px 10px 0 10px;
+    }
+    .float-r span{
+        color: #31B5A8;
+        font-size: 18px;
+        height: 50px;
+        line-height: 50px;
+    }
+    .good_img{
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        max-width: 100px;
+        max-height: 100px;
+        margin-bottom: 10px;
+    }
+    .good_img img{
+        width: 100%;
+        height: 100%;
+    }
+    .item{
+        background-color: #FAFAFA!important;
+    }
+    .item-thumbnail-left{
+        padding: 10px 16px 0 146px;
+    }
+    .money{
+        border-bottom: 1px solid #E6E6E6;
+        padding: 5px 10px 0 10px;
+        margin-top: 10px;
+    }
+    .money div{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: right;
+    }
+    .pay{
+        border-bottom: 1px solid #E6E6E6;
+        padding: 10px;
+    }
+    .pay span{
+        width: 50%;
+        padding: 5px;
+        border:1px solid #31B5A8;
+        border-radius: 5px;
+        float: right;
+        text-align: center;
+        margin-right: 5px;
+    }
+</style>
+
+
+<body>
+
+{include file="Public/nav" /}
+
+
+<!-- 订单列表 -->
+
+{volist name="data" id="vo"}
+
+<div style="margin-top: 0px;">
+    <div class="back-white time">
+        <div class="float-l setcol">
+            <p style="margin-bottom: 5px;">订单日期：<span>{$vo.addtime|date="Y-m-d",###}</span></p>
+            <p>订单编号：<span>{$vo.order_sn}</span></p>
+        </div>
+        <div class="float-r">
+            {if condition="$vo.pay_status eq 1"}
+                <span>已付款</span>
+
+                {if condition="$vo.shipping_status eq 1"}
+                <span>,已发货</span>
+                {else/}
+                    <span>,未发货</span>
+                {/if}
+
+            {else/}
+                <span>未付款</span>
+            {/if}
+
+            
+
+
+        </div>
+        <div class="clear"></div>
+    </div>
+    
+    <!-- 商品列表 -->
+    {volist name="vo.goods_lists" id="v"}
+    <div class="w100 item item-thumbnail-left item-borderless">
+        <div class="good_img"><img src="HTTP_IMG/{$v.img_orogin}"/></div>
+        <h3 class="in_block">{$v.goods_name}</h3>
+        <div style="margin-top: 10px;">
+            <h3 style="color:red;">HKD ￥{$v.market_price}</h3>
+        </div>
+        <div style="position: relative;top: 25px;">
+            <h4 class="in_block float-r" style="font-size: 18px;margin: 0;">×{$v.amount}</h4>
+        </div>
+        <div class="clear"></div>
+    </div>
+    {/volist}
+
+
+
+    <div class="back-white money">
+        <div>
+            <p>港币总金额：<span style="font-size: 12px;">HKD ￥{$vo.total_fee}</span></p>
+
+            <p>实付：<span style="font-size: 14px;color: red;">￥{$vo.real_fee}</span>(含代购费￥<span>{$vo.purchase_fee}</span>)</p>
+        </div>
+    </div>
+
+    {if condition="$vo.pay_status eq 0"}
+    <div class="back-white pay">
+        <span>请联系我付款哦！！</span>
+        <div class="clear"></div>
+    </div>
+    {/if}
+
+    {if condition="$vo.shipping_status eq 1"}
+    <div class="back-white pay">
+    <span><a href="http://m.kuaidi100.com/index_all.html?type={$vo[shipping_code]}&postid={$vo[shipping_id]}">查看物流</a></span>
+        <div class="clear"></div>
+    </div>
+    {/if}
+
+</div>
+
+{/volist}
+
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+{layout name="Public/layout" /}
+
+
+<div class="panel panel-default">
+    <form class="form-horizontal " enctype="multipart/form-data" method="post"  action="{:url('add_action')}"   id="sava_form">
+        <input type="text" name="post[wx_id]" style="display:none;" class="form-control" value="{$wx_config['id']}">
+        
+        <div class="panel-body">
+        
+             
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">商城名称</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[title]"  class="form-control" value="{$data['title']}">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">电话</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[phone]"  class="form-control" value="{$data['phone']}">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="height:auto; overflow:hidden; display:none1">
+                <label for="text-input" class="col-md-2 control-label">商店标识</label>
+                <div class="col-md-4 input-group "> <img alt="Sample Image" src="{$data['logo']}" style="{if condition="$data['logo'] eq ''"}display:none;{/if} width:100px" id="logo_src" class="img-thumbnail">
+                    <input type="hidden" name="post[logo]" id="logo_hidden" value="{$data['logo']}">
+                    <i class="fa fa-plus"></i><a type="button" onclick="show_content('{:url("Config/material_lists")}?&ajax=1&return_fn=material_select')" >添加图片 </a>
+                    <!--打开图册-->
+
+                    <script type="text/javascript">
+                        var upload_url="DOMAIN/plus.php/Image/upload_img?&json=1";
+                        var upload_action="DOMAIN/userweb.php/Config/material_add_action?&json=1";
+                        var material_url="DOMAIN/userweb.php/Config/get_material_lists?&json=1";
+                    </script>
+                    <script src="__ADMIN_STATIC__/public/js/material_lists_ajax.js"></script>
+                    <script src="__ADMIN_TOOL__/ajaxFileUpload/jquery.ajaxFileUpload.js" type="text/javascript"></script>
+                    <script>
+                        //选择图片之后
+                        function material_select(img_thumb,img_orogin){
+                            //alert(img_thumb+img_orogin);
+                            $("#logo_src").show();
+                            $("#logo_src").attr("src",img_thumb);
+                            $("#logo_hidden").val(img_thumb);
+                             
+                            show_content_close();
+                        }
+                        </script>
+                </div>
+            </div>
+             
+             
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">地区</label>
+                <div class="col-md-4  input-group ">
+                    <script>
+                        select_province='{$data['province']}';
+                        select_city='{$data['city']}';
+                        select_area='{$data['area']}';
+                
+                    </script>
+                    {include file="Public/region" /} </div>
+            </div>
+
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">详细地址</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[address]"  class="form-control" value="{$data['address']}">
+                </div>
+            </div>
+
+
+            
+            
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">经纬度</label>
+                <div class="col-md-2   "> 经度
+                    <input type="text" name="post[location_x]" id="location_x"  class="form-control" value="{$data['location_x']}">
+                </div>
+                <div class="col-md-2   "> 维度
+                    <input type="text" name="post[location_y]" id="location_y"  class="form-control" value="{$data['location_y']}">
+                </div>
+                <div class="col-md-2   "> <a   style="display:block; clear:both; margin-top:10px; padding-top:10px;" href="javascript:show_content('DOMAIN/plus.php/Map/select')">在地区上选取</a> </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">描述</label>
+                <div class="col-md-4 input-group ">
+                    <textarea class="form-control" rows="3" name="post[content]">{$data['content']}</textarea>
+                </div>
+            </div>
+            
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-sm btn-success" type="submit" onclick1="save_vote()"><i class="fa fa-dot-circle-o"></i> 保存</button>
+            <button class="btn btn-sm btn-danger" type="reset"><i class="fa fa-ban"></i> 重置</button>
+        </div>
+    </form>
+</div>
+
+{include file="Public/dailog" /}

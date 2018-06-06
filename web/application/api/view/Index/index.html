@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用户接口测试</title>
+<link href="__ADMIN_STATIC__/proton/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="__ADMIN_STATIC__/proton/assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+<script src="__ADMIN_STATIC__/proton/assets/js/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<div style=" padding:100px;">
+    <h3>【拓略】接口列表</h3>
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-lg-6" style="padding:10px;">
+            <div class="row" style="border-bottom:#999 1px solid; padding-bottom:10px; margin-bottom:10px;">
+                <div class="col-xs-5 col-sm-5 col-lg-5"> 项目 </div>
+                <div class="col-xs-7 col-sm-7 col-lg-7"> 接口 </div>
+            </div>
+            <form role="form" id="saveForm">
+                <div class="row" style="  padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5">
+                        <select class="form-control" name="post[c]" id="c" onChange="get_api_a()">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-lg-7">
+                        <select class="form-control" name="post[a]" id="a" onChange="get_key_val()">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-bottom:10px;" id="a_href">
+                </div>
+                <div class="row" style="border-bottom:#999 1px solid; padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5"> 传递方式 </div>
+                </div>
+                <div class="row" style="border-bottom:#666666 1px solid; padding-bottom:10px; margin-bottom:10px;">
+                    <select class="form-control" id="sub_type">
+                        <option value="POST">POST</option>
+                        <option  value="GET">GET</option>
+                    </select>
+                </div>
+                <div id="get_key_lists">
+                     
+                </div>
+                <div class="row" style="border-bottom:#999 1px solid; padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5"> 字段 </div>
+                    <div class="col-xs-7 col-sm-7 col-lg-7"> 值 </div>
+                </div>
+                <div class="row" style=" padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5">
+                        <input type="text" class="form-control" disabled name="key_lists[]" value="ver"  placeholder="文本输入">
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-lg-7">
+                        <input type="text" class="form-control" name="ver" value="1.0"  placeholder="文本输入">
+                    </div>
+                </div>
+                <div class="row" style=" padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5">
+                        <input type="text" class="form-control" disabled name="key_lists[]" value="is_app"  placeholder="文本输入">
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-lg-7">
+                        <input type="text" class="form-control" name="is_app" value="1"  placeholder="文本输入">
+                    </div>
+                </div>
+                <div class="row" style=" padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5">
+                        <input type="text" class="form-control" disabled name="key_lists[]" value="token"  placeholder="文本输入">
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-lg-7">
+                        <input type="text" class="form-control" name="token" value="测试，不启用"  placeholder="文本输入">
+                    </div>
+                </div>
+                <div class="row" style=" padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5">
+                        <input type="text" class="form-control" disabled name="key_lists[]" value="user_id"  placeholder="文本输入">
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-lg-7">
+                        <input type="text" class="form-control" name="var_login" value="1"  placeholder="文本输入">
+                    </div>
+                </div>
+                
+                <div class="row" style=" padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5">
+                        <input type="text" class="form-control" disabled   value="sql"  placeholder="文本输入">
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-lg-7">
+                        <input type="text" class="form-control" name="sql" value=""  placeholder="文本输入">
+                    </div>
+                </div>
+                 
+                <button type="button"  onClick="save()" class="btn btn-default">提交</button>
+                <button type="button"  onClick="add_api()" class="btn btn-default">修改</button>      
+            </form>
+            <hr>
+            </hr>
+            <h3>【拓略】新增接口</h3>
+            <form role="form" id="Form_API">
+                <div class="row" style="  padding-bottom:10px; margin-bottom:10px;">
+                    <input type="text" class="form-control" id="add_title"  name="post[title]"  placeholder="接口标题，逗号分割">
+                </div>
+                <div class="row" style="border-bottom:#666666 1px solid; padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5">
+                        <input type="text" class="form-control"  name="post[c_1]" id="c_1" placeholder="自定义接口">
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-lg-7">
+                        <input type="text" class="form-control" name="post[a_1]" id="a_1"  placeholder="自定义接口">
+                    </div>
+                </div>
+                <div class="row" style="border-bottom:#999 1px solid; padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5"> 传递方式 </div>
+                </div>
+                <div class="row" style="border-bottom:#666666 1px solid; padding-bottom:10px; margin-bottom:10px;">
+                    <select class="form-control"  >
+                        <option value="POST">POST</option>
+                        <option  value="GET">GET</option>
+                    </select>
+                </div>
+                <div class="row" style="border-bottom:#999 1px solid; padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5"> 字段 </div>
+                    <div class="col-xs-7 col-sm-7 col-lg-7"> 值 </div>
+                </div>
+                <div id="ziduan_lists">
+                    <div class="row" style=" padding-bottom:10px; margin-bottom:10px;"> </div>
+                </div>
+                <div class="row" style="border-bottom:#999 1px solid; padding-bottom:10px; margin-bottom:10px;">
+                    <div class="col-xs-5 col-sm-5 col-lg-5"> 备注 </div>
+                     
+                </div>
+                <div class="row" style="border-bottom:#666666 1px solid; padding-bottom:10px; margin-bottom:10px;">
+                    <textarea class="form-control" id="add_content"  name="post[content]"  ></textarea>
+                </div>
+                <div class="row" style="border-bottom:#666666 1px solid; padding-bottom:10px; margin-bottom:10px;">
+                    <button type="button" onClick="add_ziduan(0)" class="btn btn-default">新增数组字段</button>
+                    <button type="button" onClick="add_ziduan(1)" class="btn btn-default">新增普通字段</button>
+                </div>
+                <button type="button"  onClick="save_api()" class="btn btn-default">提交</button>
+                         
+            </form>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-lg-6" id="result" style="padding:10px; border:#333333 1px solid; height:100%; overflow-y:auto;"> </div>
+    </div>
+</div>
+<div id="html_demo" style="display:none">
+    <div class="row" style=" padding-bottom:10px; margin-bottom:10px;">
+        <div class="col-xs-5 col-sm-5 col-lg-5">
+            <input type="text" name="key_lists[]" value="" class="form-control" placeholder="文本输入">
+        </div>
+        <div class="col-xs-7 col-sm-7 col-lg-7">
+            <input type="text"  name="val_lists[]" value="" class="form-control" placeholder="文本输入">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+ 
+h=$(window).height();
+
+ $("#result").height(h-200);
+function add_ziduan(type){
+    html=$("#html_demo").html()
+    if(type==0){
+        html=html.replace('name="key_lists[]" value=""','name="key_lists[]" value="post[字段名称]"');
+    }
+    $("#ziduan_lists").append(html);
+}
+
+  
+
+ 
+
+function save(formid,param,showid){
+   
+    a=$("#a").val();
+    c=$("#c").val();
+    $("#result").html("请求中……");
+    url="api.php/"+c+"/"+a+"?&visit=public&t=test";
+    
+    sub_type=$("#sub_type").val();
+    $.ajax({
+        url: url,
+        type:sub_type,
+        data: $('#saveForm').serialize(),
+        dataType: 'json',
+         
+        success:function(res) {  
+            // alert(res)
+            //console.log(res);
+            // alert(res.page)
+            if(res.page){
+                res.page='';
+            }
+             
+            //alert(res.page)
+            $("#result").html(format_json(res));
+        },  
+        error : function(res) {  
+            console.log(res);
+            $("#result").html(res.responseText);
+        },
+        complete : function(res) {
+            console.log(res);
+            ////alert(res)
+          //$("#result").html(format_json(res));
+        }  
+    });
+     
+    
+}
+
+function save_api(){
+    url='{:url('add')}';
+    $.ajax({
+        url: url,
+        type:"POST",
+        data: $('#Form_API').serialize(),
+        // dataType: 'json',
+        
+        success:function(res) { 
+            alert("操作成功")
+            get_api();
+             
+        },  
+        error : function(res) {  
+            console.log(res);
+             
+        },
+        complete : function(res) {
+            console.log(res);
+        }  
+    });
+}
+//新增
+ function add_api(){
+    c=$("#c").val()
+    a=$("#a").val()
+    if(a==""){
+        return;
+    }
+    
+    a=$("#a").val();
+    c=$("#c").val();
+    
+    $("#c_1").val(c);
+    $("#a_1").val(a);
+     
+ 
+    
+    
+    url="{:url('get_key_lists')}?&act=add&get_c="+c+"&get_a="+a;
+    $.ajax({
+        url: url,
+        type:'POST',
+        dataType: 'json',
+
+        success:function(res) {  
+            // alert(res)
+            $("#add_title").val(res.title)
+            $("#ziduan_lists").html(res.html);
+            $("#add_content").val(res.content);
+             
+        },  
+        error : function(res) {  
+            console.log(res);
+          
+        }
+    });
+} 
+function get_key_val(){
+    c=$("#c").val()
+    a=$("#a").val()
+    if(a==""){
+        return;
+    }
+    
+    a=$("#a").val();
+    c=$("#c").val();
+     
+    url="DOMAIN/api.php/"+c+"/"+a;
+    html="<a href='"+url+"' target='_blank'>"+url+"</a>";
+    $("#a_href").html(html);
+    
+    
+    url="{:url('get_key_lists')}?get_c="+c+"&get_a="+a;
+    $.ajax({
+        url: url,
+        type:'POST',
+        dataType: 'json',
+
+        success:function(res) {  
+            // alert(res)
+            
+            $("#get_key_lists").html(res.html);
+             
+        },  
+        error : function(res) {
+            console.log(res);
+          
+        }
+    });
+}
+
+function get_api(){
+
+     
+    c=$("#c").val()
+    
+    url="{:url('get_api')}?&cur_c="+c;
+    $.ajax({
+        url: url,
+        type:'POST',
+        dataType: 'json',
+
+        success:function(res) {  
+            // alert(res)
+            
+            $("#c").html(res.html);
+            get_api_a();
+        },  
+        error : function(res) {
+            console.log(res);
+          
+        }
+    });
+}
+function get_api_a(){
+    c=$("#c").val();
+    if(c==""){
+        return;
+    }
+    
+     
+    
+    
+    url="{:url('get_api')}?&get_c="+c;
+    
+     
+    $.ajax({
+        url: url,
+        type:'POST',
+      
+        dataType: 'json',
+        
+        success:function(res) {  
+            // alert(res)
+            $("#a").html(res.html);
+        },  
+        error : function(res) {  
+            console.log(res);
+            $("#result").html(res.responseText);
+        },
+        complete : function(res) {
+            console.log(res);
+            ////alert(res)
+          //$("#result").html(format_json(res));
+        }  
+    });
+}
+get_api();
+
+// format json obj string
+function format_json(txt, compress) {
+    txt=JSON.stringify(txt)
+    var indentChar = '&nbsp;&nbsp;&nbsp;&nbsp;';
+    if (/^\s*$/.test(txt)) {
+        //alert('txt is empty');   
+        return '';
+    }
+    try {
+        var data = eval('(' + txt + ')');
+        txt = txt.replace(new RegExp("\"{","gm"), "{").replace(new RegExp("}\"","gm"), "}");
+        txt = txt.replace(new RegExp("\\\\\\\"","gm"), "\"");
+        txt = txt.replace(new RegExp("\\\\\\\"","gm"), "\"");
+        txt = txt.replace(new RegExp("\\\\\\\"","gm"), "\"");
+
+        txt = txt.replace(new RegExp("&nbsp;","gm"), "");
+
+//        console.log(txt);
+        data = eval('(' + txt + ')');
+    } catch (e) {
+        //alert('txt format error: '+e.description,'err');   
+        return txt;
+    }
+    ;
+    var draw = [], last = false, This = this, line = compress ? ''
+            : '<br/>', nodeCount = 0, maxDepth = 0;
+    var notify = function(name, value, isLast, indent, formObj) {
+        if (indent == 0) {
+            //draw.push('<table>');
+        }
+        nodeCount++;
+        for (var i = 0, tab = ''; i < indent; i++)
+            tab += indentChar;
+        tab = compress ? '' : tab;
+        maxDepth = ++indent;
+        if (value && value.constructor == Array) {
+            draw.push(tab + (formObj ? ('"' + name + '":') : '') + '['
+                    + line);
+            for (var i = 0; i < value.length; i++)
+                notify(i, value[i], i == value.length - 1, indent,
+                        false);
+            draw.push(tab + ']' + (isLast ? line : (',' + line)));
+        } else if (value && typeof value == 'object') {
+            draw.push(tab + (formObj ? ('"' + name + '":') : '') + '{'
+                    + line);
+            var len = 0, i = 0;
+            for ( var key in value)
+                len++;
+            for ( var key in value)
+                notify(key, value[key], ++i == len, indent, true);
+            draw.push(tab + '}' + (isLast ? line : (',' + line)));
+        } else {
+            if (typeof value == 'string')
+                value = '"' + value + '"';
+            draw.push(tab + (formObj ? ('"' + name + '":') : '')
+                    + value + (isLast ? '' : ',') + line);
+        }
+        ;
+    };
+    var isLast = true, indent = 0;
+    
+    notify('', data, isLast, indent, false);
+    return draw.join('');
+}
+</script>

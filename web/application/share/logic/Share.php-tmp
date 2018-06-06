@@ -1,0 +1,365 @@
+<?php
+namespace app\share\logic;
+use think\Db;
+use think\Model;
+
+class Share extends Model {
+
+	public function __construct() {
+		$this->db          = new \app\userweb\model\PublicModel();
+		$this->order_logic = new \app\shop\logic\Order();
+	}
+
+	//添加商品分销
+	public function goods_share_config($array) {
+		$array['business_id'] = 1;
+
+		if ($array[is_add] != 1) {//查看商品分销
+
+			$where['goods_id'] = array("eq", $array['goods_id']);
+
+			$cash_content    = Db::name("shop_share_goods_config")->where($where)->value("cash_content");
+			$pay_level_lists = json_decode($cash_content, true);
+
+			if (!$pay_level_lists) {
+				for ($i = 0; $i < 3; $i++) {
+					$pay_level_lists[$i]['level'] = $i+1;
+					$pay_level_lists[$i]['pay']   = 0;
+				}
+			}
+			$share['pay_level_lists'] = $pay_level_lists;
+			$share_price              = Db::name('shop_share_goods_config')->where($where)->value("share_price");
+			$share['share_price']     = $share_price;
+			$share['is_share']        = 1;//是分销商品
+			$share['is_content']      = 1;//有数据
+			$goods_id                 = Db::name("shop_share_goods_config")->where($where)->value("goods_id");
+			if (!$goods_id) {//如果没有数据
+				$share['is_share']                  = 0;//没有设置分销  不是分销商品
+				$share['pay_level_lists'][0]['pay'] = -1;
+			}
+			if (!$cash_content) {//如果没有数据
+				$share['is_content'] = 0;//没有设置分销  是分销商品
+			}
+
+			return $share;
+
+		} else {
+
+			//添加修改商品分销
+			$i = 0;
+			foreach ($array['pay_level_lists'] as $key => $value) {
+				$tmp_post[$i]['level'] = $key;
+				$tmp_post[$i]['pay']   = $value;
+				$i++;
+			}
+			$array['cash_content'] = json_encode($tmp_post);
+
+			$where['business_id'] = array("eq", $array['business_id']);
+			$where['app']         = array("eq", $array['app']);
+			$where['goods_id']    = array("eq", $array['goods_id']);
+
+			if (Db::name("shop_share_goods_config")->where($where)->find()) {
+				Db::name("shop_share_goods_config")->where($where)->update($array);
+			} else {
+				Db::name("shop_share_goods_config")->insert($array);
+			}
+
+		}
+
+	}
+
+	//删除
+	public function goods_share_config_del($search) {
+		$search[business_id] = 1;
+		Db::name("shop_share_goods_config")->where("goods_id='".$search[goods_id]."'")->delete();
+	}
+
+	/*
+	统计，归总数据
+	$search[order_id]="";订单ID
+	$search[user_id]  =""; 用户
+	$search[business_id]  =""; 商家
+	$search[app] 店铺类型
+	$search[parent_id]  =""; 上级用户
+	$search[type]="shouhuo";   已收货 类型
+	$search[order_type]=2;    1，成交积分，2，现金，3，CPS积分 4，补贴CPS积分 5，补贴现金
+	$search[type_usergrade]="usergrade";   //会员等级提升
+	 */
+	public function share_complete($search) {
+		//新订单
+		$search[business_id] = 1;
+
+		if ($search[type] == "neworder") {
+
+			//获取订单总价
+			$orderinfo       = $this->order_logic->order_detail($search[order_id], $search[user_id]);
+			$real_fee        = $orderinfo[real_fee];//实付的金额 含邮费
+			$total_fee_order = $orderinfo[real_fee]-$orderinfo[shiipping_fee];
+
+			$total_fee = $total_fee_order;
+
+			//获取所有父的用户
+			$search_parent[user_id]     = $search['user_id'];
+			$search_parent[business_id] = $search['business_id'];
+			$search_parent[app]         = $search['app'];
+
+			$parent_id_lists = $this->get_parent_id_lists($search_parent);
+			//  var_dump($parent_id_lists);
+			$db_share_user = Db::name('shop_share_user');
+			$db_share_log  = Db::name('shop_share_log');
+
+			if ($parent_id_lists) {
+
+				for ($i = 0; $i < count($parent_id_lists); $i++) {
+
+					//----------------------计算代理佣金--------------------------------------
+
+					$sear[order_id] = $search[order_id];
+					$sear[user_id]  = $parent_id_lists[$i][user_id];
+					$sear[buy_user] = $search['user_id'];//购买用户
+					//佣金
+					$cash = $this->get_goods_cash($sear);
+					//------------------------END结束计算-------------------------------------------------
+
+					//var_dump($cash);
+
+					$post[title]       = "订单收入";
+					$post[business_id] = $search[business_id];
+					$post[app]         = $search[app];
+					$post['order_id']  = $search[order_id];
+					$post[type]        = 2;
+					$post[user_id]     = $parent_id_lists[$i][user_id];//上级用户id 及本提成的 用户ID
+					$post[child_id]    = $search[user_id];
+
+					$post[share_grade_id] = Db::name("shop_share_user")->where("user_id={$post[user_id]}")->value("share_grade_id");
+
+					$post[sourse]      = "order_".$search[order_id];
+					$post[level]       = $parent_id_lists[$i][level];
+					$post[amount]      = $cash;//佣金
+					$post[order_fee]   = $real_fee;//订单实付
+					$post[gudong_fee]  = $gudong_fee;
+					$post[dongjie_fee] = $dongjie_fee;
+
+					$post[total_fee]    = $total_fee;//分销佣金
+					$post[status]       = "0";
+					$post[order_status] = "1";
+					$post[addtime]      = time();
+					$db_share_log->insert($post);
+
+					//新增下单购买
+					$where = "user_id=".$parent_id_lists[$i][user_id]." AND business_id='".$search[business_id]."'";
+					$db_share_user->where($where)->setInc("count_user_buy", 1);//下单购买
+					Db::name('shop_share_user')->where($where)->setInc("count_cash_meifukuan", $cash);//未付款订单佣金
+					Db::name('shop_share_user')->where($where)->setInc("count_order", 1);//订单总数
+					Db::name('shop_share_user')->where($where)->setInc("count_orderfee_all", $real_fee);//销售额
+					Db::name('shop_share_user')->where($where)->setInc("count_sharefee_all", $total_fee);//佣金基总额
+
+				}
+
+			}
+
+		}
+
+		//获取订单分成总额
+		//收货 //付款
+		if ($search[type] == "shouhuo" || $search[type] == "pay") {
+
+			$where = "sourse='order_".$search[order_id]."'";
+
+			if ($search[type] == "shouhuo") {
+				//更改记录为已收货v
+				$tmp               = array();
+				$tmp[order_status] = "4";// 0，未生效，1，已下单，2，已付款，3，已收货。4，7天已过，无退货，
+				Db::name('shop_share_log')->where($where)->update($tmp);
+
+			}
+			if ($search[type] == "pay") {
+				//更改记录为，已付款
+				$orderinfo         = $this->order_logic->order_detail($search[order_id]);
+				$real_fee          = $orderinfo[real_fee];//实付的金额 含邮费
+				$tmp               = array();
+				$tmp[order_status] = "2";// 0，未生效，1，已下单，2，已付款，3，已收货。4，7天已过，无退货，
+				Db::name('shop_share_log')->where($where)->update($tmp);
+			}
+			$fee_lists = Db::name('shop_share_log')->where($where)->select();
+
+			//佣金计算
+			for ($i = 0; $i < count($fee_lists); $i++) {
+				// echo 1;
+				//已付款
+				$where = "user_id='".$fee_lists[$i][user_id]."' AND business_id='".$fee_lists[$i][business_id]."'";
+
+				if ($search[type] == "pay") {
+					Db::name('shop_share_user')->where($where)->setDec("count_cash_meifukuan", $fee_lists[$i][amount]);//未付款订单佣金
+					//echo M('shop_share_user')->getLastsql();
+					Db::name('shop_share_user')->where($where)->setInc("count_cash_yifukuan", $fee_lists[$i][amount]);//已付款订单佣金
+					Db::name('shop_share_user')->where($where)->setInc("order_status", 2);// 0，未生效，1，已下单，2，已付款，3，已收货。4，7天已过，无退货，5，作废
+
+				}
+
+				//收货
+				$where = "user_id='".$fee_lists[$i][user_id]."' AND business_id='".$fee_lists[$i][business_id]."'";
+				if ($search[type] == "shouhuo") {
+					//echo 1;
+					Db::name('shop_share_user')->where($where)->setInc("count_cash_shouhuo", $fee_lists[$i][amount]);//已收货订单佣金
+					Db::name('shop_share_user')->where($where)->setInc("count_cash_can_tixian", $fee_lists[$i][amount]);//所有可提现订单佣金
+
+					Db::name('shop_share_user')->where($where)->setInc("cash_all", $fee_lists[$i][amount]);//所有可提现订单佣金
+
+					Db::name('shop_share_user')->where($where)->setInc("cash", $fee_lists[$i][amount]);//当前可提现的佣金
+
+					Db::name('shop_share_user')->where($where)->setInc("count_yiwancheng_fenxiao", 1);//已完成的分销
+					//echo M('shop_share_user')->getLastsql();
+					Db::name('shop_share_user')->where($where)->setInc("count_weiwancheng_fenxiao", -1);//未完成的分销
+					Db::name('shop_share_user')->where($where)->setInc("order_status", 4);// 0，未生效，1，已下单，2，已付款，3，已收货。4，7天已过，无退货，5，作废
+				}
+
+				if ($search[type_usergrade] == "usergrade") {
+					Db::name('shop_share_user')->where($where)->setInc("count_vipuser", 1);
+					Db::name('shop_share_user')->where($where)->setInc("count_comuser", -1);
+				}
+			}
+		}
+
+		//新用户
+		if ($search[type] == "newuser") {
+			//获取所有父的用户
+			//echo 1;
+			$parent_id_lists = $this->get_parent_id_lists($search);
+			//  var_dump($parent_id_lists);
+			$db_share_user = Db::name('shop_share_user');
+			$where         = "";
+			for ($i = 0; $i < count($parent_id_lists); $i++) {
+
+				$where['user_id']     = array("eq", $parent_id_lists[$i][user_id]);
+				$where['business_id'] = array("eq", $search[business_id]);
+				$where['app']         = array("eq", $search[app]);
+
+				$db_share_user->where($where)->setInc("count_alluser", 1);//所有的用户+1
+				$db_share_user->where($where)->setInc("count_comuser", 1);//所有的普通用户+1
+				$db_share_user->where($where)->setInc("count_user_click", 1);//所有的点击数+1
+				$db_share_user->where($where)->setInc("count_weiwancheng_fenxiao", 1);//未完成分销+1
+			}
+		}
+		if ($search[type] == "tuihuo") {
+			//更改记录为，已付款
+			$orderinfo = $this->order_logic->order_detail($search[order_id]);
+			//var_dump($orderinfo);
+			$real_fee          = $orderinfo[real_fee];//实付的金额 含邮费
+			$tmp               = array();
+			$tmp[order_status] = "5";// 0，未生效，1，已下单，2，已付款，3，已收货。4，7天已过，无退货，
+			//M('shop_share_user')->where($where)->setInc("order_status",1); // 0，未生效，1，已下单，2，已付款，3，已收货。4，7天已过，无退货，5，作废
+			Db::name('shop_share_log')->where($where)->update($tmp);
+
+		}
+
+		if ($res) {
+			return 10000;
+		} else {
+			return 10001;
+		}
+
+	}
+
+	/*
+	获取父级ID
+	 */
+	public function get_parent_id_lists($search) {
+		$search[business_id]  = 1;
+		$where['user_id']     = array("eq", $search['user_id']);
+		$where['business_id'] = array("eq", $search['business_id']);
+		$where['app']         = array("eq", $search['app']);
+		$path_id              = Db::name("shop_share_user")->where($where)->value("path_id");
+		//sql("shop_share_user") ;
+		//echo M("shop_share_user")->getLastsql();
+		$tmp = explode("-", $path_id);
+
+		//当前用户分销等级
+		$share_grade_id = Db::name("shop_share_user")->where("user_id={$search[user_id]}")->value("share_grade_id");
+
+		//-1,2-2,1-   -层级，上级ID，--层级，上级ID，-
+		$j = 0;
+		for ($i = 0; $i < count($tmp); $i++) {
+			if ($tmp[$i] != "") {
+
+				$tmp_sub = explode(",", $tmp[$i]);
+
+				//是否有代理身份
+				if ($share_grade_id) {
+					$parent_share_id = Db::name("shop_share_user")->where("user_id={$tmp_sub[1]}")->value("share_grade_id");
+					if ($parent_share_id < $share_grade_id) {
+						$lists[$j][level]   = $tmp_sub[0];
+						$lists[$j][user_id] = $tmp_sub[1];
+						$j++;
+					}
+				} else {
+					$lists[$j][level]   = $tmp_sub[0];
+					$lists[$j][user_id] = $tmp_sub[1];
+					$j++;
+				}
+
+			}
+		}
+		return $lists;
+
+	}
+
+	/**
+	 * 获取商品佣金
+	 * $search[order_id] 订单ID
+	 * $search[user_id] 分销用户ID
+	 * $search[buy_user] 购买用户ID
+	 */
+	public function get_goods_cash($search) {
+		$order_goods = Db::name("order_goods");
+		$share_grade = Db::name("shop_share_grade");
+
+		$share_discount = $share_grade->field("id,title,share_discount")->order("level asc")->select();
+
+		//获得商品列表
+		$lists = $order_goods->field("goods_id,price,amount")->where("order_id='".$search[order_id]."'")->select();
+
+		$cash = 0;
+
+		$share_grade_id = Db::name("shop_share_user")->where("user_id={$search[user_id]}")->value("share_grade_id");//用户等级
+		$parent_ids     = Db::name("shop_share_user")->where("user_id={$search[buy_user]}")->value("parent_id");//用户等级
+		$parent_ids .= ",".$search[buy_user];
+
+		$goods_logic = new \app\shop\logic\Goods();
+
+		if ($search['share_grade_id']) {
+			$share_grade_id = $search['share_grade_id'];
+		}
+
+		foreach ($lists as $key => $value) {
+
+			$goods_id = $value[goods_id];
+			#计算该商品该代理佣金#
+			$goods_fee = 0;
+
+			$parent_res = $goods_logic->get_share_discount($search[user_id], $goods_id);#上级res
+			$where      = "parent_id={$search[user_id]}";
+			if ($parent_ids) {
+				$where .= " AND user_id IN({$parent_ids}) ";
+			}
+			$sub_user = M("shop_share_user")->where($where)->value("user_id");
+			// echo M("shop_share_user")->getlastsql();
+
+			$sub_res = $goods_logic->get_share_discount($sub_user, $goods_id);#下级res
+
+			$goods_fee = $value[amount]*$sub_res[goods_price]*($sub_res[share_discount]-$parent_res[share_discount])*0.01;
+			// dump($sub_res);
+			// dump($parent_res);
+			exit;
+
+			$cash += $goods_fee;//叠加商品佣金
+
+			$dataList = array("user_id" => $search[user_id], "order_id" => $search[order_id], "goods_id" => $value[goods_id], "price" => $value[price], "amount" => $value[amount], "fee" => $goods_fee, "share_garde_id" => $share_grade_id, "addtime" => time());
+			Db::name("order_goods_share")->insert($dataList);
+
+		}
+		return $cash;
+
+	}
+
+}

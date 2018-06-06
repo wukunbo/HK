@@ -1,0 +1,18 @@
+{volist name="data[lists]" id="lists"}
+<div class="row" style=" padding-bottom:10px; margin-bottom:10px;">
+    <div class="col-xs-5 col-sm-5 col-lg-5">
+        <input type="text" class="form-control"  disabled   value="{$lists[key]}"  placeholder="文本输入">
+    </div>
+    <div class="col-xs-7 col-sm-7 col-lg-7">
+        <input type="text" class="form-control" name="{$lists[key]}" value="{$lists[val]}"  placeholder="文本输入">
+    </div>
+</div>
+{/volist}
+
+<div class="row" style="border-bottom:#999 1px solid; padding-bottom:10px; margin-bottom:10px;">
+    <div class="col-xs-5 col-sm-5 col-lg-5"> 备注 </div>
+     
+</div>
+<div class="row" style="border-bottom:#666666 1px solid; padding-bottom:10px; margin-bottom:10px;">
+    <textarea class="form-control"  >{$data[detail][content]|default="无"}</textarea>
+</div>

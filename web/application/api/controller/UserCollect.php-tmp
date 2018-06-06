@@ -1,0 +1,53 @@
+<?php
+namespace app\api\controller;
+use think\Controller;
+
+class UserCollect extends Base {
+
+	public function __construct() {
+		parent::__construct();
+		$this->logic = new \app\user\logic\Wish();
+	}
+
+	/**
+	 * 添加商品到我的收藏
+	 */
+	public function add() {
+		$user_id  = $this->user_id;
+		$goods_id = $_REQUEST['goods_id'];
+		$status   = $_REQUEST['status']?$_REQUEST['status']:1;
+		// $status=1;   1:添加 0:取消
+		$ret = $this->logic->add_wish($user_id, $goods_id, $status);
+		if ($ret['status'] == 10001) {
+			$ret['msg'] = "成功";
+		} elseif ($ret['status'] == 10002) {
+			$ret['msg'] = "失败";
+		}
+		$this->return_data($ret);
+	}
+
+	/**
+	 * 我的收藏列表
+	 */
+	public function lists() {
+
+		$search[num] = 999;
+		$ret         = $this->logic->wish_lists($this->user_id, $search);
+		if ($ret['content'] === null) {
+			$data['status'] = 10003;
+			$data['msg']    = "无数据";
+		} elseif ($ret['content'] === false) {
+			$data['status'] = 10002;
+			$data['msg']    = "数据查询错误";
+		} else {
+			$data['status'] = 10001;
+			$data['msg']    = "成功";
+
+			$data['total'] = $ret['total'];
+			$data['lists'] = $ret['content'];
+
+		}
+		$this->return_data($data);
+	}
+
+}

@@ -1,0 +1,249 @@
+{layout name="Public/layout" /}
+
+
+<div class="panel panel-default">
+<script type="text/javascript" src="__ADMIN_TOOL__/My97DatePicker/WdatePicker.js"></script>
+
+
+    <form action="{:url('add_action')}?&cate_id={$cate_id}&p={$p}&cms_id={$data['detail']['cms_id']}" method="post" onsubmit="return check11()">
+
+        <input type="text" name="post_id"  class="form-control" value="{$data[detail]['id']}" style="display:none">
+        <div class="panel-body">
+            
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">文章标题</label>
+                <div class="col-md-8 input-group ">
+                    <input type="text" name="post[title]" id="cms_title" class="form-control" value="{$data['detail']['title']}">
+                </div>
+            </div>
+
+
+            <div class="form-group" style="display: none;">
+                <label for="text-input" class="col-md-2 control-label">发布时间，留空即默认当前时间</label>
+                <div class="col-md-8 input-group ">
+                    <input type="text" name="post[showtime]"  class="form-control" value="{$data['detail']['showtime']|date="Y-m-d H:i:s",###}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" >
+                </div>
+            </div>
+            
+             
+            <!-- <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">标签</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[tag]"  class="form-control" value="{$data['detail']['tag']}">
+                </div>
+            </div> -->
+
+            <div class="form-group" style="display: none;">
+                <label for="text-input" class="col-md-2 control-label">关键字</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[keyword]"  class="form-control" value="{$data['detail']['keyword']}">
+                </div>
+            </div>
+ 
+            
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">选择分类</label>
+                <div class="col-md-4 input-group ">
+                    <select name="post[cate_id]" id="attr_select" class="form-control" >
+                        
+                        
+                         {$data[op_lists]}  
+                    
+                    
+                    </select>
+                </div>
+            </div>
+             
+             
+             
+            
+            
+            <div class="form-group"  >
+                <label for="text-input" class="col-md-2 control-label">是否上线</label>
+                <div class="col-md-4 input-group ">
+                    <input type="radio" 
+            
+                
+                    
+                    
+                    {if condition="$data[detail]['status'] eq 1"}checked="checked"{/if}
+                    name="post[status]" value="1">是 <input type="radio" 
+            
+                
+                    
+                    
+                    {if condition="$data[detail]['status'] eq 0"}checked="checked"{/if}
+                    name="post[status]" value="0">否
+                </div>
+            </div>
+             
+             
+            <div class="form-group" style="display: none;">
+                <label for="text-input" class="col-md-2 control-label">全局排序 (数字越大越前面)</label>
+                <div class="col-md-4 input-group ">
+                    <input type="text" name="post[listsorder]"  class="form-control" value="{$data['detail']['listsorder']}">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">简介</label>
+                <div class="col-md-4 input-group ">
+                    <textarea name="post[summary]"class="form-control"  >{$data['detail']['summary']}</textarea>
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="form-group"   >
+                <label for="text-input" class="col-md-2 control-label">主图</label>
+                <div class="col-md-10 input-group ">
+                    <div id="img_lists_gay" style="margin-bottom:20px">
+                         
+                        {volist name="data[detail][img_lists]" id="vo" key="i"}
+                            <div class="thumb-md" style="display:inline-block;"  id="img_gallery_{$i}" data="{$i}">
+                                <img src="{$vo[img_orogin]}" width="100">
+                                <input type="button" style="margin-left:40px" value="删除" onClick="del_gallery({$i})"/>
+                                <input type="hidden" id="gallery_file" style="display:none" name="img_lists[]" value="{$vo}">
+                            </div>
+                        {/volist}
+                    </div>
+                    <i class="fa fa-plus"></i><a type="button"   style="cursor:pointer" onclick="show_content('{:url("Config/material_lists")}?&ajax=1&return_fn=material_more_select')">选择图片 </a>
+                    <!--打开图册-->
+                    <script type="text/javascript">
+                        var upload_url="DOMAIN/plus.php/Image/upload_img?&json=1";
+                        var upload_action="DOMAIN/userweb.php/Config/material_add_action?&json=1";
+                        var material_url="DOMAIN/userweb.php/Config/get_material_lists?&json=1";
+                    </script>
+                    <script src="__ADMIN_STATIC__/public/js/material_lists_ajax.js"></script>
+                    <script src="__ADMIN_TOOL__/ajaxFileUpload/jquery.ajaxFileUpload.js" type="text/javascript"></script>
+                    <script>
+                        //选择图片之后
+                        function material_more_select(img_thumb,img_orogin){
+                            id=$('#img_lists_gay').children('div:last-child').attr('data');
+                            if(id==null){
+                                id=0;
+                            }
+                            id++;   
+                            var new_img ='<div class="thumb-md" style="display:inline-block;margin-top:20px"  id="img_gallery_'+id+'" data="'+id+'"><img src="'+img_thumb+'"  width="100"><input type="button" style="margin-left:40px" value="删除" onclick="del_gallery('+id+')"/><input type="hidden" id="gallery_orogin_'+id+'" style="display:none" name="img_lists[]" value="'+img_orogin+'"></div>';
+                            $("#img_lists_gay").append(new_img);
+    
+                            show_content_close();
+                        }
+                        //删除
+                        function del_gallery(id){
+                            $('#img_gallery_'+id).remove(); 
+                        }
+                    </script>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="text-input" class="col-md-2 control-label">文章详情</label>
+                <div class="col-md-10 input-group ">
+                    <link rel="stylesheet" href="__ADMIN_TOOL__/kindeditor-4.1.10//themes/default/default.css" />
+                    <link rel="stylesheet" href="__ADMIN_TOOL__/kindeditor-4.1.10/plugins/code/prettify.css" />
+                    <script charset="utf-8" src="__ADMIN_TOOL__/kindeditor-4.1.10/kindeditor.js"></script>
+                    <script charset="utf-8" src="__ADMIN_TOOL__/kindeditor-4.1.10/lang/zh_CN.js"></script>
+                    <script charset="utf-8" src="__ADMIN_TOOL__/kindeditor-4.1.10/plugins/code/prettify.js"></script>
+                    <script>
+             
+                                        KindEditor.ready(function(K) {
+                                            var editor1 = K.create('textarea[id="editor_id"]', {
+                                                cssPath : 'tool/kindeditor-4.1.10/plugins/code/prettify.css',
+                                                uploadJson : 'DOMAIN/public/static/userweb/tool/kindeditor-4.1.10/php/upload_json.php',
+                                                fileManagerJson : 'tool/kindeditor-4.1.10/php/file_manager_json.php',
+                                                allowFileManager : true,
+                                                filterMode : true,
+
+                                                afterCreate : function() {
+                                                     var self = this;
+                                                    K.ctrl(document, 13, function() {
+                                                        self.sync();
+                                                        K('form[name=add_goods]')[0].submit();
+                                                    });
+                                                    K.ctrl(self.edit.doc, 13, function() {
+                                                        self.sync();
+                                                        K('form[name=add_goods]')[0].submit();
+                                                         
+                                                    });
+                                                }
+                                            });
+                                            prettyPrint();
+                                        });
+     
+                                </script>
+                    <textarea id="editor_id" name="post[context]" style="width:800px;height:700px;">{$data['detail']['context']}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-sm btn-success" type="submit" onclick1="save_vote()"><i class="fa fa-dot-circle-o"></i> 保存</button>
+            <button class="btn btn-sm btn-danger" type="reset"><i class="fa fa-ban"></i> 重置</button>
+        </div>
+    </form>
+</div>
+
+{include file="Public/dailog" /}
+
+<script>
+
+function check11(){
+    var title=$("#cms_title").val();
+    if(!title){
+        alert("请填写标题");
+        return false;
+    }
+}
+
+function trigger(){
+    
+     $("#gallery_file").trigger("click");
+      
+}
+
+
+function start_chose(){
+
+    var val=$('#attr_select').val();
+    
+    url="admin.php?c=Goods&a=get_chose_attr_lists&cate_id="+val+"&goods_id={$data[detail][detail][goods_id]}";
+    
+    $("#attr_lists").html('<option value="">加载中</option>').load(url); 
+    
+}
+start_chose();
+function get_attr_chose_lists(goods_id){
+    var val=$('#attr_select').val();
+
+    
+    if(val>0){
+        
+        url="admin.php?c=Goods&a=get_chose_attr_lists&cate_id="+val+"&goods_id="+goods_id;
+        
+        $("#attr_lists").html('<option value="">加载中</option>').load(url); 
+        
+    }
+}
+
+
+
+function add_chose_s(i){
+
+    url="admin.php?c=Goods&a=get_select_lists&i="+i;
+
+      $.ajax({
+            type: "post",
+            url: url,
+            dataType: "json",       
+            success: function(data) {
+
+                $("#cate_lists").append(data.op_str);
+                
+             },
+            
+      })
+}
+
+ </script>
+<!--图片上传-->
+<!-- end: JavaScript-->

@@ -1,0 +1,218 @@
+<!-- 包含头部模版header -->
+{include file="Public/header" /}
+
+
+<script>
+$("title").html("登录");
+</script>
+<style>
+            footer {
+                display: none;
+            }
+            /*body{ background:url(add/13173485755mfV-gaosi.jpg); background-size:150%;}
+             
+            /*body{ background:url(add/20150514120625998.jpg); background-size:150%;}
+            body{ background:url(add/13173485755mfV.jpg); background-size:150%;}*/
+            body{ background:url(__ADMIN_STATIC__/image/bg_4.jpg); background-size:100%  ;}
+</style>
+<div style="position:fixed; top:0px; width:100%;background-color: rgba(0, 0, 0, 0.4); color:#fff;">
+    <span style="line-height:44px; font-size:24px; display:block; padding-left:20px; float:left;background-color: rgba(0, 0, 0, 0.4); padding-right:20px;">{$page_title}</span>
+    <span style="font-size:16px; line-height:44px; border-left:#fff 1px solid; padding-left:20px;   float:left;">智慧生活 物联互联 大数据分析 运营支撑</span>
+</div>
+<div class="container-fluid content">
+    <div class="row">
+        <div id="content" class="col-sm-12 full">
+            <div class="row">
+                <div class="login-box" style="margin-top:200px; margin-right:200px; padding:30px;background-color: rgba(255, 255, 255, 0.8); ">
+                    <div class="header" style="margin:0px; margin-bottom:10px; margin:0px -5px 10px; background:none; text-align:left; padding:0px; font-size:16px; padding-left:10px;  color:#343434;"> 登录 </div>
+                    <div class="text-center" style="display:none">
+                        <li><a href="" class="fa fa-facebook facebook-bg"></a>
+                        </li>
+                        <li><a href="" class="fa fa-twitter twitter-bg"></a>
+                        </li>
+                        <li><a href="" class="fa fa-linkedin linkedin-bg"></a>
+                        </li>
+                    </div>
+                    <div class="text-with-hr" style="display:none">
+                        <span>or</span>
+                    </div>
+                    <form class="form-horizontal login"   method="post" id="sava_form">
+                        <fieldset class="col-sm-12">
+                        <div class="form-group" style=" overflow: visible;margin-bottom:15px;">
+                            <div class="controls row">
+                                <div class="input-group col-sm-12" style="padding-right:15px!important; padding-left:15px!important;">
+                                    <input type="text" class="form-control" name="post[username]" required  id="username" placeholder="用户名……" style="line-height:44px!important; height:44px!important; max-height:44px!important; "/>
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style=" overflow: visible; margin-bottom:15px;padding-right:15px!important; padding-left:15px!important;">
+                            <div class="controls row">
+                                <div class="input-group col-sm-12">
+                                    <input type="password" class="form-control"  name="post[password]" required  id="password" placeholder="密码……" style="line-height:44px!important; height:44px!important; max-height:44px!important"/>
+                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="confirm" style="display:none">
+                            <input type="checkbox" name="remember"/>
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <div class="row">
+                            <button  onClick="login(this)"  type="button"  class="btn btn-lg btn-primary col-xs-12" style="background:#0866c6">提交</button>
+                        </div>
+                        </fieldset>
+                    </form>
+                    <div class="clearfix"></div>
+                    <a class="pull-left" href="page-login.html#" style="display:none">Forgot Password?</a>
+                    <a class="pull-right" href="userweb.php?m=Userweb&c=Login&a=reg" style="display:none">注册</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--/row-->
+        </div>
+    </div>
+</div>
+
+<!-- <div style="position:fixed; bottom:20px; width:100%; color:#fff; text-align:center; font-size:14px; display:none"> 深圳市拓略计算有限责任公司 Http://wwww.tuolve.com </div> -->
+<script type="text/javascript">
+//$(document).ready(function() {
+    $('#saveForm').bootstrapValidator({
+//        live: 'disabled',
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            'post[username]': {
+                validators: {
+                    notEmpty: {
+                        message: '不能为空'
+                    }
+                }
+            },
+            'post[password]': {
+                validators: {
+                    notEmpty: {
+                        message: '不能为空'
+                    }
+                }
+            }
+        }
+              
+    });
+//});
+function login(obj){
+    //$(obj).
+    //btn_status()
+    //$(obj).attr("disabled",true); 
+    //tmp=($(obj).html()); 
+    //$(obj).html("加载中");
+    //show_loading();
+    var username=$('#username').val();
+    var password=$('#password').val();
+
+    if(username ==''){
+        Lobibox.notify('error', {msg: '请输入账号…………'});
+     
+        return;
+    }
+    if(password ==''){
+        Lobibox.notify('error', { msg: "请输入密码"});
+        return;
+    }
+    
+    var url="{:url('Login/login_action')}?&username="+username+"&password="+password;
+    show_loading();
+    $.ajax({
+        type: "post",
+        url: url,
+        dataType: "json",       
+        success: function(data) {
+//          alert(JSON.stringify(data));exit;
+            show_loading_close();
+            if(data.status == '10001'){
+                 Lobibox.notify('success', {
+                    msg: '登录成功，正转入首页…………'
+                });
+                change_page("{:url('Index/index')}",1);
+                
+            }else if(data.status == '10002'){
+             
+                Lobibox.notify('error', { msg: "没有这个账号"});
+            }else if(data.status == '10003'){
+                 
+                Lobibox.notify('error', { msg: "用户或密码不正确"});
+            }else{
+                Lobibox.notify('error', { msg: "账户被冻结"});
+            }               
+        },
+        complete:function(data){
+            show_loading_close();
+            //location.href = "login.html";
+            
+        }
+    })
+}
+function reg(obj){
+    show_loading();
+    var username=$('#username').val();
+    var password=$('#password').val();
+    var re_password=$('#re_password').val();
+
+    if(username ==''){
+        show_tips_time('请输入账号');
+        show_loading_close();
+        return;
+    }
+    if(password ==''){
+        show_tips_time('请输入密码');
+        show_loading_close();
+        return;
+    }
+    if(re_password!=password){
+        show_tips_time('两次输入的密码不一致');
+        show_loading_close();
+        return;
+    }
+    
+
+    $.ajax({
+        type: "post",
+        url:"userweb.php?c=Login&a=reg_action",
+        data:$("#sava_form").serialize(),
+        dataType: "json",       
+        success: function(data) {
+            show_loading_close();
+            if(data.status == '20008'){
+                show_tips_time('注册成功',2000);
+                change_page("userweb.php?m=Userweb&c=Login&a=login",1000);
+                
+            }else if(data.status == '20002'){
+                show_tips_time('账号已存在',2000);
+            }else if(data.status == '10003'){
+                show_tips_time('密码错误',2000);
+            }else{
+                show_tips_time(data.text);
+            }               
+        },
+        complete:function(data){
+     
+            //location.href = "login.html";
+            
+        }
+    })
+}
+function btn_status(){
+    
+}
+</script>
+
+
+<!-- 包含尾部模版footer -->
+{include file="Public/footer" /}
+
+
+{include file="Public/dailog" /}

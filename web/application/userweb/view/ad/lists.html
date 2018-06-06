@@ -1,0 +1,51 @@
+{layout name="Public/layout" /}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2><i class="fa fa-table red"></i><span class="break"></span><strong>列表</strong></h2>
+         
+    </div>
+    <div class="panel-body">
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>排序</th>
+                    <th>标题</th> 
+                    <th>位置</th>
+                    <th>链接</th>
+                    <th style="width: 13.5em;">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="data" id="lists"}
+                    <tr >
+                        <td >{$lists['sort_order']}</td>
+                        <td >{$lists['title']}</td>
+                        <td >{$lists['cate_title']}</td>
+                        <td width="*" style="word-spacing:normal; word-wrap: break-word; word-break: normal; word-break:break-all; " >{$lists['url']}</td>
+                        
+                     
+                        <td width="150">
+                        
+                        {if condition="$lists.is_show eq 1 "}
+                            <a   href="{:url('chang_status')}?&json=1&id={$lists.id}&to_is_show=0"><i class="fa fa-arrow-down"></i>下架</a>
+                        {else/}
+                            <a href="{:url('chang_status')}?&json=1&id={$lists.id}&to_is_show=1"><i class="fa fa-arrow-up"></i>上架</a>
+                        {/if}
+                            
+                            <a href="{:url('add')}?&id={$lists.id}"><i class="fa fa-pencil"></i></a>
+                            <a  href="javascript:confirm_del('{:url("del")}?&id={$lists[id]}')" ><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                {/volist}
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-primary" href="{:url('add')}" ><i class="fa fa-plus"></i>新增</a>
+         
+    </div>
+</div>
+<include file="Public/pagination" />

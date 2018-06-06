@@ -1,0 +1,37 @@
+ <div class="weixin"> 
+		<div class="ajax_title">
+			<div class="left">{$comm.ajax_title}</div>
+			<div class="right"><a href="javascript:XianShi_GuanBi()">关闭</a></div>
+			 <div class="clear"></div>	
+		</div>
+
+		<div class="material">	
+			<div class="tag" id="tag">
+				<a href="javascript:tag_meterial_dis(this,'lists_img')" id="lists_img_tag" class="on">素材库</a>
+				<a href="javascript:tag_meterial_dis(this,'upload')" id="upload_tag" class="">上传</a>
+			</div>
+			<div class="clear"></div>
+			
+			<div class="content">
+				<div class="lists_img" id="lists_img">
+					 
+					{foreach from=$lists item=lists}
+						<div><img src="../{$lists.image_thumb}" width="100" onclick="photo_sel_to_reply_ajax('{$lists.image_thumb}')"></div>
+					{/foreach}	
+					 
+				</div>
+				<div id="ajax_upload" style="display:none">
+				 <form action="__URL__/insert_update" method="post" id="ajax_save_form"   onSubmit="return insert_material_ajax('ajax_image')" enctype="multipart/form-data">
+					<input type="file" name="ajax_image" id="ajax_image"/>
+					<input type="button" value="上传55" id="button" onclick="insert_material_ajax('ajax_image')">
+				 </form>	
+				</div>
+				 
+			
+			</div>
+		</div>	 
+ 				
+			   
+</div>				
+<script src="tlwx_templates/js/jquery.ajaxFileUpload.js"></script>	 	   
+ 
